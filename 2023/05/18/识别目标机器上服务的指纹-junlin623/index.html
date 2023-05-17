@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;junlin623&#x2F;p&#x2F;17158803.html  title: ‘识别目标机器上服务的指纹-junlin623’date: 2023-02-27 11:19:00      一、服务指纹 为了确保有一个成功的渗透测试或网络设备监控，必须需要知道目标系统中服务的指纹信息。服务指纹信息包括服务端口、服务名和版本等 通过分析目标向nmap发送的数据包中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2023/05/18/%E8%AF%86%E5%88%AB%E7%9B%AE%E6%A0%87%E6%9C%BA%E5%99%A8%E4%B8%8A%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%8C%87%E7%BA%B9-junlin623/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;junlin623&#x2F;p&#x2F;17158803.html  title: ‘识别目标机器上服务的指纹-junlin623’date: 2023-02-27 11:19:00      一、服务指纹 为了确保有一个成功的渗透测试或网络设备监控，必须需要知道目标系统中服务的指纹信息。服务指纹信息包括服务端口、服务名和版本等 通过分析目标向nmap发送的数据包中">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227102448519-511972336.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227103033438-1583126655.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227103512449-684545873.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227103543600-1112618112.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227103603157-526291168.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227111820587-1197984656.png">
+<meta property="article:published_time" content="2023-05-17T16:09:35.189Z">
+<meta property="article:modified_time" content="2023-05-17T11:57:00.809Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227102448519-511972336.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-识别目标机器上服务的指纹-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/%E8%AF%86%E5%88%AB%E7%9B%AE%E6%A0%87%E6%9C%BA%E5%99%A8%E4%B8%8A%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%8C%87%E7%BA%B9-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.189Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17158803.html">https://www.cnblogs.com/junlin623/p/17158803.html</a></p>
+<hr>
+<p>title: ‘识别目标机器上服务的指纹-junlin623’<br>date: 2023-02-27 11:19:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h3 id="一、服务指纹"><a href="#一、服务指纹" class="headerlink" title="一、服务指纹"></a>一、服务指纹</h3><hr>
+<p>为了确保有一个成功的渗透测试或网络设备监控，必须需要知道目标系统中服务的指纹信息。服务指纹信息包括服务端口、服务名和版本等</p>
+<p>通过分析目标向nmap发送的数据包中某些协议标记、选型和数据，我们可以推断发送这些数据包的操作系统等。</p>
+<p>nmap通过向目标主机发送多个UDP和TCP数据包并分析其响应来进行操作系统的指纹识别工作</p>
+<h3 id="二、Nmap识别服务指纹"><a href="#二、Nmap识别服务指纹" class="headerlink" title="二、Nmap识别服务指纹"></a>二、Nmap识别服务指纹</h3><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sV ip地址/域名</span><br></pre></td></tr></table></figure>
+
+<p>nmap会向对应ip地址的主机上发送大量的数据包</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227102448519-511972336.png" width="70%" >
+
+
+<p>扫描本机：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227103033438-1583126655.png" width="70%" >
+
+
+
+
+<h3 id="三、Nmap侵略性探测"><a href="#三、Nmap侵略性探测" class="headerlink" title="三、Nmap侵略性探测"></a>三、Nmap侵略性探测</h3><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -A -v -T4 ip地址  <span class="comment"># 探测目标机器的操作系统、服务等信息，</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> -A表示侵略性探测，启动Os检测，版本检测，脚本扫描和traceroute<br>-v 表示输出扫描过程，<br>-T4表示加块速度探测，由于侵略性探测很耗时，所以需要加上这个参数 （ -T  &lt;0-5&gt; 设置时间模板,值越小，IDS报警几率越低）</p>
+<blockquote>
+<p>-T0（偏执的）：非常慢的扫描，用于IDS逃避。<br>-T1（鬼祟的）：缓慢的扫描，用于IDS逃避。<br>-T2（文雅的）：降低速度以降低对带宽的消耗，此选项不常用。<br>-T3（普通的）：默认，根据目标的反应自动调整时间。<br>-T4（野蛮的）：快速扫描，常用扫描方式，需要在很好的网络环境下进行扫描，请求可能会淹没目标。<br>-T5（疯狂的）：极速扫描，这种扫描方式以牺牲准确度来提示扫描速度。</p>
+</blockquote>
+</blockquote>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227103512449-684545873.png" width="70%" >
+
+
+<p><strong>更加详细的端口信息：</strong></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227103543600-1112618112.png" width="70%" >
+
+
+
+<p><strong>路由转发路径：</strong><br><img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227103603157-526291168.png" width="40%" ></p>
+<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sC -sV -o ip地址  <span class="comment"># 探测目标机器的操作系统、服务等信息，比-A参数少了一些扫描目标</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>sC 参数表示使用nmap脚本进行探测, 也等同于 –script&#x3D;default<br>sV 表示探测目标机器上的服务信息，<br>o 表示探测目标机器的操作系统信息</p>
+</blockquote>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227111820587-1197984656.png" width="70%" >
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/%E8%AF%86%E5%88%AB%E7%9B%AE%E6%A0%87%E6%9C%BA%E5%99%A8%E4%B8%8A%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%8C%87%E7%BA%B9-junlin623/" data-id="clhrwf8jq0029ekszfseu8s5t" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/05/18/%E4%BD%BF%E7%94%A8Docker%E6%90%AD%E5%BB%BAwordpress%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E9%99%84%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3-junlin623/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/05/18/%E6%89%AB%E6%8F%8F%E5%86%85%E7%BD%91%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA-junlin623/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/05/18/%E7%9B%B4%E8%BF%9E%E8%B7%AF%E7%94%B1%E8%A1%A8%E9%A1%B9%E8%A7%A3%E6%9E%90-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E6%95%B4%E6%95%B0%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%8E%9F%E7%94%9F%E6%96%B9%E5%BC%8F%E9%83%A8%E7%BD%B2JavaWeb%E9%A1%B9%E7%9B%AE%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%8E%9F%E6%9D%A5%E6%98%AFvmware-hostd%E7%A8%8B%E5%BA%8F%E5%8D%A0%E7%94%A8%E4%BA%86443%E7%AB%AF%E5%8F%A3-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%AD%A6%E7%94%9F%E5%8F%AF%E4%BB%A5%E7%99%BD%E5%AB%96%E9%98%BF%E9%87%8C%E4%BA%91ECS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8D%8A%E5%B9%B4~~-junlin623/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

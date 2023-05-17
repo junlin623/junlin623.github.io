@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;junlin623&#x2F;p&#x2F;17062850.html  title: ‘Linux中安装MySQL-junlin623’date: 2023-01-20 19:26:00      1. 卸载系统自带的mariadb我这里使用的是Centos7, 所以系统会自带Mariadb，需要先卸载掉，当然后面在安装mysql的过程中也会有提示  查询已安装的 M">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2023/05/18/Linux%E4%B8%AD%E5%AE%89%E8%A3%85MySQL-junlin623/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;junlin623&#x2F;p&#x2F;17062850.html  title: ‘Linux中安装MySQL-junlin623’date: 2023-01-20 19:26:00      1. 卸载系统自带的mariadb我这里使用的是Centos7, 所以系统会自带Mariadb，需要先卸载掉，当然后面在安装mysql的过程中也会有提示  查询已安装的 M">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120154805978-1858696207.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120154958296-2098689670.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120155632081-1677341645.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120155707113-1379371888.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120160043951-867206237.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120160137509-1096432500.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120161809220-973202704.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120163300834-799289977.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120165059869-2067794642.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120165120557-805461891.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120165139670-1424432682.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120165209520-391108845.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120165617021-981341403.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120165717385-1645004215.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120165924374-1882948912.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120172033236-575004250.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120173028501-1073105661.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120173145486-1897849121.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120173328370-1808048379.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120174116032-1186191426.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120174433517-153855103.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120180230177-741722766.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120181332307-827662909.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120180631115-2104383340.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120180927023-128197425.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120181018141-257561929.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120181059735-1015029628.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120181448946-1209973885.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120182127934-759462516.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120182206659-1648139669.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120182310943-205498634.png">
+<meta property="article:published_time" content="2023-05-17T16:09:35.115Z">
+<meta property="article:modified_time" content="2023-05-17T11:57:00.789Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120154805978-1858696207.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Linux中安装MySQL-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/Linux%E4%B8%AD%E5%AE%89%E8%A3%85MySQL-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.115Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17062850.html">https://www.cnblogs.com/junlin623/p/17062850.html</a></p>
+<hr>
+<p>title: ‘Linux中安装MySQL-junlin623’<br>date: 2023-01-20 19:26:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h3 id="1-卸载系统自带的mariadb"><a href="#1-卸载系统自带的mariadb" class="headerlink" title="1. 卸载系统自带的mariadb"></a>1. 卸载系统自带的mariadb</h3><p>我这里使用的是Centos7, 所以系统会自带Mariadb，需要先卸载掉，当然后面在安装mysql的过程中也会有提示</p>
+<ul>
+<li><p>查询已安装的 Mariadb 安装包：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep mariadb</span><br></pre></td></tr></table></figure>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120154805978-1858696207.png"></p>
+</li>
+<li><p>将所有的都卸载</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y remove xxx</span><br></pre></td></tr></table></figure>
+
+<p>我这里只有一个，如果有多个需要全部删除</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120154958296-2098689670.png" width="50%" ></li>
+</ul>
+<h3 id="2-下载mysql安装包-https-www-mysql-com-downloads"><a href="#2-下载mysql安装包-https-www-mysql-com-downloads" class="headerlink" title="2. 下载mysql安装包 (https://www.mysql.com/downloads/)"></a>2. 下载mysql安装包 (<a target="_blank" rel="noopener" href="https://www.mysql.com/downloads/">https://www.mysql.com/downloads/</a>)</h3><p>  选择开源免费的社区版进行下载：</p>
+  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120155632081-1677341645.png" width="50%" >
+  
+  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120155707113-1379371888.png" width="50%" >
+  
+<p>  选择操作系统：</p>
+<p>  这里没有centos版本，选择红帽就好</p>
+  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120160043951-867206237.png" width="50%" >
+  
+<p>  我这里是Centos 7.9， x86架构：</p>
+  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120160137509-1096432500.png" width="50%" >
+
+<p>  下载第一个rpm捆绑包，</p>
+  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120161809220-973202704.png" width="50%" >
+
+<p>  捆绑包中会包含以下内容，就不用自己一个一个下载了</p>
+<ul>
+<li><p>mysql-community-server数据库服务器和相关工具</p>
+</li>
+<li><p>mysql-community-clientMySQL客户端应用程序和工具</p>
+</li>
+<li><p>mysql-community-libsMySQL数据库客户端应用程序的共享库</p>
+</li>
+<li><p>mysql-community-common服务器和客户端库的通用文件</p>
+</li>
+<li><p>mysql-community-libs-compat以前的MySQL安装的共享兼容性库</p>
+</li>
+</ul>
+<h3 id="3-正式进行安装"><a href="#3-正式进行安装" class="headerlink" title="3.正式进行安装"></a>3.正式进行安装</h3><ul>
+<li>在 &#x2F;opt 目录下新建mysql文件夹, 将下载的安装包推送到该目录下</li>
+</ul>
+<p>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120163300834-799289977.png"></p>
+<ul>
+<li>在 &#x2F;opt&#x2F;mysql目录下解压安装包:</li>
+</ul>
+   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> gzip mysql-8.0.32-1.el7.x86_64.rpm-bundle.tar  # 会将.tar文件变成 .tar.gz文件</span><br><span class="line"> tar -zxvf mysql-8.0.32-1.el7.x86_64.rpm-bundle.tar.gz  # 解压</span><br><span class="line"> ```    </span><br><span class="line">![](https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120163909010-1167989160.png)</span><br><span class="line"></span><br><span class="line">* 前置检查</span><br><span class="line">    </span><br><span class="line">  由于mysql安装过程中，会通过mysql用户在/tmp目录下新建tmp_db文件，所以需要给 /tmp 目录较大的权限。</span><br><span class="line"></span><br><span class="line">  ```shell</span><br><span class="line">  chmod -R 777 /tmp</span><br></pre></td></tr></table></figure>
+
+<pre><code>检查依赖：
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep libaio</span><br></pre></td></tr></table></figure>
+
+如果没有的话需要执行 `yum install -y libaio-devel.x86_64` 进行安装
+
+![](https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120163931145-9967329.png)
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep net-tools</span><br></pre></td></tr></table></figure>
+如果没有的话需要执行 `yum install net-tools` 进行安装
+
+![](https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120163958771-83516685.png)
+</code></pre>
+<ul>
+<li><p>开始安装</p>
+<p>依次执行以下命令，注意一定要按顺序，因为会有依赖关系</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mysql-community-common-8.0.32-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh mysql-community-client-plugins-8.0.32-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh mysql-community-libs-8.0.32-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh mysql-community-client-8.0.32-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh mysql-community-icu-data-files-8.0.32-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh mysql-community-server-8.0.32-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120165059869-2067794642.png"></p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120165120557-805461891.png"></p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120165139670-1424432682.png"></p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120165209520-391108845.png"></p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120165617021-981341403.png"></p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120165717385-1645004215.png"></p>
+</li>
+</ul>
+<h3 id="4-验证mysql是否安装成功："><a href="#4-验证mysql是否安装成功：" class="headerlink" title="4.验证mysql是否安装成功："></a>4.验证mysql是否安装成功：</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql --version  //查看版本</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep -i mysql</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120165924374-1882948912.png"></p>
+<h3 id="5-服务的初始化"><a href="#5-服务的初始化" class="headerlink" title="5.服务的初始化"></a>5.服务的初始化</h3><p>为了保证数据库目录与文件的所有者为 mysql 登录用户，如果你是以 root 身份运行 mysql 服务，需要执行下面的命令初始化：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --initialize --user=mysql</span><br></pre></td></tr></table></figure>
+
+<p>说明： –initialize 选项默认以“安全”模式来初始化，则会为 root 用户生成一个密码并将 该密码标记为过期 ，登录后你需要设置一个新的密码。生成的临时密码 会在日志中记录一份。</p>
+<p>查看密码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120172033236-575004250.png"></p>
+<h3 id="6-启动mysql服务"><a href="#6-启动mysql服务" class="headerlink" title="6.启动mysql服务"></a>6.启动mysql服务</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld.service  # 启动mysql服务</span><br><span class="line">systemctl status mysqld.service  # 查看mysql服务的状态</span><br><span class="line">````</span><br><span class="line"></span><br><span class="line">![](https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120172334480-1480753086.png)</span><br><span class="line"></span><br><span class="line">默认情况下mysql服务是开机自启的</span><br><span class="line"></span><br><span class="line">![](https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120172538565-2101865355.png)</span><br><span class="line"></span><br><span class="line">如不是enabled可以运行如下命令设置开机自启动</span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line">systemctl enable mysqld.service</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="7-登录mysql"><a href="#7-登录mysql" class="headerlink" title="7.登录mysql"></a>7.登录mysql</h3><p>用前面我们查看的密码进行登录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+
+<p>输入密码</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120173028501-1073105661.png"></p>
+<h3 id="8-重置密码"><a href="#8-重置密码" class="headerlink" title="8.重置密码"></a>8.重置密码</h3><p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120173145486-1897849121.png"></p>
+<p>执行了一个命令提示我们要修改密码（因为初始化密码默认是过期的，所以查看数据库会报错）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;xxx&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120173328370-1808048379.png"></p>
+<p>重新登录一下mysql即可</p>
+<h3 id="9-Windows远程连接"><a href="#9-Windows远程连接" class="headerlink" title="9.Windows远程连接"></a>9.Windows远程连接</h3><p>这里使用的windows客户端软件是SQLYog</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120174116032-1186191426.png"></p>
+<p>测试连接失败, 这是由于Mysql配置了不支持远程连接</p>
+<ul>
+<li>到远程Linux主机中查看3306端口是否开放</li>
+</ul>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120174433517-153855103.png"></p>
+<ul>
+<li><p>到远程Linux主机中设置防火墙 （Linux中防火墙的基本使用：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17062973.html%EF%BC%89">https://www.cnblogs.com/junlin623/p/17062973.html）</a> 放行3306端口的数据</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=3306/tcp --permanent  #放行3306端口</span><br><span class="line">systemctl restart firewalld.service #重启防火墙</span><br><span class="line">firewall-cmd --reload  #重新载入配置</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120180230177-741722766.png"></p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120181332307-827662909.png"></p>
+<ul>
+<li>Linux中不允许远程主机通过root用户登录问题</li>
+</ul>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120180631115-2104383340.png"></p>
+<p>可以看到root用户对应的主机是localhost也就是自身主机</p>
+<p>Host列指定了允许用户登录所使用的IP，比如User&#x3D;root Host&#x3D;192.168.1.1, 意思就是说root用户只能通过192.168.1.1的客户端去访问; User&#x3D;root Host&#x3D;localhost，表示只能通过本机客户端去访问。而 %是个通配符 ，如果Host&#x3D;192.168.1.%，那么就表示只要是IP地址前缀为“192.168.1.”的客户端都可以连接。如果 Host&#x3D;% ，表示所有IP都有连接权限。</p>
+<p>注意：在生产环境下不能为了省事将host设置为%，这样做会存在安全问题，具体的设置可以根据生产环境的IP进行设置。</p>
+<p>我们需要将mysql数据库user表中的root用户这个记录对应的主机进行修改</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> host<span class="operator">=</span><span class="string">&#x27;%&#x27;</span> <span class="keyword">where</span> <span class="keyword">user</span><span class="operator">=</span><span class="string">&#x27;root&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120180927023-128197425.png"></p>
+<p>修改成功：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120181018141-257561929.png"></p>
+<p>刷新一下权限：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120181059735-1015029628.png"></p>
+<p>此时出现了新的报错：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120181448946-1209973885.png"></p>
+<p>这个问题只会在mysql 8.0版本中出现， 原因是MySQL8.0对密码进行了加密</p>
+<p>远程Linux主机下登录数据库，执行：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">WITH</span> mysql_native_password <span class="keyword">BY</span> <span class="string">&#x27;123456&#x27;</span>;   <span class="comment">--这里的密码随便设置</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120182127934-759462516.png"></p>
+<p>sqlyog中重新连接成功：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120182206659-1648139669.png"></p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230120182310943-205498634.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/Linux%E4%B8%AD%E5%AE%89%E8%A3%85MySQL-junlin623/" data-id="clhrwf8iw000oeksz1ttqck3f" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/05/18/Matlab%E5%A4%8D%E7%8E%B0Floyd%E7%AE%97%E6%B3%95-junlin623/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/05/18/Linux%E9%98%B2%E7%81%AB%E5%A2%99%E7%9A%84%E4%BD%BF%E7%94%A8-junlin623/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/05/18/%E7%9B%B4%E8%BF%9E%E8%B7%AF%E7%94%B1%E8%A1%A8%E9%A1%B9%E8%A7%A3%E6%9E%90-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E6%95%B4%E6%95%B0%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%8E%9F%E7%94%9F%E6%96%B9%E5%BC%8F%E9%83%A8%E7%BD%B2JavaWeb%E9%A1%B9%E7%9B%AE%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%8E%9F%E6%9D%A5%E6%98%AFvmware-hostd%E7%A8%8B%E5%BA%8F%E5%8D%A0%E7%94%A8%E4%BA%86443%E7%AB%AF%E5%8F%A3-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%AD%A6%E7%94%9F%E5%8F%AF%E4%BB%A5%E7%99%BD%E5%AB%96%E9%98%BF%E9%87%8C%E4%BA%91ECS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8D%8A%E5%B9%B4~~-junlin623/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

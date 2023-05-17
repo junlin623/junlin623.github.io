@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-使用Matlab构建二维栅格地图-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/%E4%BD%BF%E7%94%A8Matlab%E6%9E%84%E5%BB%BA%E4%BA%8C%E7%BB%B4%E6%A0%85%E6%A0%BC%E5%9C%B0%E5%9B%BE-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.193Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17065665.html">https://www.cnblogs.com/junlin623/p/17065665.html</a></p>
+<hr>
+<p>title: ‘使用Matlab构建二维栅格地图-junlin623’<br>date: 2023-01-23 23:38:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h3 id="常使用的地图一般有以下几种"><a href="#常使用的地图一般有以下几种" class="headerlink" title="常使用的地图一般有以下几种:"></a>常使用的地图一般有以下几种:</h3><ul>
+<li>尺度地图：具有真实的物理尺寸，如栅格地图、特征地图、点云地图、常用于地图构建、定位、SLAM、小规模路径规划</li>
+<li>拓扑地图：不具备真实的物理尺寸，只表示不同地点的连通关系和举例，如铁路网</li>
+<li>语义地图：加标签的尺度地图，常用于人机交互</li>
+</ul>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230123224024113-464492979.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230123224036790-1222029578.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230123224055843-979981273.png" width="30%" >
+
+<hr>
+<p>我们在进行一些算法研究的时候通常使用的都是栅格地图：</p>
+<h3 id="栅格地图用于路径规划的优势："><a href="#栅格地图用于路径规划的优势：" class="headerlink" title="栅格地图用于路径规划的优势："></a>栅格地图用于路径规划的优势：</h3><ul>
+<li>可以将任意形状轮廓的地图，用足够精细的栅格进行绘制；</li>
+<li>每一个栅格，可以通过不同颜色表征不同含义，如黑色代表障碍物、黄色代表起点、红色代表终点。</li>
+<li>基于栅格地图进行路径规划有横、纵、斜三个规划方向，对于室内低速机器人可以完全按照规划路径行走；对于中高速机器人，可以考虑将规划路径进行平滑处理，以适用于非完全约束系统。</li>
+</ul>
+<hr>
+<h3 id="使用Matlab绘制栅格地图的几个常用函数及思想："><a href="#使用Matlab绘制栅格地图的几个常用函数及思想：" class="headerlink" title="使用Matlab绘制栅格地图的几个常用函数及思想："></a>使用Matlab绘制栅格地图的几个常用函数及思想：</h3><blockquote>
+<p>为了在栅格地图呈现随机障碍物的效果，可以设障碍物出现频率数值，根据该数据在所有栅格中生成随机数，从而确定障碍物栅格。</p>
+</blockquote>
+<ul>
+<li><p><code>colormap</code>:为栅格地图创建自定义颜色。如黄色栅格代表起点、红色栅格代表终点、黑色栅格代表障碍物。</p>
+</li>
+<li><p><code>sub2id</code>:将行列索引转为线性索引。对于右图栅格地图，10行10列，行从左上角自上而下排序，列从左上角自左而右排序。相反<code>ind2sub</code>则将线性索引转为行列索引。</p>
+</li>
+<li><p><code>image</code>:利用colormap建立的颜色图，将数组信息显示为图像。</p>
+<blockquote>
+<p>image(x,y,C) 指定图像位置。使用 x 和 y 可指定与 C(1,1) 和 C(m,n) 对应的边角的位置。要同时指定两个边角，请将 x 和 y 设置为二元素向量。要指定第一个边角并让 image 确定另一个，请将 x 和 y 设为标量值。图像将根据需要进行拉伸和定向。</p>
+</blockquote>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230123232606827-572811538.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230123232737564-885871542.png" width="30%" >
+</li>
+<li><p><code>randi</code>: X &#x3D; randi([imin,imax],n,m) 生成一个值在imin和imax之间的n行m列的均匀分布的整数矩阵</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; randi([<span class="number">1</span>,<span class="number">10</span>], <span class="number">5</span>,<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">ans</span> =</span><br><span class="line"></span><br><span class="line">     <span class="number">8</span>    <span class="number">10</span>     <span class="number">9</span>     <span class="number">4</span>     <span class="number">4</span></span><br><span class="line">     <span class="number">3</span>     <span class="number">6</span>     <span class="number">3</span>     <span class="number">2</span>     <span class="number">9</span></span><br><span class="line">     <span class="number">6</span>     <span class="number">2</span>     <span class="number">9</span>     <span class="number">3</span>     <span class="number">6</span></span><br><span class="line">     <span class="number">7</span>     <span class="number">2</span>     <span class="number">3</span>     <span class="number">7</span>     <span class="number">6</span></span><br><span class="line">     <span class="number">9</span>     <span class="number">3</span>    <span class="number">10</span>     <span class="number">5</span>    <span class="number">10</span></span><br><span class="line"></span><br><span class="line">&gt;&gt; </span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">clc;</span><br><span class="line">clear;</span><br><span class="line">close all;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%% 构建颜色MAP图</span></span><br><span class="line"><span class="comment">% n行3列，3列表示颜色</span></span><br><span class="line"><span class="comment">% 构建地图的过程中需要多少中颜色就定义多少行</span></span><br><span class="line">cmap = [<span class="number">1</span> <span class="number">1</span> <span class="number">1</span>; ...       <span class="comment">% 1-白色-空地: 白色的代表数字是1，我们让它表示空地</span></span><br><span class="line">    <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; ...           <span class="comment">% 2-黑色-静态障碍</span></span><br><span class="line">    <span class="number">1</span> <span class="number">0</span> <span class="number">0</span>; ...           <span class="comment">% 3-红色-动态障碍</span></span><br><span class="line">    <span class="number">1</span> <span class="number">1</span> <span class="number">0</span>;...            <span class="comment">% 4-黄色-起始点 </span></span><br><span class="line">    <span class="number">1</span> <span class="number">0</span> <span class="number">1</span>;...            <span class="comment">% 5-品红-目标点</span></span><br><span class="line">    <span class="number">0</span> <span class="number">1</span> <span class="number">0</span>; ...           <span class="comment">% 6-绿色-到目标点的规划路径   </span></span><br><span class="line">    <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>];              <span class="comment">% 7-青色-动态规划的路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 构建颜色MAP图</span></span><br><span class="line">colormap(cmap);</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 构建栅格地图场景</span></span><br><span class="line">rows = <span class="number">10</span>;  <span class="comment">% 行数</span></span><br><span class="line">cols = <span class="number">15</span>;  <span class="comment">% 列数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 定义栅格地图全域，并初始化空白区域, 因为数字全部都是1（我们定义了白色表示空地）</span></span><br><span class="line">field = <span class="built_in">ones</span>(rows,cols);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 障碍物</span></span><br><span class="line">obsRate = <span class="number">0.3</span>; <span class="comment">% 障碍物出现的频率</span></span><br><span class="line">obsNum = <span class="built_in">floor</span>(rows*cols*obsRate);  <span class="comment">% 障碍物的个数</span></span><br><span class="line">obsIndex = randi([<span class="number">1</span>,rows*cols],obsNum,<span class="number">1</span>); <span class="comment">% 生成所有障碍物的索引（注意是一维索引）</span></span><br><span class="line">field(obsIndex) = <span class="number">2</span>;  <span class="comment">% 将生成的位置的值设为2表示静态障碍</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 定义起点和终点（之所以放在生成障碍物后面，是为了防止随机生成的障碍物把起点或者终点覆盖）</span></span><br><span class="line">startPos = <span class="number">3</span>;</span><br><span class="line">goalPos = rows*cols - <span class="number">3</span>;</span><br><span class="line">field(startPos) = <span class="number">4</span>;  <span class="comment">% 将起始点设置为4，黄色</span></span><br><span class="line">field(goalPos) = <span class="number">5</span>;   <span class="comment">% 将终点设置为5，品红色</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% 根据cmap和field矩阵绘制栅格图</span></span><br><span class="line">image(<span class="number">1.5</span>,<span class="number">1.5</span>,field);  <span class="comment">% 如果我们之前没有构建颜色map图，那么1个数值就直接表示1个像素的颜色值</span></span><br><span class="line">grid on;  <span class="comment">% 开启网格线</span></span><br><span class="line">set(gca,<span class="string">&#x27;gridline&#x27;</span>,<span class="string">&#x27;-&#x27;</span>,<span class="string">&#x27;gridcolor&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,<span class="string">&#x27;linewidth&#x27;</span>,<span class="number">2</span>,<span class="string">&#x27;GridAlpha&#x27;</span>,<span class="number">0.5</span>); <span class="comment">% 将网格改成实线，颜色改成黑色，线宽为2，透明度为0.5</span></span><br><span class="line">set(gca,<span class="string">&#x27;xtick&#x27;</span>,<span class="number">1</span>:cols+<span class="number">1</span>,<span class="string">&#x27;ytick&#x27;</span>,<span class="number">1</span>:rows+<span class="number">1</span>);  <span class="comment">% 设置坐标的刻度</span></span><br><span class="line">axis image; <span class="comment">% 	沿每个坐标区使用相同的数据单位长度，并使坐标区框紧密围绕数据。</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h3><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230123233651877-2001435992.png" width="40%" >
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/%E4%BD%BF%E7%94%A8Matlab%E6%9E%84%E5%BB%BA%E4%BA%8C%E7%BB%B4%E6%A0%85%E6%A0%BC%E5%9C%B0%E5%9B%BE-junlin623/" data-id="clhrwf8jf001jekszgq2z0sz2" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-使用Docker搭建wordpress个人博客网站附遇到的问题解决-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/%E4%BD%BF%E7%94%A8Docker%E6%90%AD%E5%BB%BAwordpress%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E9%99%84%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.191Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17317762.html">https://www.cnblogs.com/junlin623/p/17317762.html</a></p>
+<hr>
+<p>title: ‘使用Docker搭建wordpress个人博客网站附遇到的问题解决-junlin623’<br>date: 2023-04-14 11:21:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h3 id="1-Docker安装"><a href="#1-Docker安装" class="headerlink" title="1. Docker安装"></a>1. Docker安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update  <span class="comment">#更新下载</span></span><br><span class="line">sudo apt-get install -y docker.io   <span class="comment">#下载docker</span></span><br><span class="line">systemctl start docker    <span class="comment">#启动docker</span></span><br><span class="line">systemctl status docker</span><br><span class="line">systemctl stop docker.socket</span><br><span class="line">systemctl <span class="built_in">enable</span> docker   <span class="comment">#设置docker开机自启</span></span><br><span class="line">docker version       <span class="comment">#查看docker版本</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-docker-compose安装"><a href="#2-docker-compose安装" class="headerlink" title="2. docker-compose安装"></a>2. docker-compose安装</h3><p><strong>前提：</strong><br>有些版本的系统默认是python2，但是也有python3，此时建议将python3作为默认的python</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230414110038734-1087730729.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先删除默认的Python软链接：</span></span><br><span class="line">sudo <span class="built_in">rm</span> -rf /usr/bin/python</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个新的软链接指向需要的Python版本：</span></span><br><span class="line">sudo <span class="built_in">ln</span> -s /usr/bin/python3 /usr/bin/python</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果想还原回原python2.7，只需</span></span><br><span class="line">sudo <span class="built_in">rm</span> -rf /usr/bin/python</span><br><span class="line">sudo <span class="built_in">ln</span> -s /usr/bin/ptyhon2.7 /usr/bin/python</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230414105931454-1925398527.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple docker-compose</span><br><span class="line">docker-compose -v  <span class="comment"># 查看docker-compose版本</span></span><br></pre></td></tr></table></figure>
+
+<p>安装docker-compose可能会出现失败的情况， 这时候需要更新以下pip3</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230414102105067-1288766669.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install --upgrade pip   <span class="comment"># 更新pip3</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230414102203639-140711744.png"></p>
+<h3 id="3-一键安装"><a href="#3-一键安装" class="headerlink" title="3. 一键安装"></a>3. 一键安装</h3><p>在某个位置新建一个文件夹<code>my_wordpress</code>并进入文件夹新建名为 <code>docker-compose.yml</code> 的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> my_wordpress</span><br><span class="line"><span class="built_in">cd</span> my_wordpress/</span><br><span class="line"><span class="built_in">touch</span> docker-compose.yml</span><br></pre></td></tr></table></figure>
+<p>将如下内容粘贴到<code>docker-compose.yml</code>文件中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">&#x27;3.3&#x27;</span></span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">   db:</span><br><span class="line">     image: mysql:5.7</span><br><span class="line">     volumes:</span><br><span class="line">       - db_data:/var/lib/mysql</span><br><span class="line">     restart: always</span><br><span class="line">     environment:</span><br><span class="line">       MYSQL_ROOT_PASSWORD: somewordpress</span><br><span class="line">       MYSQL_DATABASE: wordpress</span><br><span class="line">       MYSQL_USER: wordpress</span><br><span class="line">       MYSQL_PASSWORD: wordpress</span><br><span class="line"></span><br><span class="line">   wordpress:</span><br><span class="line">     depends_on:</span><br><span class="line">       - db</span><br><span class="line">     image: wordpress:latest</span><br><span class="line">     ports:</span><br><span class="line">       - <span class="string">&quot;8000:80&quot;</span></span><br><span class="line">     restart: always</span><br><span class="line">     environment:</span><br><span class="line">       WORDPRESS_DB_HOST: db:3306</span><br><span class="line">       WORDPRESS_DB_USER: wordpress</span><br><span class="line">       WORDPRESS_DB_PASSWORD: wordpress</span><br><span class="line">       WORDPRESS_DB_NAME: wordpress</span><br><span class="line">volumes:</span><br><span class="line">    db_data: &#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230414101556326-10598486.png" width="60%" >
+
+
+<p>在当前目录下使用一行命令启动docker容器（会自动找到<code>docker-compose.yml</code>文件）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="4-问题解决"><a href="#4-问题解决" class="headerlink" title="4. 问题解决"></a>4. 问题解决</h3><p>上一步大概率会出现错误</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230414105426219-580957447.png"></p>
+<p><strong>问题一：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/lib/python3.6/site-packages/paramiko/transport.py:32: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support <span class="keyword">for</span> it is deprecated <span class="keyword">in</span> cryptography. The next release of cryptography will remove support <span class="keyword">for</span> Python 3.6.</span><br><span class="line">  from cryptography.hazmat.backends import default_backend</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>python3.6版本和Cryptography库的版本不兼容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip show Cryptography <span class="comment"># 先查看已经安装的Cryptography版本</span></span><br><span class="line">pip uninstall  cryptography <span class="comment"># 卸载 cryptography </span></span><br><span class="line">pip install  cryptography==  <span class="comment"># 查看cryptography 有哪些版本</span></span><br><span class="line">pip install  cryptography==3.4.8  <span class="comment"># 安装一个较低的版本</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>问题二：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">You might be seeing this error because you<span class="string">&#x27;re using the wrong Compose file version. Either specify a supported version (e.g &quot;2.2&quot; or &quot;3.3&quot;) and place your service definitions under the `services` key, or omit the `version` key and place your service definitions at the root of the file to use version 1.</span></span><br><span class="line"><span class="string">For more on the Compose file format versions, see https://docs.docker.com/compose/compose-file/</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+
+<p>docker-compose.yml中指定的version和docker engine版本不兼容‘</p>
+<p>查看docker版本<code>docker --version</code>修改对照下表 <code>docker-compose.yml</code> 文件中的version</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230414110337855-624430680.png"></p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230414110449351-285730180.png"></p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230414110432006-766459851.png"></p>
+<h3 id="5-访问博客"><a href="#5-访问博客" class="headerlink" title="5. 访问博客"></a>5. 访问博客</h3><p>看到刚刚启动了两个容器</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230414110807572-2018339960.png"></p>
+<p>访问：<code>http://ip地址:8000/</code></p>
+<p>看到如下页面就表示安装成功了</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230414111617579-54998550.png" width="50%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230414111712740-1120737842.png" width="50%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230414111834455-885752428.png" width="50%" >
+
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230414111900588-11194417.png" width="50%" >
+
+<p>再次访问主页：<code>http://ip地址:8000/</code></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230414111932768-832316121.png" width="50%" >
+
+<p>后续可以更换主题</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/%E4%BD%BF%E7%94%A8Docker%E6%90%AD%E5%BB%BAwordpress%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E9%99%84%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3-junlin623/" data-id="clhrwf8je001iekszd9pv6mzt" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-识别目标机器上服务的指纹-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/%E8%AF%86%E5%88%AB%E7%9B%AE%E6%A0%87%E6%9C%BA%E5%99%A8%E4%B8%8A%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%8C%87%E7%BA%B9-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.189Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17158803.html">https://www.cnblogs.com/junlin623/p/17158803.html</a></p>
+<hr>
+<p>title: ‘识别目标机器上服务的指纹-junlin623’<br>date: 2023-02-27 11:19:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h3 id="一、服务指纹"><a href="#一、服务指纹" class="headerlink" title="一、服务指纹"></a>一、服务指纹</h3><hr>
+<p>为了确保有一个成功的渗透测试或网络设备监控，必须需要知道目标系统中服务的指纹信息。服务指纹信息包括服务端口、服务名和版本等</p>
+<p>通过分析目标向nmap发送的数据包中某些协议标记、选型和数据，我们可以推断发送这些数据包的操作系统等。</p>
+<p>nmap通过向目标主机发送多个UDP和TCP数据包并分析其响应来进行操作系统的指纹识别工作</p>
+<h3 id="二、Nmap识别服务指纹"><a href="#二、Nmap识别服务指纹" class="headerlink" title="二、Nmap识别服务指纹"></a>二、Nmap识别服务指纹</h3><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sV ip地址/域名</span><br></pre></td></tr></table></figure>
+
+<p>nmap会向对应ip地址的主机上发送大量的数据包</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227102448519-511972336.png" width="70%" >
+
+
+<p>扫描本机：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227103033438-1583126655.png" width="70%" >
+
+
+
+
+<h3 id="三、Nmap侵略性探测"><a href="#三、Nmap侵略性探测" class="headerlink" title="三、Nmap侵略性探测"></a>三、Nmap侵略性探测</h3><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -A -v -T4 ip地址  <span class="comment"># 探测目标机器的操作系统、服务等信息，</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> -A表示侵略性探测，启动Os检测，版本检测，脚本扫描和traceroute<br>-v 表示输出扫描过程，<br>-T4表示加块速度探测，由于侵略性探测很耗时，所以需要加上这个参数 （ -T  &lt;0-5&gt; 设置时间模板,值越小，IDS报警几率越低）</p>
+<blockquote>
+<p>-T0（偏执的）：非常慢的扫描，用于IDS逃避。<br>-T1（鬼祟的）：缓慢的扫描，用于IDS逃避。<br>-T2（文雅的）：降低速度以降低对带宽的消耗，此选项不常用。<br>-T3（普通的）：默认，根据目标的反应自动调整时间。<br>-T4（野蛮的）：快速扫描，常用扫描方式，需要在很好的网络环境下进行扫描，请求可能会淹没目标。<br>-T5（疯狂的）：极速扫描，这种扫描方式以牺牲准确度来提示扫描速度。</p>
+</blockquote>
+</blockquote>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227103512449-684545873.png" width="70%" >
+
+
+<p><strong>更加详细的端口信息：</strong></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227103543600-1112618112.png" width="70%" >
+
+
+
+<p><strong>路由转发路径：</strong><br><img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227103603157-526291168.png" width="40%" ></p>
+<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sC -sV -o ip地址  <span class="comment"># 探测目标机器的操作系统、服务等信息，比-A参数少了一些扫描目标</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>sC 参数表示使用nmap脚本进行探测, 也等同于 –script&#x3D;default<br>sV 表示探测目标机器上的服务信息，<br>o 表示探测目标机器的操作系统信息</p>
+</blockquote>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227111820587-1197984656.png" width="70%" >
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/%E8%AF%86%E5%88%AB%E7%9B%AE%E6%A0%87%E6%9C%BA%E5%99%A8%E4%B8%8A%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%8C%87%E7%BA%B9-junlin623/" data-id="clhrwf8jq0029ekszfseu8s5t" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-扫描内网存活主机-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/%E6%89%AB%E6%8F%8F%E5%86%85%E7%BD%91%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.187Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17120528.html">https://www.cnblogs.com/junlin623/p/17120528.html</a></p>
+<hr>
+<p>title: ‘扫描内网存活主机-junlin623’<br>date: 2023-02-14 18:15:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h3 id="扫描内网存活主机"><a href="#扫描内网存活主机" class="headerlink" title="扫描内网存活主机"></a>扫描内网存活主机</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>  在渗透测试中可以根据目标主机的情况，上传工具进行主机存活探测，也可以借助内网代理或路由转发对目标主机所处的局域网发起探测。</p>
+<p>  测试人员可以根据当前渗透环境，选用ICMP、NetBIOS、UDP、ARP、SNMP、SMB等多种网络协议。按照协议类型，下面介绍使用常见工具来发现内网存活主机的方法。</p>
+<h4 id="基于ICMP发现存活主机"><a href="#基于ICMP发现存活主机" class="headerlink" title="基于ICMP发现存活主机"></a>基于ICMP发现存活主机</h4><p>  ICMP (Internet Control Message Protocol，因特网控制消息协议）是TCP&#x2F;IP 协议簇的一个子协议，用于网络层的通信，即IP主机、路由器之间传递控制消息，提供可能友生在通信环境中的各种问题反馈。通过这些信息，管理员可以对发生的问题做出诊断，然后采取适当的措施解决。</p>
+<p>  在实际利用中，可以通过ICMP循环对整个网段中的每个IP地址执行ping 命令，所有能够ping 通的IP地址即为内网中存活的主机。</p>
+<p>  在目标主机中执行以下命令：</p>
+<p><code>for /L %I in (1,1,254) DO @ping -w 1 -n 1 192.168.199.%I| findstr &quot;TTL=&quot;</code></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">命令参数解析：</span><br><span class="line">for /L %I in (sequence) do command，for遍历</span><br><span class="line"></span><br><span class="line">192.168.199.%I，代表你要ping的网段：192.168.199.0网段</span><br><span class="line"></span><br><span class="line">(1,1,254)，第一个1和最后一个254，代表从1-254，中间那个1，代表，每次ping，递增1</span><br><span class="line"></span><br><span class="line">-n 1，代表发送的回显请求数</span><br><span class="line"></span><br><span class="line">-w 60，代表等待回复每次ping超时时间（毫秒）</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://secure2.wostatic.cn/static/cmXbgFaL5DVBpn4gs8hD5F/%E5%9B%BE%E7%89%87.png?auth_key=1676368830-hCAg2uq9bhFLj4PmFvy5p-0-9815a5051b4ac80c999cc1b767c2871f"></p>
+<p>或者也可以使用nmap：</p>
+<p><strong>nmap -sP 192.168.204.1&#x2F;24</strong></p>
+<h4 id="基于NetBlOS（网络基本输入-x2F-输出系统）协议发现存活主机"><a href="#基于NetBlOS（网络基本输入-x2F-输出系统）协议发现存活主机" class="headerlink" title="基于NetBlOS（网络基本输入&#x2F;输出系统）协议发现存活主机"></a>基于NetBlOS（网络基本输入&#x2F;输出系统）协议发现存活主机</h4><p>  <strong>网络中的计算机之间必须知道IP地址后才能相互通信。但对人来说IP难以记忆，NetBIOS计算机名称比较容易记忆。当计算机使用 NetBIOS 名称与其他计算机通信时，必须先通过 NetBIOS名称找到IP地址，然后再通过IP地址通信。由NetBIOS名称找出IP地址的操作被称为NetBIOS名称解析(NetBIOS name resolution)。</strong></p>
+<p>  NetBIOS（端口：137~139）提供OSI&#x2F;RM的会话层（在TCP&#x2F;IP模型中包含在应用层中）服务，让不同计算机上运行的不同程序可以在局域网中互相连接和共享数据。严格来说，NetBIOS不是一种协议，而是一种应用程序接口 (Application Program Interface，API)。几乎所有局域网都是在NetBIOS协议的基础上工作的，操作系统可以利用WINS服务、广播、Lmhost文件等模式将NetBIOS名解析为相应的IP地址。<strong>NetBIOS的工作流程就是正常的机器名解析、查询、应答的过程。在 Windows中，默认安装TCP&#x2F;IP后会自动安装NetBIOS。</strong>可以使用<code>nbtstat -n</code> 查看netbios信息。</p>
+<p>  在实际利用时，向局域网的每个IP地址发送NetBIOS状态查询，可以获得主机名、MAC地址等信息。</p>
+<p>  NBTScan是一款<strong>用于扫描</strong>Windows网络<strong>上 NetBIOS名称的程序，用于发现内网中存活的 Windows 主机。</strong>NBTScan可以对给定IP范围内的每个IP地址发送NetBIOS状态查询，并且以易读的表格列出接收到的信息，对于每个响应的主机，会列出它的IP地址、NetBIOS计算机名、登录用户名和MAC地址。<strong>总之，NBTSCAN可以获取到PC的真实IP地址和MAC地址。</strong></p>
+<p>  将nbtscan.exe 上传到目标主机（网页搜索下载即可），执行以下命令：</p>
+<p><code>nbtscan-1.0.35.exe 192.168.199.1/24</code></p>
+<p><img src="https://secure2.wostatic.cn/static/3DWzyQTmPGeDt7zo1h1oMC/%E5%9B%BE%E7%89%87.png?auth_key=1676368830-oiDWraY9uAU8TnCo5w1VdL-0-b5c29900f62d46de12ac68df0811509a"></p>
+<h4 id="基于UDP发现存活主机"><a href="#基于UDP发现存活主机" class="headerlink" title="基于UDP发现存活主机"></a>基于UDP发现存活主机</h4><p>  UDP (User Datagram Protocol，用户数据报协议）是一种用于传输层的无连接传输的协议，为应用程序提供一种不需建立连接就可以发送封装的IP数据包的方法。</p>
+<p>  在实际利用中，可以将一个空的UDP报文发送到目标主机的特定端口，如果目标主机的端口是关闭的，UDP 探测就马上得到一个ICMP端口无法到达的回应报文，这意味着该主机正在运行。如果到达一个开放的端口，大部分服务仅仅忽略这个空报文而不做任何回应。</p>
+<p>  Unicornscan是 Kali Linux平台的一款信息收集工具，提供了网络扫描功能。</p>
+<p>  执行以下命令，通过UDP协议扫描内网的存活主机。</p>
+<p><code>us -mU 192.168.204.1/24</code></p>
+<p><img src="https://secure2.wostatic.cn/static/23RKkPmExF85KuTUudeymV/%E5%9B%BE%E7%89%87.png?auth_key=1676368830-mU4hqz8pbBL7vtPDj7druu-0-77f920a677a8e737634c1ac72537e158"></p>
+<ol>
+<li>TCP是有连接的协议，而UDP是无连接的；</li>
+<li>TCP扫描检测(ACK SYN)或者是(RST)报文，而UDP检测ICMP端口不可达报文；</li>
+<li>TCP协议是可靠但低效的，可以有效进行端口扫描，范围广，效率低，可以应用于任何网络中；UDP协议时不可靠但高效的，范围小，效率高，一般应用于局域网内部，随着网络规模的增大，UDP端口扫描的结果准确度会越来越差，极端情况是，如果对Internet使用UDP端口扫描，所得到的结果一定不准确。</li>
+</ol>
+<h4 id="基于ARP发现存活主机"><a href="#基于ARP发现存活主机" class="headerlink" title="基于ARP发现存活主机"></a>基于ARP发现存活主机</h4><p>  ARP (Address Resolution Protocol，地址解析协议）是一个通过解析网络层地址来找寻数据链路层地址的网络传输协议，用于网络层通信。主机发送信息时，将包含目标IP地址的ARP请求广播到局域网上的所有主机，并接收返回消息，以此确定目标的物理地址﹔收到返回消息后，将该IP地址和物理地址存入本机 ARP缓存，并保留一定时间，下次请求时直接查询ARP缓存，以节约资源。</p>
+<p>  在实际利用中，可以向网络发送一个ARP请求，若目标主机处于活跃状态，则其一定会回应一个ARP响应，否则不会做出任何回应。</p>
+<p>（1）ARP-Scan 的利用</p>
+<p>  ARP-Scan是一款快速、便捷的内网扫描工具，利用ARP发现内网中存活的主机。将工具上传到目标主机，执行以下命令，即可扫描内网中存活的主机。</p>
+<p><code>arp-scan.exe -t 192.168.204.1/24</code></p>
+<p><img src="https://secure2.wostatic.cn/static/aXtrTftiQStotG3zE2AoMW/%E5%9B%BE%E7%89%87.png?auth_key=1676368830-6H24VXMJsbRuUUf9nk3DHe-0-a7b38b55abb8315d4ac2330ab8103531"></p>
+<p>（2） PowerShell 的利用<br>Empire渗透框架的 Invoke-ARPScan.ps1脚本可利用ARP发现内网存活主机（项目见Github 上的相关网页)。使用时，需要将脚本导入执行:</p>
+<p><code>Import-Module . \Invoke-ARPScan. ps1 Invoke-ARPScan -CIDR 192.168.204.1/24</code></p>
+<h4 id="基于SMB-Server-Message-Block，服务器消息块）协议发现存活主机"><a href="#基于SMB-Server-Message-Block，服务器消息块）协议发现存活主机" class="headerlink" title="基于SMB (Server Message Block，服务器消息块）协议发现存活主机"></a>基于SMB (Server Message Block，服务器消息块）协议发现存活主机</h4><p>  SMB（端口445）又称为网络文件共享系统(Common Internet File System，CIFS）协议，是一种应用层传输协议，主要功能是使网络上的机器能够共享计算机文件、打印机、串行端口和通信等资源。CIFS消息一般使用NetBIOS或TCP发送，分别使用139或445端口，目前倾向于使用445端口。</p>
+<p>  在实际利用中，可以探测局域网中存在的SMB服务，从而发现内网的存活主机，多适用于Windows主机的发现。</p>
+<p>  CrackMapExec（简称CME)是一款十分强大的后渗透利用工具，在Kali Linux上可以直接使用apt-get命令进行安装。CrackMapExec能够枚举登录用户、枚举SMB服务列表、执行WINRM攻击等功能，可以帮助测试人员自动化评估大型域网络的安全性（具体见 Github 上的相关网页)。执行以下命令：</p>
+<p><code>crackmapexec smb 192.168.204.1/24</code></p>
+<p>探测局域网中存在的SMB服务，从而发现内网中的存活主机</p>
+<p><img src="https://secure2.wostatic.cn/static/tTKxp682prE5CU87fhj65p/%E5%9B%BE%E7%89%87.png?auth_key=1676368830-gFcTajgW8ZbxkCFHP8Sqrm-0-d5f8531caddd4edca40a9e8b37ee49d9"></p>
+<p>循环探测整个局域网C段中存活的主机</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/%E6%89%AB%E6%8F%8F%E5%86%85%E7%BD%91%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA-junlin623/" data-id="clhrwf8jk001wekszaz997oax" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-如何给正在运行的docker容器添加端口映射-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/%E5%A6%82%E4%BD%95%E7%BB%99%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C%E7%9A%84docker%E5%AE%B9%E5%99%A8%E6%B7%BB%E5%8A%A0%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.186Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17365848.html">https://www.cnblogs.com/junlin623/p/17365848.html</a></p>
+<hr>
+<p>title: ‘如何给正在运行的docker容器添加端口映射-junlin623’<br>date: 2023-04-30 21:56:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>我们都知道启动docker容器的时候可以使用<code>-p</code>参数进行端口映射，但是如果你的容器已经创建出来了但是突然又想要添加一个端口映射，这时总不能重新创建一个容器吧，之前的工作不都白费了吗</p>
+<p>有一个办法就是先将当前已经配置过的容器打包成新的镜像，然后用这个镜像生成一个新的容器，这样所做的工作既不会丢失，又能在容器创建的时候重新指定端口映射，这样就解决了问题，但是这个方法显得有些笨重，更好的方法是直接对当前容器进行设置，方法如下：</p>
+<h3 id="1-首先要停止容器"><a href="#1-首先要停止容器" class="headerlink" title="1. 首先要停止容器"></a>1. 首先要停止容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop &lt;CONTAINER ID&gt;</span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230430215400393-990527644.png" width="80%">
+
+
+
+<h3 id="2-修改容器的端口映射文件"><a href="#2-修改容器的端口映射文件" class="headerlink" title="2. 修改容器的端口映射文件"></a>2. 修改容器的端口映射文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/lib/docker/containers</span><br><span class="line"><span class="comment"># 找到以container id开头的文件夹并进入</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230430215447125-1895504207.png" width="80%">
+
+
+
+<p>修改 <code>hostconfig.json</code>文件</p>
+<p>找到<code>PortBindings</code> 添加端口映射</p>
+<p>比如想要暴露容器内的22端口到2200端口:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;22/tcp&quot;</span>:[&#123;<span class="string">&quot;HostIp&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;HostPort&quot;</span>:<span class="string">&quot;2200&quot;</span>&#125;]</span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230430215510186-237711978.png" width="80%">
+
+
+<p>  修改<code>config.v2.json</code>文件，在<code>ExposedPorts</code> 部分添加<code>&quot;22/tcp&quot;:&#123;&#125;</code></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230430215529264-298326306.png" width="80%">
+
+
+
+
+<h3 id="3-重启Docker"><a href="#3-重启Docker" class="headerlink" title="3. 重启Docker"></a>3. 重启Docker</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<p>如果前面修改文件时出现错误，查看容器就会丢失，需要确定配置文件的修改一定是对的</p>
+<h3 id="4-启动之前停止的容器"><a href="#4-启动之前停止的容器" class="headerlink" title="4. 启动之前停止的容器"></a>4. 启动之前停止的容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker start &lt;CONTAINER ID&gt;</span><br><span class="line">docker ps <span class="comment">#查看</span></span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230430215545313-1260149895.png" width="80%">
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/%E5%A6%82%E4%BD%95%E7%BB%99%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C%E7%9A%84docker%E5%AE%B9%E5%99%A8%E6%B7%BB%E5%8A%A0%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84-junlin623/" data-id="clhrwf8jj001teksza0dahd21" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-让同一局域网下的某台设备无法访问互联网-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/%E8%AE%A9%E5%90%8C%E4%B8%80%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%8B%E7%9A%84%E6%9F%90%E5%8F%B0%E8%AE%BE%E5%A4%87%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E4%BA%92%E8%81%94%E7%BD%91-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.183Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17021754.html">https://www.cnblogs.com/junlin623/p/17021754.html</a></p>
+<hr>
+<p>title: ‘让同一局域网下的某台设备无法访问互联网-junlin623’<br>date: 2023-01-03 12:42:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>前提：你的电脑和目标设备在同一个局域网下（比如和你共用同一台路由器的舍友😎）<br>本实验使用kali系统，基于arp欺骗攻击来达到给目标主机断网的目的<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17021754.html">https://www.cnblogs.com/junlin623/p/17021754.html</a></p>
+<hr>
+<p>title: ‘让同一局域网下的某台设备无法访问互联网-junlin623’<br>date: 2023-01-03 12:42:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>前提：你的电脑和目标设备在同一个局域网下（比如和你共用同一台路由器的舍友😎）<br>本实验使用kali系统，基于arp欺骗攻击来达到给目标主机断网的目的<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17021754.html">https://www.cnblogs.com/junlin623/p/17021754.html</a></p>
+<hr>
+<p>title: ‘让同一局域网下的某台设备无法访问互联网-junlin623’<br>date: 2023-01-03 12:42:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>前提：你的电脑和目标设备在同一个局域网下（比如和你共用同一台路由器的舍友😎）<br>本实验使用kali系统，基于arp欺骗攻击来达到给目标主机断网的目的<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17021754.html">https://www.cnblogs.com/junlin623/p/17021754.html</a></p>
+<hr>
+<p>title: ‘让同一局域网下的某台设备无法访问互联网-junlin623’<br>date: 2023-01-03 12:42:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>前提：你的电脑和目标设备在同一个局域网下（比如和你共用同一台路由器的舍友😎）<br>本实验使用kali系统，基于arp欺骗攻击来达到给目标主机断网的目的<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17021754.html">https://www.cnblogs.com/junlin623/p/17021754.html</a></p>
+<hr>
+<p>title: ‘让同一局域网下的某台设备无法访问互联网-junlin623’<br>date: 2023-01-03 12:42:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>前提：你的电脑和目标设备在同一个局域网下（比如和你共用同一台路由器的舍友😎）<br>本实验使用kali系统，基于arp欺骗攻击来达到给目标主机断网的目的<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17021754.html">https://www.cnblogs.com/junlin623/p/17021754.html</a></p>
+<hr>
+<p>title: ‘让同一局域网下的某台设备无法访问互联网-junlin623’<br>date: 2023-01-03 12:42:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>前提：你的电脑和目标设备在同一个局域网下（比如和你共用同一台路由器的舍友😎）<br>本实验使用kali系统，基于arp欺骗攻击来达到给目标主机断网的目的<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17021754.html">https://www.cnblogs.com/junlin623/p/17021754.html</a></p>
+<hr>
+<p>title: ‘让同一局域网下的某台设备无法访问互联网-junlin623’<br>date: 2023-01-03 12:42:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>前提：你的电脑和目标设备在同一个局域网下（比如和你共用同一台路由器的舍友😎）<br>本实验使用kali系统，基于arp欺骗攻击来达到给目标主机断网的目的</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/%E8%AE%A9%E5%90%8C%E4%B8%80%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%8B%E7%9A%84%E6%9F%90%E5%8F%B0%E8%AE%BE%E5%A4%87%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E4%BA%92%E8%81%94%E7%BD%91-junlin623/" data-id="clhrwf8jq0027ekszdqood0mg" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-启动Tomcat报错：Address localhost1099 is already in use-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/%E5%90%AF%E5%8A%A8Tomcat%E6%8A%A5%E9%94%99%EF%BC%9AAddress%20localhost1099%20is%20already%20in%20use-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.182Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17030259.html">https://www.cnblogs.com/junlin623/p/17030259.html</a></p>
+<hr>
+<p>title: ‘启动Tomcat报错：Address localhost:1099 is already in use-junlin623’<br>date: 2023-01-06 14:02:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>启动Tomcat报错信息显示1099端口被占用：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106140020973-236364944.png"></p>
+<h4 id="1-查看占用该端口的程序的PID："><a href="#1-查看占用该端口的程序的PID：" class="headerlink" title="1. 查看占用该端口的程序的PID："></a>1. 查看占用该端口的程序的PID：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | findstr <span class="string">&quot;1099&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106135254897-958920033.png"></p>
+<h4 id="2-得到PID为-23204，进而查找该程序的名称"><a href="#2-得到PID为-23204，进而查找该程序的名称" class="headerlink" title="2. 得到PID为 23204，进而查找该程序的名称"></a>2. 得到PID为 23204，进而查找该程序的名称</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist | findstr <span class="string">&quot;23104&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106140007612-1724602258.png"></p>
+<p>发现是java.exe占用了该端口，为什么这个程序会莫名占用该端口呢？<br>突然想起来之前由于电脑内存不足导致idea异常关闭，正在运行的Tomcat也随之异常关闭</p>
+<h4 id="3-手动强制结束该进程"><a href="#3-手动强制结束该进程" class="headerlink" title="3. 手动强制结束该进程"></a>3. 手动强制结束该进程</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">taskkill -f -pid 23204</span><br></pre></td></tr></table></figure>
+<p>-f 参数表示强制终止进程， -pid 指定进程的PID</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106135941356-1950842231.png"><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17030259.html">https://www.cnblogs.com/junlin623/p/17030259.html</a></p>
+<hr>
+<p>title: ‘启动Tomcat报错：Address localhost:1099 is already in use-junlin623’<br>date: 2023-01-06 14:02:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>启动Tomcat报错信息显示1099端口被占用：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106140020973-236364944.png"></p>
+<h4 id="1-查看占用该端口的程序的PID：-1"><a href="#1-查看占用该端口的程序的PID：-1" class="headerlink" title="1. 查看占用该端口的程序的PID："></a>1. 查看占用该端口的程序的PID：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | findstr <span class="string">&quot;1099&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106135254897-958920033.png"></p>
+<h4 id="2-得到PID为-23204，进而查找该程序的名称-1"><a href="#2-得到PID为-23204，进而查找该程序的名称-1" class="headerlink" title="2. 得到PID为 23204，进而查找该程序的名称"></a>2. 得到PID为 23204，进而查找该程序的名称</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist | findstr <span class="string">&quot;23104&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106140007612-1724602258.png"></p>
+<p>发现是java.exe占用了该端口，为什么这个程序会莫名占用该端口呢？<br>突然想起来之前由于电脑内存不足导致idea异常关闭，正在运行的Tomcat也随之异常关闭</p>
+<h4 id="3-手动强制结束该进程-1"><a href="#3-手动强制结束该进程-1" class="headerlink" title="3. 手动强制结束该进程"></a>3. 手动强制结束该进程</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">taskkill -f -pid 23204</span><br></pre></td></tr></table></figure>
+<p>-f 参数表示强制终止进程， -pid 指定进程的PID</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106135941356-1950842231.png"><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17030259.html">https://www.cnblogs.com/junlin623/p/17030259.html</a></p>
+<hr>
+<p>title: ‘启动Tomcat报错：Address localhost:1099 is already in use-junlin623’<br>date: 2023-01-06 14:02:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>启动Tomcat报错信息显示1099端口被占用：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106140020973-236364944.png"></p>
+<h4 id="1-查看占用该端口的程序的PID：-2"><a href="#1-查看占用该端口的程序的PID：-2" class="headerlink" title="1. 查看占用该端口的程序的PID："></a>1. 查看占用该端口的程序的PID：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | findstr <span class="string">&quot;1099&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106135254897-958920033.png"></p>
+<h4 id="2-得到PID为-23204，进而查找该程序的名称-2"><a href="#2-得到PID为-23204，进而查找该程序的名称-2" class="headerlink" title="2. 得到PID为 23204，进而查找该程序的名称"></a>2. 得到PID为 23204，进而查找该程序的名称</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist | findstr <span class="string">&quot;23104&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106140007612-1724602258.png"></p>
+<p>发现是java.exe占用了该端口，为什么这个程序会莫名占用该端口呢？<br>突然想起来之前由于电脑内存不足导致idea异常关闭，正在运行的Tomcat也随之异常关闭</p>
+<h4 id="3-手动强制结束该进程-2"><a href="#3-手动强制结束该进程-2" class="headerlink" title="3. 手动强制结束该进程"></a>3. 手动强制结束该进程</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">taskkill -f -pid 23204</span><br></pre></td></tr></table></figure>
+<p>-f 参数表示强制终止进程， -pid 指定进程的PID</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106135941356-1950842231.png"><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17030259.html">https://www.cnblogs.com/junlin623/p/17030259.html</a></p>
+<hr>
+<p>title: ‘启动Tomcat报错：Address localhost:1099 is already in use-junlin623’<br>date: 2023-01-06 14:02:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>启动Tomcat报错信息显示1099端口被占用：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106140020973-236364944.png"></p>
+<h4 id="1-查看占用该端口的程序的PID：-3"><a href="#1-查看占用该端口的程序的PID：-3" class="headerlink" title="1. 查看占用该端口的程序的PID："></a>1. 查看占用该端口的程序的PID：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | findstr <span class="string">&quot;1099&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106135254897-958920033.png"></p>
+<h4 id="2-得到PID为-23204，进而查找该程序的名称-3"><a href="#2-得到PID为-23204，进而查找该程序的名称-3" class="headerlink" title="2. 得到PID为 23204，进而查找该程序的名称"></a>2. 得到PID为 23204，进而查找该程序的名称</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist | findstr <span class="string">&quot;23104&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106140007612-1724602258.png"></p>
+<p>发现是java.exe占用了该端口，为什么这个程序会莫名占用该端口呢？<br>突然想起来之前由于电脑内存不足导致idea异常关闭，正在运行的Tomcat也随之异常关闭</p>
+<h4 id="3-手动强制结束该进程-3"><a href="#3-手动强制结束该进程-3" class="headerlink" title="3. 手动强制结束该进程"></a>3. 手动强制结束该进程</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">taskkill -f -pid 23204</span><br></pre></td></tr></table></figure>
+<p>-f 参数表示强制终止进程， -pid 指定进程的PID</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106135941356-1950842231.png"><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17030259.html">https://www.cnblogs.com/junlin623/p/17030259.html</a></p>
+<hr>
+<p>title: ‘启动Tomcat报错：Address localhost:1099 is already in use-junlin623’<br>date: 2023-01-06 14:02:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>启动Tomcat报错信息显示1099端口被占用：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106140020973-236364944.png"></p>
+<h4 id="1-查看占用该端口的程序的PID：-4"><a href="#1-查看占用该端口的程序的PID：-4" class="headerlink" title="1. 查看占用该端口的程序的PID："></a>1. 查看占用该端口的程序的PID：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | findstr <span class="string">&quot;1099&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106135254897-958920033.png"></p>
+<h4 id="2-得到PID为-23204，进而查找该程序的名称-4"><a href="#2-得到PID为-23204，进而查找该程序的名称-4" class="headerlink" title="2. 得到PID为 23204，进而查找该程序的名称"></a>2. 得到PID为 23204，进而查找该程序的名称</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist | findstr <span class="string">&quot;23104&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106140007612-1724602258.png"></p>
+<p>发现是java.exe占用了该端口，为什么这个程序会莫名占用该端口呢？<br>突然想起来之前由于电脑内存不足导致idea异常关闭，正在运行的Tomcat也随之异常关闭</p>
+<h4 id="3-手动强制结束该进程-4"><a href="#3-手动强制结束该进程-4" class="headerlink" title="3. 手动强制结束该进程"></a>3. 手动强制结束该进程</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">taskkill -f -pid 23204</span><br></pre></td></tr></table></figure>
+<p>-f 参数表示强制终止进程， -pid 指定进程的PID</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106135941356-1950842231.png"><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17030259.html">https://www.cnblogs.com/junlin623/p/17030259.html</a></p>
+<hr>
+<p>title: ‘启动Tomcat报错：Address localhost:1099 is already in use-junlin623’<br>date: 2023-01-06 14:02:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>启动Tomcat报错信息显示1099端口被占用：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106140020973-236364944.png"></p>
+<h4 id="1-查看占用该端口的程序的PID：-5"><a href="#1-查看占用该端口的程序的PID：-5" class="headerlink" title="1. 查看占用该端口的程序的PID："></a>1. 查看占用该端口的程序的PID：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | findstr <span class="string">&quot;1099&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106135254897-958920033.png"></p>
+<h4 id="2-得到PID为-23204，进而查找该程序的名称-5"><a href="#2-得到PID为-23204，进而查找该程序的名称-5" class="headerlink" title="2. 得到PID为 23204，进而查找该程序的名称"></a>2. 得到PID为 23204，进而查找该程序的名称</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist | findstr <span class="string">&quot;23104&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106140007612-1724602258.png"></p>
+<p>发现是java.exe占用了该端口，为什么这个程序会莫名占用该端口呢？<br>突然想起来之前由于电脑内存不足导致idea异常关闭，正在运行的Tomcat也随之异常关闭</p>
+<h4 id="3-手动强制结束该进程-5"><a href="#3-手动强制结束该进程-5" class="headerlink" title="3. 手动强制结束该进程"></a>3. 手动强制结束该进程</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">taskkill -f -pid 23204</span><br></pre></td></tr></table></figure>
+<p>-f 参数表示强制终止进程， -pid 指定进程的PID</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106135941356-1950842231.png"><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17030259.html">https://www.cnblogs.com/junlin623/p/17030259.html</a></p>
+<hr>
+<p>title: ‘启动Tomcat报错：Address localhost:1099 is already in use-junlin623’<br>date: 2023-01-06 14:02:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>启动Tomcat报错信息显示1099端口被占用：</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106140020973-236364944.png"></p>
+<h4 id="1-查看占用该端口的程序的PID：-6"><a href="#1-查看占用该端口的程序的PID：-6" class="headerlink" title="1. 查看占用该端口的程序的PID："></a>1. 查看占用该端口的程序的PID：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | findstr <span class="string">&quot;1099&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106135254897-958920033.png"></p>
+<h4 id="2-得到PID为-23204，进而查找该程序的名称-6"><a href="#2-得到PID为-23204，进而查找该程序的名称-6" class="headerlink" title="2. 得到PID为 23204，进而查找该程序的名称"></a>2. 得到PID为 23204，进而查找该程序的名称</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist | findstr <span class="string">&quot;23104&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106140007612-1724602258.png"></p>
+<p>发现是java.exe占用了该端口，为什么这个程序会莫名占用该端口呢？<br>突然想起来之前由于电脑内存不足导致idea异常关闭，正在运行的Tomcat也随之异常关闭</p>
+<h4 id="3-手动强制结束该进程-6"><a href="#3-手动强制结束该进程-6" class="headerlink" title="3. 手动强制结束该进程"></a>3. 手动强制结束该进程</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">taskkill -f -pid 23204</span><br></pre></td></tr></table></figure>
+<p>-f 参数表示强制终止进程， -pid 指定进程的PID</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230106135941356-1950842231.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/%E5%90%AF%E5%8A%A8Tomcat%E6%8A%A5%E9%94%99%EF%BC%9AAddress%20localhost1099%20is%20already%20in%20use-junlin623/" data-id="clhrwf8jj001seksz6cpp9s25" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-判断一个数是否为平方数-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E6%98%AF%E5%90%A6%E4%B8%BA%E5%B9%B3%E6%96%B9%E6%95%B0-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.180Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17019206.html">https://www.cnblogs.com/junlin623/p/17019206.html</a></p>
+<hr>
+<p>title: ‘判断一个数是否为平方数-junlin623’<br>date: 2023-01-01 22:52:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>最近学到了一个判断某个数是否为平方数的比较骚的做法：<br><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101225016364-1800386312.png"><br>任意数的平方都能用一个首项为1，公差为2的等差数列表示，所以要判断一个数是不是平方数可以用这个数依次减1，减3，减5…，如果最后能够减到0，那么这个数就是平方数，否则就不是</p>
+<h4 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isSquare</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;x &gt; <span class="number">0</span>;i += <span class="number">2</span>) x -= i;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">```https:<span class="comment">//www.cnblogs.com/junlin623/p/17019206.html</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">title: <span class="string">&#x27;判断一个数是否为平方数-junlin623&#x27;</span></span><br><span class="line">date: <span class="number">2023</span><span class="number">-01</span><span class="number">-01</span> <span class="number">22</span>:<span class="number">52</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;meta name = <span class="string">&quot;referrer&quot;</span> content = <span class="string">&quot;no-referrer&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">最近学到了一个判断某个数是否为平方数的比较骚的做法：</span><br><span class="line">![](https:<span class="comment">//img2023.cnblogs.com/blog/2935791/202301/2935791-20230101225016364-1800386312.png)</span></span><br><span class="line">任意数的平方都能用一个首项为<span class="number">1</span>，公差为<span class="number">2</span>的等差数列表示，所以要判断一个数是不是平方数可以用这个数依次减<span class="number">1</span>，减<span class="number">3</span>，减<span class="number">5</span>…，如果最后能够减到<span class="number">0</span>，那么这个数就是平方数，否则就不是</span><br><span class="line">#### 代码实现：</span><br><span class="line">```c++</span><br><span class="line"><span class="type">bool</span> <span class="built_in">isSquare</span>(<span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;x &gt; <span class="number">0</span>;i += <span class="number">2</span>) x -= i;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">```https:<span class="comment">//www.cnblogs.com/junlin623/p/17019206.html</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">title: <span class="string">&#x27;判断一个数是否为平方数-junlin623&#x27;</span></span><br><span class="line">date: <span class="number">2023</span><span class="number">-01</span><span class="number">-01</span> <span class="number">22</span>:<span class="number">52</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;meta name = <span class="string">&quot;referrer&quot;</span> content = <span class="string">&quot;no-referrer&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">最近学到了一个判断某个数是否为平方数的比较骚的做法：</span><br><span class="line">![](https:<span class="comment">//img2023.cnblogs.com/blog/2935791/202301/2935791-20230101225016364-1800386312.png)</span></span><br><span class="line">任意数的平方都能用一个首项为<span class="number">1</span>，公差为<span class="number">2</span>的等差数列表示，所以要判断一个数是不是平方数可以用这个数依次减<span class="number">1</span>，减<span class="number">3</span>，减<span class="number">5</span>…，如果最后能够减到<span class="number">0</span>，那么这个数就是平方数，否则就不是</span><br><span class="line">#### 代码实现：</span><br><span class="line">```c++</span><br><span class="line"><span class="type">bool</span> <span class="built_in">isSquare</span>(<span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;x &gt; <span class="number">0</span>;i += <span class="number">2</span>) x -= i;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">```https:<span class="comment">//www.cnblogs.com/junlin623/p/17019206.html</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">title: <span class="string">&#x27;判断一个数是否为平方数-junlin623&#x27;</span></span><br><span class="line">date: <span class="number">2023</span><span class="number">-01</span><span class="number">-01</span> <span class="number">22</span>:<span class="number">52</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;meta name = <span class="string">&quot;referrer&quot;</span> content = <span class="string">&quot;no-referrer&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">最近学到了一个判断某个数是否为平方数的比较骚的做法：</span><br><span class="line">![](https:<span class="comment">//img2023.cnblogs.com/blog/2935791/202301/2935791-20230101225016364-1800386312.png)</span></span><br><span class="line">任意数的平方都能用一个首项为<span class="number">1</span>，公差为<span class="number">2</span>的等差数列表示，所以要判断一个数是不是平方数可以用这个数依次减<span class="number">1</span>，减<span class="number">3</span>，减<span class="number">5</span>…，如果最后能够减到<span class="number">0</span>，那么这个数就是平方数，否则就不是</span><br><span class="line">#### 代码实现：</span><br><span class="line">```c++</span><br><span class="line"><span class="type">bool</span> <span class="built_in">isSquare</span>(<span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;x &gt; <span class="number">0</span>;i += <span class="number">2</span>) x -= i;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">```https:<span class="comment">//www.cnblogs.com/junlin623/p/17019206.html</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">title: <span class="string">&#x27;判断一个数是否为平方数-junlin623&#x27;</span></span><br><span class="line">date: <span class="number">2023</span><span class="number">-01</span><span class="number">-01</span> <span class="number">22</span>:<span class="number">52</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;meta name = <span class="string">&quot;referrer&quot;</span> content = <span class="string">&quot;no-referrer&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">最近学到了一个判断某个数是否为平方数的比较骚的做法：</span><br><span class="line">![](https:<span class="comment">//img2023.cnblogs.com/blog/2935791/202301/2935791-20230101225016364-1800386312.png)</span></span><br><span class="line">任意数的平方都能用一个首项为<span class="number">1</span>，公差为<span class="number">2</span>的等差数列表示，所以要判断一个数是不是平方数可以用这个数依次减<span class="number">1</span>，减<span class="number">3</span>，减<span class="number">5</span>…，如果最后能够减到<span class="number">0</span>，那么这个数就是平方数，否则就不是</span><br><span class="line">#### 代码实现：</span><br><span class="line">```c++</span><br><span class="line"><span class="type">bool</span> <span class="built_in">isSquare</span>(<span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;x &gt; <span class="number">0</span>;i += <span class="number">2</span>) x -= i;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">```https:<span class="comment">//www.cnblogs.com/junlin623/p/17019206.html</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">title: <span class="string">&#x27;判断一个数是否为平方数-junlin623&#x27;</span></span><br><span class="line">date: <span class="number">2023</span><span class="number">-01</span><span class="number">-01</span> <span class="number">22</span>:<span class="number">52</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;meta name = <span class="string">&quot;referrer&quot;</span> content = <span class="string">&quot;no-referrer&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">最近学到了一个判断某个数是否为平方数的比较骚的做法：</span><br><span class="line">![](https:<span class="comment">//img2023.cnblogs.com/blog/2935791/202301/2935791-20230101225016364-1800386312.png)</span></span><br><span class="line">任意数的平方都能用一个首项为<span class="number">1</span>，公差为<span class="number">2</span>的等差数列表示，所以要判断一个数是不是平方数可以用这个数依次减<span class="number">1</span>，减<span class="number">3</span>，减<span class="number">5</span>…，如果最后能够减到<span class="number">0</span>，那么这个数就是平方数，否则就不是</span><br><span class="line">#### 代码实现：</span><br><span class="line">```c++</span><br><span class="line"><span class="type">bool</span> <span class="built_in">isSquare</span>(<span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;x &gt; <span class="number">0</span>;i += <span class="number">2</span>) x -= i;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">```https:<span class="comment">//www.cnblogs.com/junlin623/p/17019206.html</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">title: <span class="string">&#x27;判断一个数是否为平方数-junlin623&#x27;</span></span><br><span class="line">date: <span class="number">2023</span><span class="number">-01</span><span class="number">-01</span> <span class="number">22</span>:<span class="number">52</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;meta name = <span class="string">&quot;referrer&quot;</span> content = <span class="string">&quot;no-referrer&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">最近学到了一个判断某个数是否为平方数的比较骚的做法：</span><br><span class="line">![](https:<span class="comment">//img2023.cnblogs.com/blog/2935791/202301/2935791-20230101225016364-1800386312.png)</span></span><br><span class="line">任意数的平方都能用一个首项为<span class="number">1</span>，公差为<span class="number">2</span>的等差数列表示，所以要判断一个数是不是平方数可以用这个数依次减<span class="number">1</span>，减<span class="number">3</span>，减<span class="number">5</span>…，如果最后能够减到<span class="number">0</span>，那么这个数就是平方数，否则就不是</span><br><span class="line">#### 代码实现：</span><br><span class="line">```c++</span><br><span class="line"><span class="type">bool</span> <span class="built_in">isSquare</span>(<span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;x &gt; <span class="number">0</span>;i += <span class="number">2</span>) x -= i;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E6%98%AF%E5%90%A6%E4%B8%BA%E5%B9%B3%E6%96%B9%E6%95%B0-junlin623/" data-id="clhrwf8jg001meksz51a6hzz1" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-令自己电脑的所有程序无法访问百度-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/%E4%BB%A4%E8%87%AA%E5%B7%B1%E7%94%B5%E8%84%91%E7%9A%84%E6%89%80%E6%9C%89%E7%A8%8B%E5%BA%8F%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%99%BE%E5%BA%A6-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.177Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/articles/17019150.html">https://www.cnblogs.com/junlin623/articles/17019150.html</a></p>
+<hr>
+<p>title: ‘令自己电脑的所有程序无法访问百度-junlin623’<br>date: 2023-01-01 22:23:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p class="md-end-block md-p"><span class="md-plain">查看百度服务器的所有ip地址</span></p>
+<pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded highlighter-hljs"><code>&nbsp;nslookup www.baidu.com</code></pre>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222001846-1979620208.png" /></p>
+<p class="md-end-block md-p"><span class="md-plain">防火墙新建出站规则：</span>&nbsp;</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222016946-1450343226.png" width="632" height="361" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222027229-2039102487.png" width="522" height="394" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222040229-607967531.png" width="513" height="388" /></p>
+<p class="md-end-block md-p">协议类型也可以选择任何，因为我们使用http/https上网，它也是属于tcp</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222055031-1846013565.png" width="506" height="382" /></p>
+<p class="md-end-block md-p"><span class="md-plain">将上面通过 `nslookup` 命令获得的百度服务器的ip地址填上：</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222107305-172564542.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222119169-652026644.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><span class="md-plain">给这个规则起个名字即可：</span></p>
+<p class="md-end-block md-p"><span class="md-plain"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222132912-2102751723.png" width="529" height="400" /></span></p>
+<p class="md-end-block md-p">成功创建防火墙出站规则：<br /><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222156333-751306132.png" width="573" height="167" /></p>
+<p class="md-end-block md-p">大功告成！</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222213355-1072111136.png" width="608" height="248" /></p>
+<div class="md-hr md-end-block"><hr /></div>https://www.cnblogs.com/junlin623/articles/17019150.html
+
+
+
+
+<hr>
+<p>title: ‘令自己电脑的所有程序无法访问百度-junlin623’<br>date: 2023-01-01 22:23:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p class="md-end-block md-p"><span class="md-plain">查看百度服务器的所有ip地址</span></p>
+<pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded highlighter-hljs"><code>&nbsp;nslookup www.baidu.com</code></pre>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222001846-1979620208.png" /></p>
+<p class="md-end-block md-p"><span class="md-plain">防火墙新建出站规则：</span>&nbsp;</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222016946-1450343226.png" width="632" height="361" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222027229-2039102487.png" width="522" height="394" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222040229-607967531.png" width="513" height="388" /></p>
+<p class="md-end-block md-p">协议类型也可以选择任何，因为我们使用http/https上网，它也是属于tcp</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222055031-1846013565.png" width="506" height="382" /></p>
+<p class="md-end-block md-p"><span class="md-plain">将上面通过 `nslookup` 命令获得的百度服务器的ip地址填上：</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222107305-172564542.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222119169-652026644.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><span class="md-plain">给这个规则起个名字即可：</span></p>
+<p class="md-end-block md-p"><span class="md-plain"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222132912-2102751723.png" width="529" height="400" /></span></p>
+<p class="md-end-block md-p">成功创建防火墙出站规则：<br /><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222156333-751306132.png" width="573" height="167" /></p>
+<p class="md-end-block md-p">大功告成！</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222213355-1072111136.png" width="608" height="248" /></p>
+<div class="md-hr md-end-block"><hr /></div>https://www.cnblogs.com/junlin623/articles/17019150.html
+
+
+
+
+<hr>
+<p>title: ‘令自己电脑的所有程序无法访问百度-junlin623’<br>date: 2023-01-01 22:23:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p class="md-end-block md-p"><span class="md-plain">查看百度服务器的所有ip地址</span></p>
+<pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded highlighter-hljs"><code>&nbsp;nslookup www.baidu.com</code></pre>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222001846-1979620208.png" /></p>
+<p class="md-end-block md-p"><span class="md-plain">防火墙新建出站规则：</span>&nbsp;</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222016946-1450343226.png" width="632" height="361" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222027229-2039102487.png" width="522" height="394" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222040229-607967531.png" width="513" height="388" /></p>
+<p class="md-end-block md-p">协议类型也可以选择任何，因为我们使用http/https上网，它也是属于tcp</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222055031-1846013565.png" width="506" height="382" /></p>
+<p class="md-end-block md-p"><span class="md-plain">将上面通过 `nslookup` 命令获得的百度服务器的ip地址填上：</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222107305-172564542.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222119169-652026644.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><span class="md-plain">给这个规则起个名字即可：</span></p>
+<p class="md-end-block md-p"><span class="md-plain"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222132912-2102751723.png" width="529" height="400" /></span></p>
+<p class="md-end-block md-p">成功创建防火墙出站规则：<br /><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222156333-751306132.png" width="573" height="167" /></p>
+<p class="md-end-block md-p">大功告成！</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222213355-1072111136.png" width="608" height="248" /></p>
+<div class="md-hr md-end-block"><hr /></div>https://www.cnblogs.com/junlin623/articles/17019150.html
+
+
+
+
+<hr>
+<p>title: ‘令自己电脑的所有程序无法访问百度-junlin623’<br>date: 2023-01-01 22:23:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p class="md-end-block md-p"><span class="md-plain">查看百度服务器的所有ip地址</span></p>
+<pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded highlighter-hljs"><code>&nbsp;nslookup www.baidu.com</code></pre>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222001846-1979620208.png" /></p>
+<p class="md-end-block md-p"><span class="md-plain">防火墙新建出站规则：</span>&nbsp;</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222016946-1450343226.png" width="632" height="361" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222027229-2039102487.png" width="522" height="394" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222040229-607967531.png" width="513" height="388" /></p>
+<p class="md-end-block md-p">协议类型也可以选择任何，因为我们使用http/https上网，它也是属于tcp</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222055031-1846013565.png" width="506" height="382" /></p>
+<p class="md-end-block md-p"><span class="md-plain">将上面通过 `nslookup` 命令获得的百度服务器的ip地址填上：</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222107305-172564542.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222119169-652026644.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><span class="md-plain">给这个规则起个名字即可：</span></p>
+<p class="md-end-block md-p"><span class="md-plain"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222132912-2102751723.png" width="529" height="400" /></span></p>
+<p class="md-end-block md-p">成功创建防火墙出站规则：<br /><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222156333-751306132.png" width="573" height="167" /></p>
+<p class="md-end-block md-p">大功告成！</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222213355-1072111136.png" width="608" height="248" /></p>
+<div class="md-hr md-end-block"><hr /></div>https://www.cnblogs.com/junlin623/articles/17019150.html
+
+
+
+
+<hr>
+<p>title: ‘令自己电脑的所有程序无法访问百度-junlin623’<br>date: 2023-01-01 22:23:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p class="md-end-block md-p"><span class="md-plain">查看百度服务器的所有ip地址</span></p>
+<pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded highlighter-hljs"><code>&nbsp;nslookup www.baidu.com</code></pre>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222001846-1979620208.png" /></p>
+<p class="md-end-block md-p"><span class="md-plain">防火墙新建出站规则：</span>&nbsp;</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222016946-1450343226.png" width="632" height="361" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222027229-2039102487.png" width="522" height="394" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222040229-607967531.png" width="513" height="388" /></p>
+<p class="md-end-block md-p">协议类型也可以选择任何，因为我们使用http/https上网，它也是属于tcp</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222055031-1846013565.png" width="506" height="382" /></p>
+<p class="md-end-block md-p"><span class="md-plain">将上面通过 `nslookup` 命令获得的百度服务器的ip地址填上：</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222107305-172564542.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222119169-652026644.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><span class="md-plain">给这个规则起个名字即可：</span></p>
+<p class="md-end-block md-p"><span class="md-plain"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222132912-2102751723.png" width="529" height="400" /></span></p>
+<p class="md-end-block md-p">成功创建防火墙出站规则：<br /><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222156333-751306132.png" width="573" height="167" /></p>
+<p class="md-end-block md-p">大功告成！</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222213355-1072111136.png" width="608" height="248" /></p>
+<div class="md-hr md-end-block"><hr /></div>https://www.cnblogs.com/junlin623/articles/17019150.html
+
+
+
+
+<hr>
+<p>title: ‘令自己电脑的所有程序无法访问百度-junlin623’<br>date: 2023-01-01 22:23:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p class="md-end-block md-p"><span class="md-plain">查看百度服务器的所有ip地址</span></p>
+<pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded highlighter-hljs"><code>&nbsp;nslookup www.baidu.com</code></pre>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222001846-1979620208.png" /></p>
+<p class="md-end-block md-p"><span class="md-plain">防火墙新建出站规则：</span>&nbsp;</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222016946-1450343226.png" width="632" height="361" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222027229-2039102487.png" width="522" height="394" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222040229-607967531.png" width="513" height="388" /></p>
+<p class="md-end-block md-p">协议类型也可以选择任何，因为我们使用http/https上网，它也是属于tcp</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222055031-1846013565.png" width="506" height="382" /></p>
+<p class="md-end-block md-p"><span class="md-plain">将上面通过 `nslookup` 命令获得的百度服务器的ip地址填上：</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222107305-172564542.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222119169-652026644.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><span class="md-plain">给这个规则起个名字即可：</span></p>
+<p class="md-end-block md-p"><span class="md-plain"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222132912-2102751723.png" width="529" height="400" /></span></p>
+<p class="md-end-block md-p">成功创建防火墙出站规则：<br /><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222156333-751306132.png" width="573" height="167" /></p>
+<p class="md-end-block md-p">大功告成！</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222213355-1072111136.png" width="608" height="248" /></p>
+<div class="md-hr md-end-block"><hr /></div>https://www.cnblogs.com/junlin623/articles/17019150.html
+
+
+
+
+<hr>
+<p>title: ‘令自己电脑的所有程序无法访问百度-junlin623’<br>date: 2023-01-01 22:23:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p class="md-end-block md-p"><span class="md-plain">查看百度服务器的所有ip地址</span></p>
+<pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded highlighter-hljs"><code>&nbsp;nslookup www.baidu.com</code></pre>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222001846-1979620208.png" /></p>
+<p class="md-end-block md-p"><span class="md-plain">防火墙新建出站规则：</span>&nbsp;</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222016946-1450343226.png" width="632" height="361" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222027229-2039102487.png" width="522" height="394" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222040229-607967531.png" width="513" height="388" /></p>
+<p class="md-end-block md-p">协议类型也可以选择任何，因为我们使用http/https上网，它也是属于tcp</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222055031-1846013565.png" width="506" height="382" /></p>
+<p class="md-end-block md-p"><span class="md-plain">将上面通过 `nslookup` 命令获得的百度服务器的ip地址填上：</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222107305-172564542.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222119169-652026644.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><span class="md-plain">给这个规则起个名字即可：</span></p>
+<p class="md-end-block md-p"><span class="md-plain"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222132912-2102751723.png" width="529" height="400" /></span></p>
+<p class="md-end-block md-p">成功创建防火墙出站规则：<br /><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222156333-751306132.png" width="573" height="167" /></p>
+<p class="md-end-block md-p">大功告成！</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222213355-1072111136.png" width="608" height="248" /></p>
+<div class="md-hr md-end-block"><hr /></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/%E4%BB%A4%E8%87%AA%E5%B7%B1%E7%94%B5%E8%84%91%E7%9A%84%E6%89%80%E6%9C%89%E7%A8%8B%E5%BA%8F%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%99%BE%E5%BA%A6-junlin623/" data-id="clhrwf8je001heksz56y3654l" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-令电脑中的所有程序无法访问特定网址-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/%E4%BB%A4%E7%94%B5%E8%84%91%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%A8%8B%E5%BA%8F%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%89%B9%E5%AE%9A%E7%BD%91%E5%9D%80-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.175Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17019522.html">https://www.cnblogs.com/junlin623/p/17019522.html</a></p>
+<hr>
+<p>title: ‘令电脑中的所有程序无法访问特定网址-junlin623’<br>date: 2023-01-02 10:34:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p class="md-end-block md-p"><span class="md-plain">这里以百度（www.baidu.com）为例</span></p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p"><strong><span class="md-plain" style="font-size: 14pt;">方法一： 设置防火墙出站规则</span></strong></p>
+<p class="md-end-block md-p"><span class="md-plain" style="font-size: 16px;">查看百度服务器的所有ip地址</span></p>
+<pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded highlighter-hljs"><code>&nbsp;nslookup www.baidu.com</code></pre>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222001846-1979620208.png" /></p>
+<p class="md-end-block md-p"><span class="md-plain">防火墙新建出站规则：&nbsp;</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222016946-1450343226.png" width="632" height="361" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222027229-2039102487.png" width="522" height="394" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222040229-607967531.png" width="513" height="388" /></p>
+<p class="md-end-block md-p">协议类型也可以选择任何，因为我们使用http/https上网，它也是属于tcp</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222055031-1846013565.png" width="506" height="382" /></p>
+<p class="md-end-block md-p"><span class="md-plain">将上面通过 `nslookup` 命令获得的百度服务器的ip地址填上：</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222107305-172564542.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222119169-652026644.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><span class="md-plain">给这个规则起个名字即可：</span></p>
+<p class="md-end-block md-p"><span class="md-plain"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222132912-2102751723.png" width="529" height="400" /></span></p>
+<p class="md-end-block md-p">成功创建防火墙出站规则：<br /><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222156333-751306132.png" width="573" height="167" /></p>
+<p class="md-end-block md-p">大功告成！</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222213355-1072111136.png" width="608" height="248" /></p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p"><strong><span style="font-size: 14pt;">方法二：配置hosts文件</span></strong></p>
+<p class="md-end-block md-p">该方法的原理是通过配置hosts文件影响域名解析，也就是骗电脑将www.baidu.com这个域名随便解析成一个无法访问的ip地址</p>
+<p class="md-end-block md-p">hosts文件位置：<br />　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094542011-465575808.png" alt="" loading="lazy" /></p>
+<p class="md-end-block md-p">　修改这个文件需要修改权限：</p>
+<p class="md-end-block md-p">　右击hosts文件选择属性，点击安全-&gt;编辑</p>
+<p class="md-end-block md-p">　为当前电脑中的用户设置完全控制权限（配置完记得改回来哦）</p>
+<p class="md-end-block md-p">　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094850429-163555016.png" alt="" width="361" height="453" loading="lazy" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;　　用记事本打开hosts文件，在最下方添加如下记录</p>
+<p class="md-end-block md-p">　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094827441-491919993.png" alt="" loading="lazy" /></p>
+<p>　　接下来访问百度：</p>
+<p>　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105095026513-45186401.png" alt="" width="670" height="327" loading="lazy" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="md-hr md-end-block"><hr /></div>https://www.cnblogs.com/junlin623/p/17019522.html
+
+
+
+
+<hr>
+<p>title: ‘令电脑中的所有程序无法访问特定网址-junlin623’<br>date: 2023-01-02 10:34:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p class="md-end-block md-p"><span class="md-plain">这里以百度（www.baidu.com）为例</span></p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p"><strong><span class="md-plain" style="font-size: 14pt;">方法一： 设置防火墙出站规则</span></strong></p>
+<p class="md-end-block md-p"><span class="md-plain" style="font-size: 16px;">查看百度服务器的所有ip地址</span></p>
+<pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded highlighter-hljs"><code>&nbsp;nslookup www.baidu.com</code></pre>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222001846-1979620208.png" /></p>
+<p class="md-end-block md-p"><span class="md-plain">防火墙新建出站规则：&nbsp;</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222016946-1450343226.png" width="632" height="361" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222027229-2039102487.png" width="522" height="394" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222040229-607967531.png" width="513" height="388" /></p>
+<p class="md-end-block md-p">协议类型也可以选择任何，因为我们使用http/https上网，它也是属于tcp</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222055031-1846013565.png" width="506" height="382" /></p>
+<p class="md-end-block md-p"><span class="md-plain">将上面通过 `nslookup` 命令获得的百度服务器的ip地址填上：</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222107305-172564542.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222119169-652026644.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><span class="md-plain">给这个规则起个名字即可：</span></p>
+<p class="md-end-block md-p"><span class="md-plain"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222132912-2102751723.png" width="529" height="400" /></span></p>
+<p class="md-end-block md-p">成功创建防火墙出站规则：<br /><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222156333-751306132.png" width="573" height="167" /></p>
+<p class="md-end-block md-p">大功告成！</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222213355-1072111136.png" width="608" height="248" /></p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p"><strong><span style="font-size: 14pt;">方法二：配置hosts文件</span></strong></p>
+<p class="md-end-block md-p">该方法的原理是通过配置hosts文件影响域名解析，也就是骗电脑将www.baidu.com这个域名随便解析成一个无法访问的ip地址</p>
+<p class="md-end-block md-p">hosts文件位置：<br />　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094542011-465575808.png" alt="" loading="lazy" /></p>
+<p class="md-end-block md-p">　修改这个文件需要修改权限：</p>
+<p class="md-end-block md-p">　右击hosts文件选择属性，点击安全-&gt;编辑</p>
+<p class="md-end-block md-p">　为当前电脑中的用户设置完全控制权限（配置完记得改回来哦）</p>
+<p class="md-end-block md-p">　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094850429-163555016.png" alt="" width="361" height="453" loading="lazy" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;　　用记事本打开hosts文件，在最下方添加如下记录</p>
+<p class="md-end-block md-p">　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094827441-491919993.png" alt="" loading="lazy" /></p>
+<p>　　接下来访问百度：</p>
+<p>　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105095026513-45186401.png" alt="" width="670" height="327" loading="lazy" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="md-hr md-end-block"><hr /></div>https://www.cnblogs.com/junlin623/p/17019522.html
+
+
+
+
+<hr>
+<p>title: ‘令电脑中的所有程序无法访问特定网址-junlin623’<br>date: 2023-01-02 10:34:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p class="md-end-block md-p"><span class="md-plain">这里以百度（www.baidu.com）为例</span></p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p"><strong><span class="md-plain" style="font-size: 14pt;">方法一： 设置防火墙出站规则</span></strong></p>
+<p class="md-end-block md-p"><span class="md-plain" style="font-size: 16px;">查看百度服务器的所有ip地址</span></p>
+<pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded highlighter-hljs"><code>&nbsp;nslookup www.baidu.com</code></pre>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222001846-1979620208.png" /></p>
+<p class="md-end-block md-p"><span class="md-plain">防火墙新建出站规则：&nbsp;</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222016946-1450343226.png" width="632" height="361" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222027229-2039102487.png" width="522" height="394" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222040229-607967531.png" width="513" height="388" /></p>
+<p class="md-end-block md-p">协议类型也可以选择任何，因为我们使用http/https上网，它也是属于tcp</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222055031-1846013565.png" width="506" height="382" /></p>
+<p class="md-end-block md-p"><span class="md-plain">将上面通过 `nslookup` 命令获得的百度服务器的ip地址填上：</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222107305-172564542.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222119169-652026644.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><span class="md-plain">给这个规则起个名字即可：</span></p>
+<p class="md-end-block md-p"><span class="md-plain"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222132912-2102751723.png" width="529" height="400" /></span></p>
+<p class="md-end-block md-p">成功创建防火墙出站规则：<br /><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222156333-751306132.png" width="573" height="167" /></p>
+<p class="md-end-block md-p">大功告成！</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222213355-1072111136.png" width="608" height="248" /></p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p"><strong><span style="font-size: 14pt;">方法二：配置hosts文件</span></strong></p>
+<p class="md-end-block md-p">该方法的原理是通过配置hosts文件影响域名解析，也就是骗电脑将www.baidu.com这个域名随便解析成一个无法访问的ip地址</p>
+<p class="md-end-block md-p">hosts文件位置：<br />　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094542011-465575808.png" alt="" loading="lazy" /></p>
+<p class="md-end-block md-p">　修改这个文件需要修改权限：</p>
+<p class="md-end-block md-p">　右击hosts文件选择属性，点击安全-&gt;编辑</p>
+<p class="md-end-block md-p">　为当前电脑中的用户设置完全控制权限（配置完记得改回来哦）</p>
+<p class="md-end-block md-p">　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094850429-163555016.png" alt="" width="361" height="453" loading="lazy" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;　　用记事本打开hosts文件，在最下方添加如下记录</p>
+<p class="md-end-block md-p">　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094827441-491919993.png" alt="" loading="lazy" /></p>
+<p>　　接下来访问百度：</p>
+<p>　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105095026513-45186401.png" alt="" width="670" height="327" loading="lazy" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="md-hr md-end-block"><hr /></div>https://www.cnblogs.com/junlin623/p/17019522.html
+
+
+
+
+<hr>
+<p>title: ‘令电脑中的所有程序无法访问特定网址-junlin623’<br>date: 2023-01-02 10:34:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p class="md-end-block md-p"><span class="md-plain">这里以百度（www.baidu.com）为例</span></p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p"><strong><span class="md-plain" style="font-size: 14pt;">方法一： 设置防火墙出站规则</span></strong></p>
+<p class="md-end-block md-p"><span class="md-plain" style="font-size: 16px;">查看百度服务器的所有ip地址</span></p>
+<pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded highlighter-hljs"><code>&nbsp;nslookup www.baidu.com</code></pre>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222001846-1979620208.png" /></p>
+<p class="md-end-block md-p"><span class="md-plain">防火墙新建出站规则：&nbsp;</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222016946-1450343226.png" width="632" height="361" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222027229-2039102487.png" width="522" height="394" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222040229-607967531.png" width="513" height="388" /></p>
+<p class="md-end-block md-p">协议类型也可以选择任何，因为我们使用http/https上网，它也是属于tcp</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222055031-1846013565.png" width="506" height="382" /></p>
+<p class="md-end-block md-p"><span class="md-plain">将上面通过 `nslookup` 命令获得的百度服务器的ip地址填上：</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222107305-172564542.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222119169-652026644.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><span class="md-plain">给这个规则起个名字即可：</span></p>
+<p class="md-end-block md-p"><span class="md-plain"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222132912-2102751723.png" width="529" height="400" /></span></p>
+<p class="md-end-block md-p">成功创建防火墙出站规则：<br /><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222156333-751306132.png" width="573" height="167" /></p>
+<p class="md-end-block md-p">大功告成！</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222213355-1072111136.png" width="608" height="248" /></p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p"><strong><span style="font-size: 14pt;">方法二：配置hosts文件</span></strong></p>
+<p class="md-end-block md-p">该方法的原理是通过配置hosts文件影响域名解析，也就是骗电脑将www.baidu.com这个域名随便解析成一个无法访问的ip地址</p>
+<p class="md-end-block md-p">hosts文件位置：<br />　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094542011-465575808.png" alt="" loading="lazy" /></p>
+<p class="md-end-block md-p">　修改这个文件需要修改权限：</p>
+<p class="md-end-block md-p">　右击hosts文件选择属性，点击安全-&gt;编辑</p>
+<p class="md-end-block md-p">　为当前电脑中的用户设置完全控制权限（配置完记得改回来哦）</p>
+<p class="md-end-block md-p">　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094850429-163555016.png" alt="" width="361" height="453" loading="lazy" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;　　用记事本打开hosts文件，在最下方添加如下记录</p>
+<p class="md-end-block md-p">　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094827441-491919993.png" alt="" loading="lazy" /></p>
+<p>　　接下来访问百度：</p>
+<p>　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105095026513-45186401.png" alt="" width="670" height="327" loading="lazy" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="md-hr md-end-block"><hr /></div>https://www.cnblogs.com/junlin623/p/17019522.html
+
+
+
+
+<hr>
+<p>title: ‘令电脑中的所有程序无法访问特定网址-junlin623’<br>date: 2023-01-02 10:34:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p class="md-end-block md-p"><span class="md-plain">这里以百度（www.baidu.com）为例</span></p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p"><strong><span class="md-plain" style="font-size: 14pt;">方法一： 设置防火墙出站规则</span></strong></p>
+<p class="md-end-block md-p"><span class="md-plain" style="font-size: 16px;">查看百度服务器的所有ip地址</span></p>
+<pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded highlighter-hljs"><code>&nbsp;nslookup www.baidu.com</code></pre>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222001846-1979620208.png" /></p>
+<p class="md-end-block md-p"><span class="md-plain">防火墙新建出站规则：&nbsp;</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222016946-1450343226.png" width="632" height="361" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222027229-2039102487.png" width="522" height="394" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222040229-607967531.png" width="513" height="388" /></p>
+<p class="md-end-block md-p">协议类型也可以选择任何，因为我们使用http/https上网，它也是属于tcp</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222055031-1846013565.png" width="506" height="382" /></p>
+<p class="md-end-block md-p"><span class="md-plain">将上面通过 `nslookup` 命令获得的百度服务器的ip地址填上：</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222107305-172564542.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222119169-652026644.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><span class="md-plain">给这个规则起个名字即可：</span></p>
+<p class="md-end-block md-p"><span class="md-plain"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222132912-2102751723.png" width="529" height="400" /></span></p>
+<p class="md-end-block md-p">成功创建防火墙出站规则：<br /><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222156333-751306132.png" width="573" height="167" /></p>
+<p class="md-end-block md-p">大功告成！</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222213355-1072111136.png" width="608" height="248" /></p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p"><strong><span style="font-size: 14pt;">方法二：配置hosts文件</span></strong></p>
+<p class="md-end-block md-p">该方法的原理是通过配置hosts文件影响域名解析，也就是骗电脑将www.baidu.com这个域名随便解析成一个无法访问的ip地址</p>
+<p class="md-end-block md-p">hosts文件位置：<br />　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094542011-465575808.png" alt="" loading="lazy" /></p>
+<p class="md-end-block md-p">　修改这个文件需要修改权限：</p>
+<p class="md-end-block md-p">　右击hosts文件选择属性，点击安全-&gt;编辑</p>
+<p class="md-end-block md-p">　为当前电脑中的用户设置完全控制权限（配置完记得改回来哦）</p>
+<p class="md-end-block md-p">　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094850429-163555016.png" alt="" width="361" height="453" loading="lazy" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;　　用记事本打开hosts文件，在最下方添加如下记录</p>
+<p class="md-end-block md-p">　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094827441-491919993.png" alt="" loading="lazy" /></p>
+<p>　　接下来访问百度：</p>
+<p>　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105095026513-45186401.png" alt="" width="670" height="327" loading="lazy" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="md-hr md-end-block"><hr /></div>https://www.cnblogs.com/junlin623/p/17019522.html
+
+
+
+
+<hr>
+<p>title: ‘令电脑中的所有程序无法访问特定网址-junlin623’<br>date: 2023-01-02 10:34:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p class="md-end-block md-p"><span class="md-plain">这里以百度（www.baidu.com）为例</span></p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p"><strong><span class="md-plain" style="font-size: 14pt;">方法一： 设置防火墙出站规则</span></strong></p>
+<p class="md-end-block md-p"><span class="md-plain" style="font-size: 16px;">查看百度服务器的所有ip地址</span></p>
+<pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded highlighter-hljs"><code>&nbsp;nslookup www.baidu.com</code></pre>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222001846-1979620208.png" /></p>
+<p class="md-end-block md-p"><span class="md-plain">防火墙新建出站规则：&nbsp;</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222016946-1450343226.png" width="632" height="361" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222027229-2039102487.png" width="522" height="394" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222040229-607967531.png" width="513" height="388" /></p>
+<p class="md-end-block md-p">协议类型也可以选择任何，因为我们使用http/https上网，它也是属于tcp</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222055031-1846013565.png" width="506" height="382" /></p>
+<p class="md-end-block md-p"><span class="md-plain">将上面通过 `nslookup` 命令获得的百度服务器的ip地址填上：</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222107305-172564542.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222119169-652026644.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><span class="md-plain">给这个规则起个名字即可：</span></p>
+<p class="md-end-block md-p"><span class="md-plain"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222132912-2102751723.png" width="529" height="400" /></span></p>
+<p class="md-end-block md-p">成功创建防火墙出站规则：<br /><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222156333-751306132.png" width="573" height="167" /></p>
+<p class="md-end-block md-p">大功告成！</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222213355-1072111136.png" width="608" height="248" /></p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p"><strong><span style="font-size: 14pt;">方法二：配置hosts文件</span></strong></p>
+<p class="md-end-block md-p">该方法的原理是通过配置hosts文件影响域名解析，也就是骗电脑将www.baidu.com这个域名随便解析成一个无法访问的ip地址</p>
+<p class="md-end-block md-p">hosts文件位置：<br />　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094542011-465575808.png" alt="" loading="lazy" /></p>
+<p class="md-end-block md-p">　修改这个文件需要修改权限：</p>
+<p class="md-end-block md-p">　右击hosts文件选择属性，点击安全-&gt;编辑</p>
+<p class="md-end-block md-p">　为当前电脑中的用户设置完全控制权限（配置完记得改回来哦）</p>
+<p class="md-end-block md-p">　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094850429-163555016.png" alt="" width="361" height="453" loading="lazy" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;　　用记事本打开hosts文件，在最下方添加如下记录</p>
+<p class="md-end-block md-p">　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094827441-491919993.png" alt="" loading="lazy" /></p>
+<p>　　接下来访问百度：</p>
+<p>　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105095026513-45186401.png" alt="" width="670" height="327" loading="lazy" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="md-hr md-end-block"><hr /></div>https://www.cnblogs.com/junlin623/p/17019522.html
+
+
+
+
+<hr>
+<p>title: ‘令电脑中的所有程序无法访问特定网址-junlin623’<br>date: 2023-01-02 10:34:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p class="md-end-block md-p"><span class="md-plain">这里以百度（www.baidu.com）为例</span></p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p"><strong><span class="md-plain" style="font-size: 14pt;">方法一： 设置防火墙出站规则</span></strong></p>
+<p class="md-end-block md-p"><span class="md-plain" style="font-size: 16px;">查看百度服务器的所有ip地址</span></p>
+<pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded highlighter-hljs"><code>&nbsp;nslookup www.baidu.com</code></pre>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222001846-1979620208.png" /></p>
+<p class="md-end-block md-p"><span class="md-plain">防火墙新建出站规则：&nbsp;</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222016946-1450343226.png" width="632" height="361" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222027229-2039102487.png" width="522" height="394" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222040229-607967531.png" width="513" height="388" /></p>
+<p class="md-end-block md-p">协议类型也可以选择任何，因为我们使用http/https上网，它也是属于tcp</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222055031-1846013565.png" width="506" height="382" /></p>
+<p class="md-end-block md-p"><span class="md-plain">将上面通过 `nslookup` 命令获得的百度服务器的ip地址填上：</span></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222107305-172564542.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222119169-652026644.png" width="520" height="393" /></p>
+<p class="md-end-block md-p"><span class="md-plain">给这个规则起个名字即可：</span></p>
+<p class="md-end-block md-p"><span class="md-plain"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222132912-2102751723.png" width="529" height="400" /></span></p>
+<p class="md-end-block md-p">成功创建防火墙出站规则：<br /><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222156333-751306132.png" width="573" height="167" /></p>
+<p class="md-end-block md-p">大功告成！</p>
+<p class="md-end-block md-p"><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101222213355-1072111136.png" width="608" height="248" /></p>
+<p class="md-end-block md-p">&nbsp;</p>
+<p class="md-end-block md-p"><strong><span style="font-size: 14pt;">方法二：配置hosts文件</span></strong></p>
+<p class="md-end-block md-p">该方法的原理是通过配置hosts文件影响域名解析，也就是骗电脑将www.baidu.com这个域名随便解析成一个无法访问的ip地址</p>
+<p class="md-end-block md-p">hosts文件位置：<br />　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094542011-465575808.png" alt="" loading="lazy" /></p>
+<p class="md-end-block md-p">　修改这个文件需要修改权限：</p>
+<p class="md-end-block md-p">　右击hosts文件选择属性，点击安全-&gt;编辑</p>
+<p class="md-end-block md-p">　为当前电脑中的用户设置完全控制权限（配置完记得改回来哦）</p>
+<p class="md-end-block md-p">　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094850429-163555016.png" alt="" width="361" height="453" loading="lazy" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;　　用记事本打开hosts文件，在最下方添加如下记录</p>
+<p class="md-end-block md-p">　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105094827441-491919993.png" alt="" loading="lazy" /></p>
+<p>　　接下来访问百度：</p>
+<p>　　<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230105095026513-45186401.png" alt="" width="670" height="327" loading="lazy" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="md-hr md-end-block"><hr /></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/%E4%BB%A4%E7%94%B5%E8%84%91%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%A8%8B%E5%BA%8F%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%89%B9%E5%AE%9A%E7%BD%91%E5%9D%80-junlin623/" data-id="clhrwf8je001gekszdm114a52" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/05/18/%E7%9B%B4%E8%BF%9E%E8%B7%AF%E7%94%B1%E8%A1%A8%E9%A1%B9%E8%A7%A3%E6%9E%90-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E6%95%B4%E6%95%B0%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%8E%9F%E7%94%9F%E6%96%B9%E5%BC%8F%E9%83%A8%E7%BD%B2JavaWeb%E9%A1%B9%E7%9B%AE%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%8E%9F%E6%9D%A5%E6%98%AFvmware-hostd%E7%A8%8B%E5%BA%8F%E5%8D%A0%E7%94%A8%E4%BA%86443%E7%AB%AF%E5%8F%A3-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%AD%A6%E7%94%9F%E5%8F%AF%E4%BB%A5%E7%99%BD%E5%AB%96%E9%98%BF%E9%87%8C%E4%BA%91ECS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8D%8A%E5%B9%B4~~-junlin623/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

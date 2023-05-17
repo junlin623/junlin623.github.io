@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;junlin623&#x2F;p&#x2F;17023750.html  title: ‘原来是vmware-hostd程序占用了443端口-junlin623’date: 2023-01-03 23:56:00      查看电脑端口的时候发现本机有服务正在监听443端口    我没有在本地运行任何web服务，为什么会监听443端口？ 操作： 获取监听程序的PID：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2023/05/18/%E5%8E%9F%E6%9D%A5%E6%98%AFvmware-hostd%E7%A8%8B%E5%BA%8F%E5%8D%A0%E7%94%A8%E4%BA%86443%E7%AB%AF%E5%8F%A3-junlin623/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;junlin623&#x2F;p&#x2F;17023750.html  title: ‘原来是vmware-hostd程序占用了443端口-junlin623’date: 2023-01-03 23:56:00      查看电脑端口的时候发现本机有服务正在监听443端口    我没有在本地运行任何web服务，为什么会监听443端口？ 操作： 获取监听程序的PID：">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103232751578-1980690096.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233411688-1131517268.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233608347-2132988914.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103235314952-460017283.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233924639-824403338.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234404702-846087550.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234423900-1993743913.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234457182-2070891660.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103232751578-1980690096.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233411688-1131517268.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233608347-2132988914.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103235314952-460017283.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233924639-824403338.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234404702-846087550.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234423900-1993743913.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234457182-2070891660.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103232751578-1980690096.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233411688-1131517268.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233608347-2132988914.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103235314952-460017283.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233924639-824403338.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234404702-846087550.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234423900-1993743913.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234457182-2070891660.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103232751578-1980690096.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233411688-1131517268.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233608347-2132988914.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103235314952-460017283.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233924639-824403338.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234404702-846087550.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234423900-1993743913.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234457182-2070891660.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103232751578-1980690096.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233411688-1131517268.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233608347-2132988914.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103235314952-460017283.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233924639-824403338.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234404702-846087550.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234423900-1993743913.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234457182-2070891660.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103232751578-1980690096.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233411688-1131517268.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233608347-2132988914.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103235314952-460017283.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233924639-824403338.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234404702-846087550.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234423900-1993743913.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234457182-2070891660.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103232751578-1980690096.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233411688-1131517268.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233608347-2132988914.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103235314952-460017283.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233924639-824403338.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234404702-846087550.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234423900-1993743913.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234457182-2070891660.png">
+<meta property="article:published_time" content="2023-05-17T16:09:35.206Z">
+<meta property="article:modified_time" content="2023-05-17T11:57:00.754Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103232751578-1980690096.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-原来是vmware-hostd程序占用了443端口-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/%E5%8E%9F%E6%9D%A5%E6%98%AFvmware-hostd%E7%A8%8B%E5%BA%8F%E5%8D%A0%E7%94%A8%E4%BA%86443%E7%AB%AF%E5%8F%A3-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.206Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17023750.html">https://www.cnblogs.com/junlin623/p/17023750.html</a></p>
+<hr>
+<p>title: ‘原来是vmware-hostd程序占用了443端口-junlin623’<br>date: 2023-01-03 23:56:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h4 id="查看电脑端口的时候发现本机有服务正在监听443端口"><a href="#查看电脑端口的时候发现本机有服务正在监听443端口" class="headerlink" title="查看电脑端口的时候发现本机有服务正在监听443端口"></a>查看电脑端口的时候发现本机有服务正在监听443端口</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103232751578-1980690096.png" width="40%" > 
+
+
+<p>我没有在本地运行任何web服务，为什么会监听443端口？</p>
+<h4 id="操作："><a href="#操作：" class="headerlink" title="操作："></a>操作：</h4><ol>
+<li><p>获取监听程序的PID：</p>
+<p>可以看到监听443端口的程序的PID为8380</p>
+</li>
+</ol>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233411688-1131517268.png" width="40%" >
+
+<ol start="2">
+<li>根据PID查找程序的名称：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist | findstr <span class="string">&quot;8380&quot;</span></span><br></pre></td></tr></table></figure>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233608347-2132988914.png" width="60%" ></li>
+</ol>
+<p>发现了一个vmware-hostd.exe程序</p>
+<h4 id="这个程序是干啥的？"><a href="#这个程序是干啥的？" class="headerlink" title="这个程序是干啥的？"></a>这个程序是干啥的？</h4><p>  vmware-hostd.exe是Vmware虚拟机程序默认安装的，并且开机自启</p>
+<p>进到Vmware中查看一下：</p>
+<p>点击 编辑-&gt;首选项-&gt;共享虚拟机<br><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103235314952-460017283.png" width="40%" ></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233924639-824403338.png" width="40%" >
+
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>vmware-hostd.exe程序是Vmware用于虚拟机共享和远程访问所开启的服务<br>这个服务平常也不太会使用到，而且443端口也是之后启动Apache等比较重要的端口，所以：</p>
+<h4 id="1-可以直接停用该服务："><a href="#1-可以直接停用该服务：" class="headerlink" title="1. 可以直接停用该服务："></a><strong>1. 可以直接停用该服务：</strong></h4><p>  点击 更改设置，然后点击禁用共享即可<br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234404702-846087550.png" width="40%" ><br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234423900-1993743913.png" width="40%" ></p>
+<h4 id="2-修改该服务占用的端口号"><a href="#2-修改该服务占用的端口号" class="headerlink" title="2. 修改该服务占用的端口号"></a><strong>2. 修改该服务占用的端口号</strong></h4><p>  若要修改需要先向第一种方法那样禁用共享，修改完端口号之后再启用共享即可<br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234457182-2070891660.png" width="40%" ><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17023750.html">https://www.cnblogs.com/junlin623/p/17023750.html</a></p>
+<hr>
+<p>title: ‘原来是vmware-hostd程序占用了443端口-junlin623’<br>date: 2023-01-03 23:56:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h4 id="查看电脑端口的时候发现本机有服务正在监听443端口-1"><a href="#查看电脑端口的时候发现本机有服务正在监听443端口-1" class="headerlink" title="查看电脑端口的时候发现本机有服务正在监听443端口"></a>查看电脑端口的时候发现本机有服务正在监听443端口</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103232751578-1980690096.png" width="40%" > 
+
+
+<p>我没有在本地运行任何web服务，为什么会监听443端口？</p>
+<h4 id="操作：-1"><a href="#操作：-1" class="headerlink" title="操作："></a>操作：</h4><ol>
+<li><p>获取监听程序的PID：</p>
+<p>可以看到监听443端口的程序的PID为8380</p>
+</li>
+</ol>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233411688-1131517268.png" width="40%" >
+
+<ol start="2">
+<li>根据PID查找程序的名称：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist | findstr <span class="string">&quot;8380&quot;</span></span><br></pre></td></tr></table></figure>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233608347-2132988914.png" width="60%" ></li>
+</ol>
+<p>发现了一个vmware-hostd.exe程序</p>
+<h4 id="这个程序是干啥的？-1"><a href="#这个程序是干啥的？-1" class="headerlink" title="这个程序是干啥的？"></a>这个程序是干啥的？</h4><p>  vmware-hostd.exe是Vmware虚拟机程序默认安装的，并且开机自启</p>
+<p>进到Vmware中查看一下：</p>
+<p>点击 编辑-&gt;首选项-&gt;共享虚拟机<br><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103235314952-460017283.png" width="40%" ></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233924639-824403338.png" width="40%" >
+
+<h3 id="总结：-1"><a href="#总结：-1" class="headerlink" title="总结："></a>总结：</h3><p>vmware-hostd.exe程序是Vmware用于虚拟机共享和远程访问所开启的服务<br>这个服务平常也不太会使用到，而且443端口也是之后启动Apache等比较重要的端口，所以：</p>
+<h4 id="1-可以直接停用该服务：-1"><a href="#1-可以直接停用该服务：-1" class="headerlink" title="1. 可以直接停用该服务："></a><strong>1. 可以直接停用该服务：</strong></h4><p>  点击 更改设置，然后点击禁用共享即可<br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234404702-846087550.png" width="40%" ><br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234423900-1993743913.png" width="40%" ></p>
+<h4 id="2-修改该服务占用的端口号-1"><a href="#2-修改该服务占用的端口号-1" class="headerlink" title="2. 修改该服务占用的端口号"></a><strong>2. 修改该服务占用的端口号</strong></h4><p>  若要修改需要先向第一种方法那样禁用共享，修改完端口号之后再启用共享即可<br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234457182-2070891660.png" width="40%" ><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17023750.html">https://www.cnblogs.com/junlin623/p/17023750.html</a></p>
+<hr>
+<p>title: ‘原来是vmware-hostd程序占用了443端口-junlin623’<br>date: 2023-01-03 23:56:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h4 id="查看电脑端口的时候发现本机有服务正在监听443端口-2"><a href="#查看电脑端口的时候发现本机有服务正在监听443端口-2" class="headerlink" title="查看电脑端口的时候发现本机有服务正在监听443端口"></a>查看电脑端口的时候发现本机有服务正在监听443端口</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103232751578-1980690096.png" width="40%" > 
+
+
+<p>我没有在本地运行任何web服务，为什么会监听443端口？</p>
+<h4 id="操作：-2"><a href="#操作：-2" class="headerlink" title="操作："></a>操作：</h4><ol>
+<li><p>获取监听程序的PID：</p>
+<p>可以看到监听443端口的程序的PID为8380</p>
+</li>
+</ol>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233411688-1131517268.png" width="40%" >
+
+<ol start="2">
+<li>根据PID查找程序的名称：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist | findstr <span class="string">&quot;8380&quot;</span></span><br></pre></td></tr></table></figure>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233608347-2132988914.png" width="60%" ></li>
+</ol>
+<p>发现了一个vmware-hostd.exe程序</p>
+<h4 id="这个程序是干啥的？-2"><a href="#这个程序是干啥的？-2" class="headerlink" title="这个程序是干啥的？"></a>这个程序是干啥的？</h4><p>  vmware-hostd.exe是Vmware虚拟机程序默认安装的，并且开机自启</p>
+<p>进到Vmware中查看一下：</p>
+<p>点击 编辑-&gt;首选项-&gt;共享虚拟机<br><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103235314952-460017283.png" width="40%" ></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233924639-824403338.png" width="40%" >
+
+<h3 id="总结：-2"><a href="#总结：-2" class="headerlink" title="总结："></a>总结：</h3><p>vmware-hostd.exe程序是Vmware用于虚拟机共享和远程访问所开启的服务<br>这个服务平常也不太会使用到，而且443端口也是之后启动Apache等比较重要的端口，所以：</p>
+<h4 id="1-可以直接停用该服务：-2"><a href="#1-可以直接停用该服务：-2" class="headerlink" title="1. 可以直接停用该服务："></a><strong>1. 可以直接停用该服务：</strong></h4><p>  点击 更改设置，然后点击禁用共享即可<br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234404702-846087550.png" width="40%" ><br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234423900-1993743913.png" width="40%" ></p>
+<h4 id="2-修改该服务占用的端口号-2"><a href="#2-修改该服务占用的端口号-2" class="headerlink" title="2. 修改该服务占用的端口号"></a><strong>2. 修改该服务占用的端口号</strong></h4><p>  若要修改需要先向第一种方法那样禁用共享，修改完端口号之后再启用共享即可<br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234457182-2070891660.png" width="40%" ><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17023750.html">https://www.cnblogs.com/junlin623/p/17023750.html</a></p>
+<hr>
+<p>title: ‘原来是vmware-hostd程序占用了443端口-junlin623’<br>date: 2023-01-03 23:56:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h4 id="查看电脑端口的时候发现本机有服务正在监听443端口-3"><a href="#查看电脑端口的时候发现本机有服务正在监听443端口-3" class="headerlink" title="查看电脑端口的时候发现本机有服务正在监听443端口"></a>查看电脑端口的时候发现本机有服务正在监听443端口</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103232751578-1980690096.png" width="40%" > 
+
+
+<p>我没有在本地运行任何web服务，为什么会监听443端口？</p>
+<h4 id="操作：-3"><a href="#操作：-3" class="headerlink" title="操作："></a>操作：</h4><ol>
+<li><p>获取监听程序的PID：</p>
+<p>可以看到监听443端口的程序的PID为8380</p>
+</li>
+</ol>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233411688-1131517268.png" width="40%" >
+
+<ol start="2">
+<li>根据PID查找程序的名称：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist | findstr <span class="string">&quot;8380&quot;</span></span><br></pre></td></tr></table></figure>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233608347-2132988914.png" width="60%" ></li>
+</ol>
+<p>发现了一个vmware-hostd.exe程序</p>
+<h4 id="这个程序是干啥的？-3"><a href="#这个程序是干啥的？-3" class="headerlink" title="这个程序是干啥的？"></a>这个程序是干啥的？</h4><p>  vmware-hostd.exe是Vmware虚拟机程序默认安装的，并且开机自启</p>
+<p>进到Vmware中查看一下：</p>
+<p>点击 编辑-&gt;首选项-&gt;共享虚拟机<br><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103235314952-460017283.png" width="40%" ></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233924639-824403338.png" width="40%" >
+
+<h3 id="总结：-3"><a href="#总结：-3" class="headerlink" title="总结："></a>总结：</h3><p>vmware-hostd.exe程序是Vmware用于虚拟机共享和远程访问所开启的服务<br>这个服务平常也不太会使用到，而且443端口也是之后启动Apache等比较重要的端口，所以：</p>
+<h4 id="1-可以直接停用该服务：-3"><a href="#1-可以直接停用该服务：-3" class="headerlink" title="1. 可以直接停用该服务："></a><strong>1. 可以直接停用该服务：</strong></h4><p>  点击 更改设置，然后点击禁用共享即可<br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234404702-846087550.png" width="40%" ><br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234423900-1993743913.png" width="40%" ></p>
+<h4 id="2-修改该服务占用的端口号-3"><a href="#2-修改该服务占用的端口号-3" class="headerlink" title="2. 修改该服务占用的端口号"></a><strong>2. 修改该服务占用的端口号</strong></h4><p>  若要修改需要先向第一种方法那样禁用共享，修改完端口号之后再启用共享即可<br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234457182-2070891660.png" width="40%" ><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17023750.html">https://www.cnblogs.com/junlin623/p/17023750.html</a></p>
+<hr>
+<p>title: ‘原来是vmware-hostd程序占用了443端口-junlin623’<br>date: 2023-01-03 23:56:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h4 id="查看电脑端口的时候发现本机有服务正在监听443端口-4"><a href="#查看电脑端口的时候发现本机有服务正在监听443端口-4" class="headerlink" title="查看电脑端口的时候发现本机有服务正在监听443端口"></a>查看电脑端口的时候发现本机有服务正在监听443端口</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103232751578-1980690096.png" width="40%" > 
+
+
+<p>我没有在本地运行任何web服务，为什么会监听443端口？</p>
+<h4 id="操作：-4"><a href="#操作：-4" class="headerlink" title="操作："></a>操作：</h4><ol>
+<li><p>获取监听程序的PID：</p>
+<p>可以看到监听443端口的程序的PID为8380</p>
+</li>
+</ol>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233411688-1131517268.png" width="40%" >
+
+<ol start="2">
+<li>根据PID查找程序的名称：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist | findstr <span class="string">&quot;8380&quot;</span></span><br></pre></td></tr></table></figure>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233608347-2132988914.png" width="60%" ></li>
+</ol>
+<p>发现了一个vmware-hostd.exe程序</p>
+<h4 id="这个程序是干啥的？-4"><a href="#这个程序是干啥的？-4" class="headerlink" title="这个程序是干啥的？"></a>这个程序是干啥的？</h4><p>  vmware-hostd.exe是Vmware虚拟机程序默认安装的，并且开机自启</p>
+<p>进到Vmware中查看一下：</p>
+<p>点击 编辑-&gt;首选项-&gt;共享虚拟机<br><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103235314952-460017283.png" width="40%" ></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233924639-824403338.png" width="40%" >
+
+<h3 id="总结：-4"><a href="#总结：-4" class="headerlink" title="总结："></a>总结：</h3><p>vmware-hostd.exe程序是Vmware用于虚拟机共享和远程访问所开启的服务<br>这个服务平常也不太会使用到，而且443端口也是之后启动Apache等比较重要的端口，所以：</p>
+<h4 id="1-可以直接停用该服务：-4"><a href="#1-可以直接停用该服务：-4" class="headerlink" title="1. 可以直接停用该服务："></a><strong>1. 可以直接停用该服务：</strong></h4><p>  点击 更改设置，然后点击禁用共享即可<br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234404702-846087550.png" width="40%" ><br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234423900-1993743913.png" width="40%" ></p>
+<h4 id="2-修改该服务占用的端口号-4"><a href="#2-修改该服务占用的端口号-4" class="headerlink" title="2. 修改该服务占用的端口号"></a><strong>2. 修改该服务占用的端口号</strong></h4><p>  若要修改需要先向第一种方法那样禁用共享，修改完端口号之后再启用共享即可<br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234457182-2070891660.png" width="40%" ><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17023750.html">https://www.cnblogs.com/junlin623/p/17023750.html</a></p>
+<hr>
+<p>title: ‘原来是vmware-hostd程序占用了443端口-junlin623’<br>date: 2023-01-03 23:56:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h4 id="查看电脑端口的时候发现本机有服务正在监听443端口-5"><a href="#查看电脑端口的时候发现本机有服务正在监听443端口-5" class="headerlink" title="查看电脑端口的时候发现本机有服务正在监听443端口"></a>查看电脑端口的时候发现本机有服务正在监听443端口</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103232751578-1980690096.png" width="40%" > 
+
+
+<p>我没有在本地运行任何web服务，为什么会监听443端口？</p>
+<h4 id="操作：-5"><a href="#操作：-5" class="headerlink" title="操作："></a>操作：</h4><ol>
+<li><p>获取监听程序的PID：</p>
+<p>可以看到监听443端口的程序的PID为8380</p>
+</li>
+</ol>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233411688-1131517268.png" width="40%" >
+
+<ol start="2">
+<li>根据PID查找程序的名称：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist | findstr <span class="string">&quot;8380&quot;</span></span><br></pre></td></tr></table></figure>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233608347-2132988914.png" width="60%" ></li>
+</ol>
+<p>发现了一个vmware-hostd.exe程序</p>
+<h4 id="这个程序是干啥的？-5"><a href="#这个程序是干啥的？-5" class="headerlink" title="这个程序是干啥的？"></a>这个程序是干啥的？</h4><p>  vmware-hostd.exe是Vmware虚拟机程序默认安装的，并且开机自启</p>
+<p>进到Vmware中查看一下：</p>
+<p>点击 编辑-&gt;首选项-&gt;共享虚拟机<br><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103235314952-460017283.png" width="40%" ></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233924639-824403338.png" width="40%" >
+
+<h3 id="总结：-5"><a href="#总结：-5" class="headerlink" title="总结："></a>总结：</h3><p>vmware-hostd.exe程序是Vmware用于虚拟机共享和远程访问所开启的服务<br>这个服务平常也不太会使用到，而且443端口也是之后启动Apache等比较重要的端口，所以：</p>
+<h4 id="1-可以直接停用该服务：-5"><a href="#1-可以直接停用该服务：-5" class="headerlink" title="1. 可以直接停用该服务："></a><strong>1. 可以直接停用该服务：</strong></h4><p>  点击 更改设置，然后点击禁用共享即可<br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234404702-846087550.png" width="40%" ><br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234423900-1993743913.png" width="40%" ></p>
+<h4 id="2-修改该服务占用的端口号-5"><a href="#2-修改该服务占用的端口号-5" class="headerlink" title="2. 修改该服务占用的端口号"></a><strong>2. 修改该服务占用的端口号</strong></h4><p>  若要修改需要先向第一种方法那样禁用共享，修改完端口号之后再启用共享即可<br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234457182-2070891660.png" width="40%" ><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17023750.html">https://www.cnblogs.com/junlin623/p/17023750.html</a></p>
+<hr>
+<p>title: ‘原来是vmware-hostd程序占用了443端口-junlin623’<br>date: 2023-01-03 23:56:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h4 id="查看电脑端口的时候发现本机有服务正在监听443端口-6"><a href="#查看电脑端口的时候发现本机有服务正在监听443端口-6" class="headerlink" title="查看电脑端口的时候发现本机有服务正在监听443端口"></a>查看电脑端口的时候发现本机有服务正在监听443端口</h4><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103232751578-1980690096.png" width="40%" > 
+
+
+<p>我没有在本地运行任何web服务，为什么会监听443端口？</p>
+<h4 id="操作：-6"><a href="#操作：-6" class="headerlink" title="操作："></a>操作：</h4><ol>
+<li><p>获取监听程序的PID：</p>
+<p>可以看到监听443端口的程序的PID为8380</p>
+</li>
+</ol>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233411688-1131517268.png" width="40%" >
+
+<ol start="2">
+<li>根据PID查找程序的名称：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist | findstr <span class="string">&quot;8380&quot;</span></span><br></pre></td></tr></table></figure>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233608347-2132988914.png" width="60%" ></li>
+</ol>
+<p>发现了一个vmware-hostd.exe程序</p>
+<h4 id="这个程序是干啥的？-6"><a href="#这个程序是干啥的？-6" class="headerlink" title="这个程序是干啥的？"></a>这个程序是干啥的？</h4><p>  vmware-hostd.exe是Vmware虚拟机程序默认安装的，并且开机自启</p>
+<p>进到Vmware中查看一下：</p>
+<p>点击 编辑-&gt;首选项-&gt;共享虚拟机<br><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103235314952-460017283.png" width="40%" ></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103233924639-824403338.png" width="40%" >
+
+<h3 id="总结：-6"><a href="#总结：-6" class="headerlink" title="总结："></a>总结：</h3><p>vmware-hostd.exe程序是Vmware用于虚拟机共享和远程访问所开启的服务<br>这个服务平常也不太会使用到，而且443端口也是之后启动Apache等比较重要的端口，所以：</p>
+<h4 id="1-可以直接停用该服务：-6"><a href="#1-可以直接停用该服务：-6" class="headerlink" title="1. 可以直接停用该服务："></a><strong>1. 可以直接停用该服务：</strong></h4><p>  点击 更改设置，然后点击禁用共享即可<br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234404702-846087550.png" width="40%" ><br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234423900-1993743913.png" width="40%" ></p>
+<h4 id="2-修改该服务占用的端口号-6"><a href="#2-修改该服务占用的端口号-6" class="headerlink" title="2. 修改该服务占用的端口号"></a><strong>2. 修改该服务占用的端口号</strong></h4><p>  若要修改需要先向第一种方法那样禁用共享，修改完端口号之后再启用共享即可<br>  <img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230103234457182-2070891660.png" width="40%" ></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/%E5%8E%9F%E6%9D%A5%E6%98%AFvmware-hostd%E7%A8%8B%E5%BA%8F%E5%8D%A0%E7%94%A8%E4%BA%86443%E7%AB%AF%E5%8F%A3-junlin623/" data-id="clhrwf8jh001oeksz6qlohoqk" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/05/18/%E5%8E%9F%E7%94%9F%E6%96%B9%E5%BC%8F%E9%83%A8%E7%BD%B2JavaWeb%E9%A1%B9%E7%9B%AE%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA-junlin623/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/05/18/%E5%AD%A6%E7%94%9F%E5%8F%AF%E4%BB%A5%E7%99%BD%E5%AB%96%E9%98%BF%E9%87%8C%E4%BA%91ECS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8D%8A%E5%B9%B4~~-junlin623/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/05/18/%E7%9B%B4%E8%BF%9E%E8%B7%AF%E7%94%B1%E8%A1%A8%E9%A1%B9%E8%A7%A3%E6%9E%90-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E6%95%B4%E6%95%B0%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%8E%9F%E7%94%9F%E6%96%B9%E5%BC%8F%E9%83%A8%E7%BD%B2JavaWeb%E9%A1%B9%E7%9B%AE%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%8E%9F%E6%9D%A5%E6%98%AFvmware-hostd%E7%A8%8B%E5%BA%8F%E5%8D%A0%E7%94%A8%E4%BA%86443%E7%AB%AF%E5%8F%A3-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%AD%A6%E7%94%9F%E5%8F%AF%E4%BB%A5%E7%99%BD%E5%AB%96%E9%98%BF%E9%87%8C%E4%BA%91ECS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8D%8A%E5%B9%B4~~-junlin623/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

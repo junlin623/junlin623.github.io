@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;junlin623&#x2F;p&#x2F;17019206.html  title: ‘判断一个数是否为平方数-junlin623’date: 2023-01-01 22:52:00      最近学到了一个判断某个数是否为平方数的比较骚的做法：任意数的平方都能用一个首项为1，公差为2的等差数列表示，所以要判断一个数是不是平方数可以用这个数依次减1，减3，减5…，如果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2023/05/18/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E6%98%AF%E5%90%A6%E4%B8%BA%E5%B9%B3%E6%96%B9%E6%95%B0-junlin623/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;junlin623&#x2F;p&#x2F;17019206.html  title: ‘判断一个数是否为平方数-junlin623’date: 2023-01-01 22:52:00      最近学到了一个判断某个数是否为平方数的比较骚的做法：任意数的平方都能用一个首项为1，公差为2的等差数列表示，所以要判断一个数是不是平方数可以用这个数依次减1，减3，减5…，如果">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101225016364-1800386312.png">
+<meta property="article:published_time" content="2023-05-17T16:09:35.180Z">
+<meta property="article:modified_time" content="2023-05-17T11:57:00.747Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101225016364-1800386312.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-判断一个数是否为平方数-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E6%98%AF%E5%90%A6%E4%B8%BA%E5%B9%B3%E6%96%B9%E6%95%B0-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.180Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17019206.html">https://www.cnblogs.com/junlin623/p/17019206.html</a></p>
+<hr>
+<p>title: ‘判断一个数是否为平方数-junlin623’<br>date: 2023-01-01 22:52:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>最近学到了一个判断某个数是否为平方数的比较骚的做法：<br><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230101225016364-1800386312.png"><br>任意数的平方都能用一个首项为1，公差为2的等差数列表示，所以要判断一个数是不是平方数可以用这个数依次减1，减3，减5…，如果最后能够减到0，那么这个数就是平方数，否则就不是</p>
+<h4 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isSquare</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;x &gt; <span class="number">0</span>;i += <span class="number">2</span>) x -= i;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">```https:<span class="comment">//www.cnblogs.com/junlin623/p/17019206.html</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">title: <span class="string">&#x27;判断一个数是否为平方数-junlin623&#x27;</span></span><br><span class="line">date: <span class="number">2023</span><span class="number">-01</span><span class="number">-01</span> <span class="number">22</span>:<span class="number">52</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;meta name = <span class="string">&quot;referrer&quot;</span> content = <span class="string">&quot;no-referrer&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">最近学到了一个判断某个数是否为平方数的比较骚的做法：</span><br><span class="line">![](https:<span class="comment">//img2023.cnblogs.com/blog/2935791/202301/2935791-20230101225016364-1800386312.png)</span></span><br><span class="line">任意数的平方都能用一个首项为<span class="number">1</span>，公差为<span class="number">2</span>的等差数列表示，所以要判断一个数是不是平方数可以用这个数依次减<span class="number">1</span>，减<span class="number">3</span>，减<span class="number">5</span>…，如果最后能够减到<span class="number">0</span>，那么这个数就是平方数，否则就不是</span><br><span class="line">#### 代码实现：</span><br><span class="line">```c++</span><br><span class="line"><span class="type">bool</span> <span class="built_in">isSquare</span>(<span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;x &gt; <span class="number">0</span>;i += <span class="number">2</span>) x -= i;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">```https:<span class="comment">//www.cnblogs.com/junlin623/p/17019206.html</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">title: <span class="string">&#x27;判断一个数是否为平方数-junlin623&#x27;</span></span><br><span class="line">date: <span class="number">2023</span><span class="number">-01</span><span class="number">-01</span> <span class="number">22</span>:<span class="number">52</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;meta name = <span class="string">&quot;referrer&quot;</span> content = <span class="string">&quot;no-referrer&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">最近学到了一个判断某个数是否为平方数的比较骚的做法：</span><br><span class="line">![](https:<span class="comment">//img2023.cnblogs.com/blog/2935791/202301/2935791-20230101225016364-1800386312.png)</span></span><br><span class="line">任意数的平方都能用一个首项为<span class="number">1</span>，公差为<span class="number">2</span>的等差数列表示，所以要判断一个数是不是平方数可以用这个数依次减<span class="number">1</span>，减<span class="number">3</span>，减<span class="number">5</span>…，如果最后能够减到<span class="number">0</span>，那么这个数就是平方数，否则就不是</span><br><span class="line">#### 代码实现：</span><br><span class="line">```c++</span><br><span class="line"><span class="type">bool</span> <span class="built_in">isSquare</span>(<span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;x &gt; <span class="number">0</span>;i += <span class="number">2</span>) x -= i;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">```https:<span class="comment">//www.cnblogs.com/junlin623/p/17019206.html</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">title: <span class="string">&#x27;判断一个数是否为平方数-junlin623&#x27;</span></span><br><span class="line">date: <span class="number">2023</span><span class="number">-01</span><span class="number">-01</span> <span class="number">22</span>:<span class="number">52</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;meta name = <span class="string">&quot;referrer&quot;</span> content = <span class="string">&quot;no-referrer&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">最近学到了一个判断某个数是否为平方数的比较骚的做法：</span><br><span class="line">![](https:<span class="comment">//img2023.cnblogs.com/blog/2935791/202301/2935791-20230101225016364-1800386312.png)</span></span><br><span class="line">任意数的平方都能用一个首项为<span class="number">1</span>，公差为<span class="number">2</span>的等差数列表示，所以要判断一个数是不是平方数可以用这个数依次减<span class="number">1</span>，减<span class="number">3</span>，减<span class="number">5</span>…，如果最后能够减到<span class="number">0</span>，那么这个数就是平方数，否则就不是</span><br><span class="line">#### 代码实现：</span><br><span class="line">```c++</span><br><span class="line"><span class="type">bool</span> <span class="built_in">isSquare</span>(<span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;x &gt; <span class="number">0</span>;i += <span class="number">2</span>) x -= i;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">```https:<span class="comment">//www.cnblogs.com/junlin623/p/17019206.html</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">title: <span class="string">&#x27;判断一个数是否为平方数-junlin623&#x27;</span></span><br><span class="line">date: <span class="number">2023</span><span class="number">-01</span><span class="number">-01</span> <span class="number">22</span>:<span class="number">52</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;meta name = <span class="string">&quot;referrer&quot;</span> content = <span class="string">&quot;no-referrer&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">最近学到了一个判断某个数是否为平方数的比较骚的做法：</span><br><span class="line">![](https:<span class="comment">//img2023.cnblogs.com/blog/2935791/202301/2935791-20230101225016364-1800386312.png)</span></span><br><span class="line">任意数的平方都能用一个首项为<span class="number">1</span>，公差为<span class="number">2</span>的等差数列表示，所以要判断一个数是不是平方数可以用这个数依次减<span class="number">1</span>，减<span class="number">3</span>，减<span class="number">5</span>…，如果最后能够减到<span class="number">0</span>，那么这个数就是平方数，否则就不是</span><br><span class="line">#### 代码实现：</span><br><span class="line">```c++</span><br><span class="line"><span class="type">bool</span> <span class="built_in">isSquare</span>(<span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;x &gt; <span class="number">0</span>;i += <span class="number">2</span>) x -= i;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">```https:<span class="comment">//www.cnblogs.com/junlin623/p/17019206.html</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">title: <span class="string">&#x27;判断一个数是否为平方数-junlin623&#x27;</span></span><br><span class="line">date: <span class="number">2023</span><span class="number">-01</span><span class="number">-01</span> <span class="number">22</span>:<span class="number">52</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;meta name = <span class="string">&quot;referrer&quot;</span> content = <span class="string">&quot;no-referrer&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">最近学到了一个判断某个数是否为平方数的比较骚的做法：</span><br><span class="line">![](https:<span class="comment">//img2023.cnblogs.com/blog/2935791/202301/2935791-20230101225016364-1800386312.png)</span></span><br><span class="line">任意数的平方都能用一个首项为<span class="number">1</span>，公差为<span class="number">2</span>的等差数列表示，所以要判断一个数是不是平方数可以用这个数依次减<span class="number">1</span>，减<span class="number">3</span>，减<span class="number">5</span>…，如果最后能够减到<span class="number">0</span>，那么这个数就是平方数，否则就不是</span><br><span class="line">#### 代码实现：</span><br><span class="line">```c++</span><br><span class="line"><span class="type">bool</span> <span class="built_in">isSquare</span>(<span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;x &gt; <span class="number">0</span>;i += <span class="number">2</span>) x -= i;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">```https:<span class="comment">//www.cnblogs.com/junlin623/p/17019206.html</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">title: <span class="string">&#x27;判断一个数是否为平方数-junlin623&#x27;</span></span><br><span class="line">date: <span class="number">2023</span><span class="number">-01</span><span class="number">-01</span> <span class="number">22</span>:<span class="number">52</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;meta name = <span class="string">&quot;referrer&quot;</span> content = <span class="string">&quot;no-referrer&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">最近学到了一个判断某个数是否为平方数的比较骚的做法：</span><br><span class="line">![](https:<span class="comment">//img2023.cnblogs.com/blog/2935791/202301/2935791-20230101225016364-1800386312.png)</span></span><br><span class="line">任意数的平方都能用一个首项为<span class="number">1</span>，公差为<span class="number">2</span>的等差数列表示，所以要判断一个数是不是平方数可以用这个数依次减<span class="number">1</span>，减<span class="number">3</span>，减<span class="number">5</span>…，如果最后能够减到<span class="number">0</span>，那么这个数就是平方数，否则就不是</span><br><span class="line">#### 代码实现：</span><br><span class="line">```c++</span><br><span class="line"><span class="type">bool</span> <span class="built_in">isSquare</span>(<span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;x &gt; <span class="number">0</span>;i += <span class="number">2</span>) x -= i;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E6%98%AF%E5%90%A6%E4%B8%BA%E5%B9%B3%E6%96%B9%E6%95%B0-junlin623/" data-id="clhrwf8jg001meksz51a6hzz1" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/05/18/%E5%90%AF%E5%8A%A8Tomcat%E6%8A%A5%E9%94%99%EF%BC%9AAddress%20localhost1099%20is%20already%20in%20use-junlin623/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/05/18/%E4%BB%A4%E8%87%AA%E5%B7%B1%E7%94%B5%E8%84%91%E7%9A%84%E6%89%80%E6%9C%89%E7%A8%8B%E5%BA%8F%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%99%BE%E5%BA%A6-junlin623/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/05/18/%E7%9B%B4%E8%BF%9E%E8%B7%AF%E7%94%B1%E8%A1%A8%E9%A1%B9%E8%A7%A3%E6%9E%90-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E6%95%B4%E6%95%B0%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%8E%9F%E7%94%9F%E6%96%B9%E5%BC%8F%E9%83%A8%E7%BD%B2JavaWeb%E9%A1%B9%E7%9B%AE%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%8E%9F%E6%9D%A5%E6%98%AFvmware-hostd%E7%A8%8B%E5%BA%8F%E5%8D%A0%E7%94%A8%E4%BA%86443%E7%AB%AF%E5%8F%A3-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%AD%A6%E7%94%9F%E5%8F%AF%E4%BB%A5%E7%99%BD%E5%AB%96%E9%98%BF%E9%87%8C%E4%BA%91ECS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8D%8A%E5%B9%B4~~-junlin623/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

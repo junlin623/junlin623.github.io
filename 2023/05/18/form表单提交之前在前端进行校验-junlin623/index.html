@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;junlin623&#x2F;p&#x2F;17099464.html  title: ‘form表单提交之前在前端进行校验-junlin623’date: 2023-02-07 18:33:00      提交表单内容的时候要尽可能避免在后端进行判断，要在提交之前在前端用js校验 代码片段：   效果：输入框失去焦点时&#x3D;&#x3D;提醒&#x3D;&amp;#x3D">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2023/05/18/form%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4%E4%B9%8B%E5%89%8D%E5%9C%A8%E5%89%8D%E7%AB%AF%E8%BF%9B%E8%A1%8C%E6%A0%A1%E9%AA%8C-junlin623/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;junlin623&#x2F;p&#x2F;17099464.html  title: ‘form表单提交之前在前端进行校验-junlin623’date: 2023-02-07 18:33:00      提交表单内容的时候要尽可能避免在后端进行判断，要在提交之前在前端用js校验 代码片段：   效果：输入框失去焦点时&#x3D;&#x3D;提醒&#x3D;&amp;#x3D">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230207182905191-1317033576.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230207183054176-1178774113.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230207183133708-1837886007.png">
+<meta property="article:published_time" content="2023-05-17T16:09:35.083Z">
+<meta property="article:modified_time" content="2023-05-17T11:57:00.797Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230207182905191-1317033576.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-form表单提交之前在前端进行校验-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/form%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4%E4%B9%8B%E5%89%8D%E5%9C%A8%E5%89%8D%E7%AB%AF%E8%BF%9B%E8%A1%8C%E6%A0%A1%E9%AA%8C-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.083Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17099464.html">https://www.cnblogs.com/junlin623/p/17099464.html</a></p>
+<hr>
+<p>title: ‘form表单提交之前在前端进行校验-junlin623’<br>date: 2023-02-07 18:33:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>提交表单内容的时候要尽可能避免在后端进行判断，要在提交之前在前端用js校验</p>
+<h2 id="代码片段："><a href="#代码片段：" class="headerlink" title="代码片段："></a>代码片段：</h2><img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230207182905191-1317033576.png" width="60%" >
+
+
+<h2 id="效果："><a href="#效果：" class="headerlink" title="效果："></a>效果：</h2><h3 id="输入框失去焦点时-x3D-x3D-提醒-x3D-x3D-用户："><a href="#输入框失去焦点时-x3D-x3D-提醒-x3D-x3D-用户：" class="headerlink" title="输入框失去焦点时&#x3D;&#x3D;提醒&#x3D;&#x3D;用户："></a>输入框失去焦点时&#x3D;&#x3D;提醒&#x3D;&#x3D;用户：</h3><img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230207183054176-1178774113.png" width="60%" >
+
+
+<h3 id="用户提交之前再进行校验"><a href="#用户提交之前再进行校验" class="headerlink" title="用户提交之前再进行校验"></a>用户提交之前再进行校验</h3><img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230207183133708-1837886007.png" width="60%" >
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/form%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4%E4%B9%8B%E5%89%8D%E5%9C%A8%E5%89%8D%E7%AB%AF%E8%BF%9B%E8%A1%8C%E6%A0%A1%E9%AA%8C-junlin623/" data-id="clhrwf8j50016eksz0eyk98xj" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/05/18/ftp%E6%9C%8D%E5%8A%A1%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%EF%BC%9Avsftpd.service%20Main%20process%20exited,%20code=exited,%20status=2INVALIDARGUMENT-junlin623/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/05/18/Centos7%20%E6%9C%80%E5%B0%8F%E5%8C%96%E5%AE%89%E8%A3%85%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE-junlin623/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/05/18/%E7%9B%B4%E8%BF%9E%E8%B7%AF%E7%94%B1%E8%A1%A8%E9%A1%B9%E8%A7%A3%E6%9E%90-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E6%95%B4%E6%95%B0%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%8E%9F%E7%94%9F%E6%96%B9%E5%BC%8F%E9%83%A8%E7%BD%B2JavaWeb%E9%A1%B9%E7%9B%AE%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%8E%9F%E6%9D%A5%E6%98%AFvmware-hostd%E7%A8%8B%E5%BA%8F%E5%8D%A0%E7%94%A8%E4%BA%86443%E7%AB%AF%E5%8F%A3-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%AD%A6%E7%94%9F%E5%8F%AF%E4%BB%A5%E7%99%BD%E5%AB%96%E9%98%BF%E9%87%8C%E4%BA%91ECS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8D%8A%E5%B9%B4~~-junlin623/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

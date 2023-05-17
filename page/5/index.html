@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-phpstudy的安装与靶场搭建-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/phpstudy%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.134Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17202920.html">https://www.cnblogs.com/junlin623/p/17202920.html</a></p>
+<hr>
+<p>title: ‘phpstudy的安装与靶场搭建-junlin623’<br>date: 2023-03-10 12:09:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>phpStudy 中集成了apache、nginx、mysql等常用软件，需要的时候一键启动，省去了一个个配环境的麻烦</p>
+<h3 id="一、下载安装"><a href="#一、下载安装" class="headerlink" title="一、下载安装"></a>一、下载安装</h3><p>下载链接：<a target="_blank" rel="noopener" href="https://www.xp.cn/download.html">https://www.xp.cn/download.html</a></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230310112701839-1913395914.png" width="50%">
+
+<p>下载完成后解压双击exe无脑下一步即可（可以自定义路径）</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230310112748838-1699628917.png" width="50%">
+
+
+<p><strong>目录结构</strong></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230310113537422-1503255187.png" width="50%">
+
+
+<p>WWW中就是默认的根目录</p>
+<hr>
+<h3 id="二、开启web服务并访问"><a href="#二、开启web服务并访问" class="headerlink" title="二、开启web服务并访问"></a>二、开启web服务并访问</h3><p>phpstudy中windows部署web服务一般有两种选择：</p>
+<ul>
+<li>WAMP  Windows+Apache</li>
+<li>WNMP  Nginx+MySQL+PHP</li>
+</ul>
+<p>安装完成后，启动Apache和Mysql</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230310112922929-489468138.png" width="50%">
+
+
+<p>浏览器访问：127.0.0.1或localhost</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230310113357479-657192820.png" width="50%">
+
+
+<p>访问的就是WWW目录中的index.html文件</p>
+<hr>
+<h3 id="三、搭建靶场"><a href="#三、搭建靶场" class="headerlink" title="三、搭建靶场"></a>三、搭建靶场</h3><p>pikachu靶场：链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1pN6Bnh5KAEeL8Sh-3ks07g?pwd=1111">https://pan.baidu.com/s/1pN6Bnh5KAEeL8Sh-3ks07g?pwd=1111</a> </p>
+<p>dvwa靶场：链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1Eoz86hBMnyoAwuBec6sT5A?pwd=1111">https://pan.baidu.com/s/1Eoz86hBMnyoAwuBec6sT5A?pwd=1111</a> </p>
+<p>将下载的pikachu和dvwa文件解压放到WWW目录中</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230310113715814-1097644047.png" width="50%">
+
+<h4 id="pikachu："><a href="#pikachu：" class="headerlink" title="pikachu："></a>pikachu：</h4><p>访问：<a target="_blank" rel="noopener" href="http://127.0.0.1/pikachu-master/">http://127.0.0.1/pikachu-master/</a></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230310114206705-881342381.png" width="50%">
+
+<p>初始化：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230310120308340-468065919.png" width="50%">
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230310120339955-301764786.png" width="50%">
+
+
+<hr>
+<h4 id="dvwa"><a href="#dvwa" class="headerlink" title="dvwa"></a>dvwa</h4><p>访问：<a target="_blank" rel="noopener" href="http://127.0.0.1/dvwa/">http://127.0.0.1/dvwa/</a></p>
+<p>但是访问的时候报错，是dvwa使用的php版本与网站的php版本不兼容的问题：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230310115410134-590211425.png" width="50%">
+
+
+<p>到软件管理中下载 php5.xxx版本：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230310115514377-1587062200.png" width="50%">
+
+
+<p>到网站管理中选择php版本：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230310115615342-157997932.png" width="50%">
+
+
+
+<p>继续访问，按照它的要求设置数据库</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230310115716030-1346133631.png" width="50%">
+
+
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230310115846506-1883987292.png" width="50%">
+
+
+
+<p>再去访问主页：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230310115905129-1390366043.png" width="50%">
+
+
+<p>输入用户名和密码：(用户名：admin 密码：password）</p>
+<p>登录成功：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202303/2935791-20230310115941967-496343108.png" width="50%">
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/phpstudy%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA-junlin623/" data-id="clhrwf8jc001ceksz0bym9bgd" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Nmap列举远程机器上开放的端口-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/Nmap%E5%88%97%E4%B8%BE%E8%BF%9C%E7%A8%8B%E6%9C%BA%E5%99%A8%E4%B8%8A%E5%BC%80%E6%94%BE%E7%9A%84%E7%AB%AF%E5%8F%A3-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.133Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17156485.html">https://www.cnblogs.com/junlin623/p/17156485.html</a></p>
+<hr>
+<p>title: ‘Nmap列举远程机器上开放的端口-junlin623’<br>date: 2023-02-26 13:04:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h3 id="一、Nmap扫描原理示意图："><a href="#一、Nmap扫描原理示意图：" class="headerlink" title="一、Nmap扫描原理示意图："></a>一、Nmap扫描原理示意图：</h3><img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230226123120032-844774524.png" width="50%" >
+
+
+<p>如果发现主机存活，nmap就会继续发送其他类型的数据包，通过分析远程机器上返回的数据包来得到相关信息；如果不存活就停止扫描</p>
+<hr>
+<h3 id="二、使用Zenmap扫描"><a href="#二、使用Zenmap扫描" class="headerlink" title="二、使用Zenmap扫描"></a>二、使用Zenmap扫描</h3><img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230226123423591-348580449.png" width="50%" >
+
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230226123642520-1901244575.png" width="50%" >
+
+<hr>
+<h3 id="三、命令行扫描"><a href="#三、命令行扫描" class="headerlink" title="三、命令行扫描"></a>三、命令行扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap scanme.nmap.org</span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230226123854555-873763897.png" width="50%" >
+
+<p>扫描过程中可以通过按回车来查看扫描进度</p>
+<hr>
+<h3 id="四、其他操作"><a href="#四、其他操作" class="headerlink" title="四、其他操作"></a>四、其他操作</h3><ul>
+<li>nmap进行探测之前要把域名通过DNS服务器  解析为IP地址，我们也可以使用指定的DNS服务器进行解析，使用的是 <code>--dns-servers</code> 参数</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap --dns-servers 8.8.8.8 scanme.nmap.org</span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230226124353442-1519479592.png" width="50%" >
+
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230226124413118-1155287722.png" width="50%" >
+
+
+
+
+
+<hr>
+<ul>
+<li>对于已经知道主机存活或者防火墙开启的机器，可以使用 <code>-Pn</code> 参数来停止探测之前的ICMP请求，以达到不触发防火墙的安全机制的目的，因为有的防火墙屏蔽ping扫描</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -Pn scanme.nmap.org</span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230226125545657-574240479.png" width="50%" >
+
+
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230226125614296-1360426612.png" width="50%" >
+
+
+<hr>
+<ul>
+<li>对于默认的端口范围，并不能满足日常工作的需要，我们可以使用 -p m-n 来指定探测端口号在 m-n 之间的端口</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -Pn -p 1-1000 scanme.nmap.org</span><br></pre></td></tr></table></figure>
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230226125842596-1163799972.png" width="50%" >
+
+
+<hr>
+<h3 id="五、端口状态"><a href="#五、端口状态" class="headerlink" title="五、端口状态"></a>五、端口状态</h3><img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230226130130132-1655571660.png" width="30%" >
+
+
+<ul>
+<li><p>Open 表示端口处于开放状态</p>
+</li>
+<li><p>Closed 表示端口处于关闭状态</p>
+<blockquote>
+<p>关闭的端口也是可访问的，只是没有上层的服务在监听这个端口，而且，只是在我们扫描的这个时刻为关闭，当我们在另一个时间段进行扫描的时候，这些关闭的端口可能会处于open的状态</p>
+</blockquote>
+</li>
+<li><p>Filterd 表示端口处于过滤无法收到返回的probe状态</p>
+<blockquote>
+<p>由于报文无法到达指定的端口，nmap不能够决定端口的开放状态，这主要是由于网络或者主机安装了一些防火墙所导致的。当nmap收到icmp报文主机不可达报文（例如：type为3，code为13（communication administratively prohibit）报文）或者目标主机无应答，常常会将目标主机的端口状态设置为Filtered。</p>
+</blockquote>
+</li>
+<li><p>Unfilterd 表示端口收到返回的probe，但是无法确认</p>
+</li>
+<li><p>Opend&#x2F;UnFilterd 表示端口处于开放或者是过滤状态</p>
+</li>
+<li><p>Closed&#x2F;UnFilterd 表示端口处于关闭或者未过滤状态</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/Nmap%E5%88%97%E4%B8%BE%E8%BF%9C%E7%A8%8B%E6%9C%BA%E5%99%A8%E4%B8%8A%E5%BC%80%E6%94%BE%E7%9A%84%E7%AB%AF%E5%8F%A3-junlin623/" data-id="clhrwf8j1000wekszg7je60y2" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Nmap介绍与安装-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/Nmap%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.131Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17155699.html">https://www.cnblogs.com/junlin623/p/17155699.html</a></p>
+<hr>
+<p>title: ‘Nmap介绍与安装-junlin623’<br>date: 2023-02-25 23:16:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h3 id="一、概述："><a href="#一、概述：" class="headerlink" title="一、概述："></a>一、概述：</h3><p>Nmap是一款开源、免费的网络探测、安全审计的工具</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230225224730554-1729258218.png" width="50%" >
+
+
+<p>电脑端安装了nmap工具之后，就可以利用nmap向其他主机发送数据包，其他主机收到数据包后会返回信息，nmap会根据这些信息分析出一些有用的信息，如主机开放端口服务、是否存活，操作系统版本等等</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230227111154721-234747766.png" width="50%" >
+
+
+<p>Nmap包含四项基本功能：</p>
+<ul>
+<li><p>主机发现（Host Discovery）</p>
+</li>
+<li><p>端口扫描（Port Scanning）</p>
+</li>
+<li><p>版本侦测（Version Detection）</p>
+</li>
+<li><p>操作系统侦测（Operating System Detection）</p>
+</li>
+</ul>
+<p>这四项功能之间，又存在大致的依赖关系（通常情况下的顺序关系，但特殊应用另外考虑），首先需要进行主机发现，随后确定端口状况，然后确定端口上运行具体应用程序与版本信息，然后可以进行操作系统的侦测。而在四项基本功能的基础上，Nmap提供防火墙与IDS（IntrusionDetection System,入侵检测系统）的规避技巧，可以综合应用到四个基本功能的各个阶段；另外Nmap提供强大的NSE（Nmap Scripting Language）脚本引擎功能，脚本可以对基本功能进行补充和扩展。</p>
+<h3 id="二、Nmap获取"><a href="#二、Nmap获取" class="headerlink" title="二、Nmap获取"></a>二、Nmap获取</h3><p>官网链接： <a target="_blank" rel="noopener" href="https://nmap.org/">https://nmap.org</a></p>
+<h4 id="1-Windows安装"><a href="#1-Windows安装" class="headerlink" title="1.Windows安装"></a>1.Windows安装</h4><img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230225225117368-1943504817.png" width="50%" >
+
+<p>此处选择Windows平台：</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230225225138355-608186900.png" width="50%" >
+
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230225225209586-873024794.png" width="50%" >
+
+
+<p>下载完成后，无脑下一步</p>
+<p>中间会弹出让你安装Npcap，也是无脑下一步</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230225231446772-2019989877.png" width="50%" >
+
+
+
+<h4 id="2-Linux安装"><a href="#2-Linux安装" class="headerlink" title="2.Linux安装"></a>2.Linux安装</h4><p>Kali系统中自带nmap，无需手动安装，对于其他Linux版本，可以直接利用rpm包管理进行安装，</p>
+<p>直接复制官网给出的命令安装即可~~</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230225230818366-133080981.png" width="50%" >
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rpm -vhU https://nmap.org/dist/nmap-7.93-1.x86_64.rpm</span><br><span class="line">rpm -vhU https://nmap.org/dist/zenmap-7.93-1.noarch.rpm</span><br><span class="line">rpm -vhU https://nmap.org/dist/ncat-7.93-1.x86_64.rpm</span><br><span class="line">rpm -vhU https://nmap.org/dist/nping-0.7.93-1.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="3-源代码编译安装"><a href="#3-源代码编译安装" class="headerlink" title="3.源代码编译安装"></a>3.源代码编译安装</h4><p>使用源代码可以编译成你指定平台的文件格式，下载源代码，执行对应命令即可完成安装</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202302/2935791-20230225231348928-1676742310.png" width="50%" >
+
+
+<p>我相信一般人也不会这么安装hh</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/Nmap%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85-junlin623/" data-id="clhrwf8j1000veksz09bgc3wm" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-nmap的使用-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/nmap%E7%9A%84%E4%BD%BF%E7%94%A8-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.129Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17117705.html">https://www.cnblogs.com/junlin623/p/17117705.html</a></p>
+<hr>
+<p>title: ‘nmap的使用-junlin623’<br>date: 2023-02-13 20:20:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h3 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1 介绍"></a>1 介绍</h3><p>Nmap，也就是Network Mapper，中文为“网络映射器”。<br>Nmap是一款开源的网络探测和安全审核的工具，它的设计目标是快速地扫描大型网络。<br>它是网络管理员必用的软件之一，以及用以评估网络系统保安。</p>
+<h4 id="1-1-基本功能"><a href="#1-1-基本功能" class="headerlink" title="1.1 基本功能"></a>1.1 基本功能</h4><p>（1）探测一组主机是否在线<br>（2）扫描主机端口，嗅探所提供的网络服务<br>（3）推断主机所用的操作系统</p>
+<h4 id="1-2-工作原理"><a href="#1-2-工作原理" class="headerlink" title="1.2 工作原理"></a>1.2 工作原理</h4><p>Nmap对目标主机进行一系列的测试，利用测试结果建立相应目标主机的Nmap指纹，然后Nmap会对指纹进行匹配，最终输出相应的结果。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1561366/201908/1561366-20190801235554930-1405801684.png"></p>
+<p><img src="https://img2018.cnblogs.com/blog/1561366/201908/1561366-20190801235558575-1307647333.png"></p>
+<h4 id="1-3-语法格式"><a href="#1-3-语法格式" class="headerlink" title="1.3 语法格式"></a>1.3 语法格式</h4><p>Nmap的固定语法格式如下：</p>
+<p><code>Nmap【空格】【选项|多选项|协议】【空格】【目标】</code></p>
+<h3 id="2-常用参数"><a href="#2-常用参数" class="headerlink" title="2 常用参数"></a>2 常用参数</h3><p><img src="https://img2018.cnblogs.com/blog/1561366/201908/1561366-20190801235606162-290066456.png"></p>
+<h4 id="2-1-全面扫描"><a href="#2-1-全面扫描" class="headerlink" title="2.1 全面扫描"></a>2.1 全面扫描</h4><p>全面扫描指定IP或域名的所有端口及其目标系统信息等。所需时间较长</p>
+<p>  <code>nmap -A 192.168.0.12</code></p>
+<p>扫描结果：目标主机MAC地址、设备类型、操作系统、中央处理单元、主机详细资料、网络距离等</p>
+<h4 id="2-2-简单扫描"><a href="#2-2-简单扫描" class="headerlink" title="2.2 简单扫描"></a>2.2 简单扫描</h4><p>该扫描方式可以针对IP或者域名进行扫描，扫描方式迅速，可以很方便地发现目 标端口的开放情况及主机在线情况。</p>
+<p><code>nmap 192.168.0.12</code></p>
+<p>简单扫描结果：（只能扫描工具规定的一些常见端口）</p>
+<p><img src="https://img2018.cnblogs.com/blog/1561366/201908/1561366-20190801235614366-1926982069.png"></p>
+<h4 id="2-3-其他举例"><a href="#2-3-其他举例" class="headerlink" title="2.3 其他举例"></a>2.3 其他举例</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">指定扫描一个网段：nmap  192.168.0.0/24  或者  nmap  192.168.0.1-200（扫描1-200的主机）</span><br><span class="line"></span><br><span class="line">扫描部分网段（逗号隔开）：nmap 192.168.0.1,2,3,4 或 nmap 192.168.0,1,2,3,4.1 </span><br><span class="line"></span><br><span class="line">扫描指定IP所开放的端口：nmap -p 1-65535 -v 127.0.0.1 </span><br><span class="line"></span><br><span class="line">扫描C段存活主机：nmap 192.168.1.0/24 </span><br><span class="line"></span><br><span class="line">指定端口扫描：nmap -p 80,1433,22,1521 192.168.1.1 </span><br><span class="line"></span><br><span class="line">探测主机操作系统：nmap -O 192.168.1.1 </span><br><span class="line"></span><br><span class="line">全面的系统探测：nmap -v -A 192.168.1.1（Nmap默认扫描主机1000个高危端口）</span><br><span class="line"></span><br><span class="line">穿透防火墙进行扫描：nmap -Pn -A 192.168.1.1（禁止用ping的）</span><br><span class="line"></span><br><span class="line">使用脚本扫描Web敏感目录：nmap -p 80 --script=http-enum.nse 192.168.1.1</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-主机发现"><a href="#3-主机发现" class="headerlink" title="3 主机发现"></a>3 主机发现</h3><p><img src="https://img2018.cnblogs.com/blog/1561366/201908/1561366-20190801235620883-298516524.png"></p>
+<h4 id="3-1-Ping扫描"><a href="#3-1-Ping扫描" class="headerlink" title="3.1 Ping扫描"></a>3.1 Ping扫描</h4><p>Ping扫描只进行ping，然后显示出在线的主机。使用该选项扫描可以轻易获取目标信息而不会被轻易发现。<br>在默认情况下，Nmap会发送一个ICMP回声请求和一个TCP报文到目标端口。Ping扫描的优点是不会返回太多的信息影响对结果的分析，并且扫描方式高效。</p>
+<p><code>nmap -sP 192.168.0.0/24</code></p>
+<h4 id="3-2-无Ping扫描"><a href="#3-2-无Ping扫描" class="headerlink" title="3.2 无Ping扫描"></a>3.2 无Ping扫描</h4><p>无ping扫描通常用于防火墙禁止ping的情况下，它能确定正在运行的机器。<br>默认情况下，nmap只对正在运行的主机进行高强度的探测，如端口扫描，版本探测或者操作系统探测。<br>用-P0禁止主机发现会使nmap对每一个特定的目标IP地址进行所要求的扫描，这可以穿透防火墙，也可以避免被防火墙发现。</p>
+<p><code>nmap -P0 192.168.0.12</code></p>
+<h4 id="3-3-TCP-SYN-Ping-扫描"><a href="#3-3-TCP-SYN-Ping-扫描" class="headerlink" title="3.3 TCP SYN Ping 扫描"></a>3.3 TCP SYN Ping 扫描</h4><p>通常情况下，nmap默认是使用TCP ACK 和 ICMP Echo 请求对目标进行是否存活的响应，当目标主机的防火墙阻止这些请求时，可以使用TCP SYN Ping扫描来判断主机是否存活。<br>-PS 选项发送一个设置了SYN标志位的空TCP报文。默认端口为80。<br>但不同的端口也可以作为选项指定，甚至可以指定一个以逗号分隔的端口列表（如-PS22,23,25,80,115,3306,3389），在这种情况下，每个端口会被并发地扫描</p>
+<p><code>nmap -PS -v 192.168.0.12</code></p>
+<p><img src="https://img2018.cnblogs.com/blog/1561366/201908/1561366-20190801235631875-1338910120.png"></p>
+<p><img src="https://img2018.cnblogs.com/blog/1561366/201908/1561366-20190801235640095-498162937.png"></p>
+<p>上面结果可得知Nmap是通过SYN&#x2F;ACK和RST响应来对目标主机是否存活进行判断，但在特定情况下防火墙会丢弃RST包。<br>这时结果会不准确，我们需要指定一个端口或端口范围来避免这种情况。</p>
+<p><code>nmap -PS80,100-200 -v 192.168.0.12</code></p>
+<p><img src="https://img2018.cnblogs.com/blog/1561366/201908/1561366-20190801235647530-1084255762.png"></p>
+<h4 id="3-4-TCP-ACK-Ping-扫描"><a href="#3-4-TCP-ACK-Ping-扫描" class="headerlink" title="3.4 TCP ACK Ping 扫描"></a>3.4 TCP ACK Ping 扫描</h4><p>使用-PA选项可以进行TCP ACK Ping扫描，它与TCP SYN Ping扫描非常类似，区别在于设置的TCP标志位是ACK而不是SYN，使用这种方式扫描可以探测阻止SYN包或ICMP Echo请求的主机。</p>
+<p><code>nmap -PA -v 192.168.0.12</code></p>
+<p>同时使用-SP与-PA选项命令如下：</p>
+<p><code>nmap -PA -PS 192.168.0.12</code></p>
+<h4 id="3-5-UDP-Ping扫描"><a href="#3-5-UDP-Ping扫描" class="headerlink" title="3.5 UDP Ping扫描"></a>3.5 UDP Ping扫描</h4><p>使用UDP Ping扫描时Nmap会发送一个空UDP包到目标之间，如果目标主机相应则返回一个ICMP端口不可达错误，如果目标主机不是存活状态则会返回各自ICMP错误信息。</p>
+<p><code>nmap -PU -v 192.168.0.12</code></p>
+<h4 id="3-6-ICMP-Ping-Types-扫描"><a href="#3-6-ICMP-Ping-Types-扫描" class="headerlink" title="3.6 ICMP Ping Types 扫描"></a>3.6 ICMP Ping Types 扫描</h4><p>ICMP是控制报文协议。nmap发送一个ICMP type8（回声请求）报文到目标ip地址，从运行的主机得到一个type0（回声相应）报文。<br>-PE选项简单的来说是通过向目标发送ICMP Echo数据包来探测目标主机是否在线，使用-PE选项打开该回声请求功能。<br>-PP选项是ICMP时间戳ping扫描，-PM选项可以进行icmp地址掩码ping扫描</p>
+<p><code>nmap  -PE  -v  192.168.0.12</code></p>
+<p><code>nmap -PP  -v  192.168.0.12</code></p>
+<p><code>nmap -PM -v  192.168.0.12</code></p>
+<h4 id="3-7-ARP-Ping扫描"><a href="#3-7-ARP-Ping扫描" class="headerlink" title="3.7 ARP Ping扫描"></a>3.7 ARP Ping扫描</h4><p>-PR 通常在扫描局域网时使用，在内网的情况下，使用ARP ping扫描方式是最有效的，在本地局域网中防火墙不会禁止ARP请求，这就使得它比其他ping扫描都更加高效。</p>
+<p><code>nmap -PR 192.168.0.12</code></p>
+<h4 id="3-8-扫描列表"><a href="#3-8-扫描列表" class="headerlink" title="3.8 扫描列表"></a>3.8 扫描列表</h4><p>列表扫描时主机发现的退化形式，它仅仅列出指定网络上的每台主机，不发送任何报文到目标主机。<br>默认情况下，Nmap仍然对主机进行反向域名解析以获取它们的名字。</p>
+<p><code>nmap -sL 192.168.0.0/24</code></p>
+<h4 id="3-9-禁止反向域名解析"><a href="#3-9-禁止反向域名解析" class="headerlink" title="3.9 禁止反向域名解析"></a>3.9 禁止反向域名解析</h4><p>如果单纯扫描一段IP，使用该选项可以大幅度减少目标主机的相应时间，从而更快的得到结果。</p>
+<p><code>namp -n -sL 192.168.0.0/24</code></p>
+<h4 id="3-10反向域名解析"><a href="#3-10反向域名解析" class="headerlink" title="3.10反向域名解析"></a>3.10反向域名解析</h4><p><code>nmap -R -sL *. 192.168.0.0/24</code></p>
+<h4 id="3-11-扫描TPv6地址"><a href="#3-11-扫描TPv6地址" class="headerlink" title="3.11 扫描TPv6地址"></a>3.11 扫描TPv6地址</h4><p><code>nmap -6 fe80::20c:29ff:fee0:2e76</code></p>
+<h4 id="3-12-路由跟踪"><a href="#3-12-路由跟踪" class="headerlink" title="3.12 路由跟踪"></a>3.12 路由跟踪</h4><p>通过此选项可以轻松地查找出本地计算机到目标之间所经过的网络节点，并可以看到通过各个节点的时间。</p>
+<p><code>nmap --traceroute -v www.baidu.com</code></p>
+<h4 id="3-13-SCTP-INIT-Ping扫描"><a href="#3-13-SCTP-INIT-Ping扫描" class="headerlink" title="3.13 SCTP INIT Ping扫描"></a>3.13 SCTP INIT Ping扫描</h4><p>SCTP（流控制传输协议）是IETF在2000年定义的一个传输层协议。<br>SCTP可以看作是TCP协议的改进，它改进了TCP的一些不足，SCTP INIT Ping扫描通过向目标发送INIT包，根据目标主机的相应判断目标主机是否存活。</p>
+<p><code>nmap -PY -v 192.168.0.12</code></p>
+<h3 id="4-端口扫描"><a href="#4-端口扫描" class="headerlink" title="4 端口扫描"></a>4 端口扫描</h3><p><img src="https://img2018.cnblogs.com/blog/1561366/201908/1561366-20190801235701670-1233930961.png"></p>
+<h4 id="4-1-从nmap识别端口状态"><a href="#4-1-从nmap识别端口状态" class="headerlink" title="4.1 从nmap识别端口状态"></a>4.1 从nmap识别端口状态</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Open：对外开放</span><br><span class="line">Closed：端口关闭状态</span><br><span class="line">Filtered：防火墙过滤或者网络堵塞</span><br><span class="line">Unfiltered：未被过滤，端口可访问，但是无法判断是开放还是关闭状态</span><br><span class="line">Open|Filtered：开放还是被过滤</span><br><span class="line">Closed|Filtered：不能确定是关闭还是被过滤，只可能出现在IPID Idle扫描中。</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-时序选项"><a href="#4-2-时序选项" class="headerlink" title="4.2 时序选项"></a>4.2 时序选项</h4><p>在nmap中使用-T（0-5）可以启用时序选项，对于时序选项这里有0~5不同选项。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-T0（偏执的）：非常慢的扫描，用于IDS逃避。 </span><br><span class="line">-T1（鬼祟的）：缓慢的扫描，用于IDS逃避。 </span><br><span class="line">-T2（文雅的）：降低速度以降低对带宽的消耗，此选项不常用。 </span><br><span class="line">-T3（普通的）：默认，根据目标的反应自动调整时间。 </span><br><span class="line">-T4（野蛮的）：快速扫描，常用扫描方式，需要在很好的网络环境下进行扫描，请求可能会淹没目标。 </span><br><span class="line">-T5（疯狂的）：极速扫描，这种扫描方式以牺牲准确度来提示扫描速度。</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-TCP-SYN-扫描"><a href="#4-3-TCP-SYN-扫描" class="headerlink" title="4.3 TCP SYN 扫描"></a>4.3 TCP SYN 扫描</h4><p>半开放扫描，扫描速度快，扫描方式隐蔽。（在SYN扫描不能用时，TCP连接扫描会使用默认的TCP扫描）</p>
+<p><code>nmap -sS 192.168.0.12</code></p>
+<h4 id="4-4-TCP-连接扫描"><a href="#4-4-TCP-连接扫描" class="headerlink" title="4.4 TCP 连接扫描"></a>4.4 TCP 连接扫描</h4><p>端口扫描中最基础，最稳定的扫描方式</p>
+<p><code>nmap -sT 192.168.0.12</code></p>
+<h4 id="4-5-UDP扫描"><a href="#4-5-UDP扫描" class="headerlink" title="4.5 UDP扫描"></a>4.5 UDP扫描</h4><p>UDP扫描非常缓慢，UDP端口扫描通过发送UDP数据包到目标主机并等待响应，它将判断目标端口是否开放状态，如果目标返回ICMP不可达的错误，说明端口是关闭的，如果得到正确的适当的响应，这说明端口是开放的。</p>
+<p><code>nmap -sU -p 80-500 192.168.0.12</code></p>
+<h4 id="4-6-隐蔽扫描"><a href="#4-6-隐蔽扫描" class="headerlink" title="4.6 隐蔽扫描"></a>4.6 隐蔽扫描</h4><p>-sN是Null扫描，是通过发送非常规的TCP通信数据包对计算机进行探测，很多情况下Null扫描与Xmas扫描恰好相反，因为Null扫描不会标记任何数据包，若目标主机的相应端口是关闭的，会响应一个RST数据包，若目标端口是开放的则不会响应任何信息。</p>
+<p><code>nmap -sN 192.168.0.12</code></p>
+<p>-sF是FIN扫描，当我们使用TCP SYN扫描时可能会被目标主机的防火墙发现，会阻止SYN数据包，这时我们使用TCP FIN扫描方式会有很好的穿透效果，因为TCP FIN扫描并不需要完成TCP握手。TCP FIN扫描就是向目标端口发送一个FIN包，如果收到目标响应的RST包，则说明目标端口是开放的，如果没有收到RST包则说明目标端口是关闭的。</p>
+<p><code>nmap -sF 192.168.0.12</code></p>
+<p>-sX是Xmas扫描，数据包的FIN、PSH和URG标记位置打开，既标志位1，根据RFC 793规定如果目标主机端口是开放的则会响应一个RST标志包。</p>
+<p><code>nmap -sX 192.168.0.12</code></p>
+<h4 id="4-7-TCP-ACK-扫描"><a href="#4-7-TCP-ACK-扫描" class="headerlink" title="4.7 TCP ACK 扫描"></a>4.7 TCP ACK 扫描</h4><p>使用该扫描不能确定端口是否是开放还是被过滤的。</p>
+<p><code>nmap -sA -v 192.168.0.12</code></p>
+<h4 id="4-8-TCP-窗口扫描"><a href="#4-8-TCP-窗口扫描" class="headerlink" title="4.8 TCP 窗口扫描"></a>4.8 TCP 窗口扫描</h4><p>当收到RST包时，根据TCP窗口的值是正数还是0来判断目标端口是开放还是关闭的。<br>从输出结果来看是不准确的，如果扫描的端口都是开放状态或者只有少数几个是关闭状态就很不准确。</p>
+<p><code>nmap -sW -v -F 192.168.0.12</code></p>
+<h4 id="4-9-TCP-Maimon扫描"><a href="#4-9-TCP-Maimon扫描" class="headerlink" title="4.9 TCP Maimon扫描"></a>4.9 TCP Maimon扫描</h4><p>探测报文是FIN&#x2F;ACK 根据 RFC 793(TCP)，无论端口开放或者关闭，都应该对这样的探测响应RST报文，如果端口开放，许多基于BSD的系统只是丢弃该探测报文。</p>
+<p><code>nmap -sM -T4 192.168.0.12</code></p>
+<h4 id="4-10-自定义TCP扫描"><a href="#4-10-自定义TCP扫描" class="headerlink" title="4.10 自定义TCP扫描"></a>4.10 自定义TCP扫描</h4><p>可以通过指定任意的TCP标志位来进行扫描。</p>
+<p><code>nmap -sT --scanflags SYNURG 192.168.0.12</code></p>
+<h4 id="4-11-空闲扫描"><a href="#4-11-空闲扫描" class="headerlink" title="4.11 空闲扫描"></a>4.11 空闲扫描</h4><p>空闲扫描允许端口完全欺骗扫描。可以使攻击者能够不使用自己的IP向目标主机发送数据包，它可以利用不活跃的僵尸主机反弹给攻击者一个旁通信道，从而进行端口扫描。IDS会把不活跃的僵尸主机当做攻击者，这是一种非常隐蔽的扫描方法。</p>
+<p><code>nmap -sI www.0day.co:80 192.168.0.12</code></p>
+<p>这是利用僵尸主机为<a target="_blank" rel="noopener" href="http://www.0day.co的主机对192.168.0.12进行空闲扫描,如果有ids,ids则会把www.0day.co当做扫描者.选择的端口必须不能被自己的nmap主机或目标主机过滤掉并且必须为开放的./">www.0day.co的主机对192.168.0.12进行空闲扫描，如果有IDS，IDS则会把www.0day.co当做扫描者。选择的端口必须不能被自己的nmap主机或目标主机过滤掉并且必须为开放的。</a></p>
+<h4 id="4-12-IP协议扫描"><a href="#4-12-IP协议扫描" class="headerlink" title="4.12 IP协议扫描"></a>4.12 IP协议扫描</h4><p>扫描IP协议号。IP协议扫描可以帮助用户确定目标主机哪些是支持IP协议的，例如TCP,ICMP.IGMP。虽然它遍历的是IP协议号并不是TCP或UDP端口，但仍可以使用-p选项选择需要扫描的协议号。它不是在UDP报文的端口域上循环，而时在IP协议域的2位上循环，发送空的IP报文头。</p>
+<p><code>nmap -sO -T4 192.168.0.12</code></p>
+<h4 id="4-13-FTP-Bounce扫描"><a href="#4-13-FTP-Bounce扫描" class="headerlink" title="4.13 FTP Bounce扫描"></a>4.13 FTP Bounce扫描</h4><p>使用-b选项就可以进行FTP Bounce Scan扫描。它允许用户连接到一台FTP服务器，然后要求文件送到一台第三方服务器，这种扫描方式被支持较少，但可绕过防火墙。</p>
+<p><code>nmap -b 192.168.0.12</code></p>
+<h3 id="5-指纹识别与探测"><a href="#5-指纹识别与探测" class="headerlink" title="5 指纹识别与探测"></a>5 指纹识别与探测</h3><p><img src="https://img2018.cnblogs.com/blog/1561366/201908/1561366-20190801235717575-1956780953.png"></p>
+<h4 id="5-1-设置扫描强度"><a href="#5-1-设置扫描强度" class="headerlink" title="5.1 设置扫描强度"></a>5.1 设置扫描强度</h4><p>使用Nmap进行扫描的时候，Nmap发送一系列探测报文，–version-intensity选项可以为每个报文赋予1<del>9之间的值。<br>被赋予较低值的探测报文对大范围的常见服务有效，而被赋予较高值的报文一般没有实际作用，强度水平说明了应该使用哪些探测报文。<br>当我们赋予的值越高，服务越有可能被正确识别，但是这也会牺牲相当长的一段实际，强度必须在0</del>9，默认的强度是7。</p>
+<p><code>nmap -sV --version-intensity 1 192.168.0.12</code></p>
+<h4 id="5-2-RPC扫描"><a href="#5-2-RPC扫描" class="headerlink" title="5.2 RPC扫描"></a>5.2 RPC扫描</h4><p>该选项对用于与其他端口扫描选项相结合使用，它对所有被发现开放的TCP&#x2F;UDP端口执行SunRPC程序NULL命令，来试图确定它们是否为RPC端口，如果是RPC端口，则返回程序和版本号。</p>
+<p><code>nmap -sS -sR 192.168.0.12</code></p>
+<h4 id="5-3-对指定的目标进行操作系统检测"><a href="#5-3-对指定的目标进行操作系统检测" class="headerlink" title="5.3 对指定的目标进行操作系统检测"></a>5.3 对指定的目标进行操作系统检测</h4><p>使用–osscan-limit选项可以对指定的目标进行操作系统检测。<br>Nmap只对满足“具有打开和关闭的端口”条件的主机进行操作系统检测，这样可以节约时间，特别是在使用-P0扫描多个主机时。<br>这个选项仅在使用-O或-A进行操作系统检测时起作用。</p>
+<p><code>nmap -O --osscan-limit 192.168.0.0/24</code></p>
+<h3 id="6-躲避防火墙"><a href="#6-躲避防火墙" class="headerlink" title="6 躲避防火墙"></a>6 躲避防火墙</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">nmap -f -v 192.168.1.131 </span><br><span class="line">#报文分段，将TCP头分段在几个包中，IDS及其他工具监测更加困难</span><br><span class="line"></span><br><span class="line">nmap --mtu 16 192.168.1.131 </span><br><span class="line">#指定偏移大小，设置TCP/IP协议传输数据报时的最大传输单元，需要注意的是偏移量必须是8的倍数</span><br><span class="line"></span><br><span class="line">nmap -D 192.168.1.20,192.168.1.21,192.168.1.22,ME 192.168.1.131 </span><br><span class="line">#IP欺骗，在进行版本检测或者TCP扫描的时候诱饵是无效的 </span><br><span class="line">-D，指定诱饵ip，多个ip用逗号隔开</span><br><span class="line">ME，指定真实IP</span><br><span class="line"></span><br><span class="line">nmap -sI [www.baidu.com:80](http://www.baidu.com:80) 192.168.1.131 </span><br><span class="line">#源地址欺骗</span><br><span class="line"></span><br><span class="line">nmap --source-port 88 192.168.1.131 </span><br><span class="line">#源端口欺骗，指定一个比较安全的端口，nmap就可以从这些端口中发送数据</span><br><span class="line"></span><br><span class="line">nmap --data-length 30 192.168.1.131 </span><br><span class="line">#指定发包长度，通常TCP包是40字节，ICMP Echo是28字节</span><br><span class="line"></span><br><span class="line">nmap -sT -PN --spoof-mac 0 192.168.1.131 </span><br><span class="line">#MAC地址欺骗 </span><br><span class="line">0，随机MAC地址</span><br><span class="line">MAC Address，手动指定MAC地址</span><br><span class="line">Vendor Name，指定厂商生成MAC地址</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-保存与输出"><a href="#7-保存与输出" class="headerlink" title="7 保存与输出"></a>7 保存与输出</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#标准保存</span><br><span class="line">nmap -F  -oN  test1.txt  192.168.0.12 </span><br><span class="line">#XML保存</span><br><span class="line">nmap -F -oX test1.xml  192.168.0.12 </span><br><span class="line">#133t保存</span><br><span class="line">namp -F -oS test2.txt 192.168.0.12 </span><br><span class="line">#Grep保存</span><br><span class="line">nmap -F -oG test3.txt 192.168.0.12 </span><br><span class="line">#保存到所有格式</span><br><span class="line">nmap -F -oA  testA  192.168.0.12 </span><br><span class="line">#补充保存文件</span><br><span class="line">nmap -F --append-output -oN test1.txt 192.168.0.12</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-Nmap高级用法"><a href="#8-Nmap高级用法" class="headerlink" title="8 Nmap高级用法"></a>8 Nmap高级用法</h3><p><img src="https://img2018.cnblogs.com/blog/1561366/201908/1561366-20190801235727503-398966428.png"></p>
+<h3 id="使用Nmap进行渗透测试"><a href="#使用Nmap进行渗透测试" class="headerlink" title="使用Nmap进行渗透测试"></a>使用Nmap进行渗透测试</h3><p><img src="https://img2018.cnblogs.com/blog/1561366/201908/1561366-20190801235732144-1228776142.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/nmap%E7%9A%84%E4%BD%BF%E7%94%A8-junlin623/" data-id="clhrwf8jc001beksz5cxl4ivd" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-netstat命令的使用以及运行结果分析-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/netstat%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8A%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.127Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17023701.html">https://www.cnblogs.com/junlin623/p/17023701.html</a></p>
+<hr>
+<p>title: ‘netstat命令的使用以及运行结果分析-junlin623’<br>date: 2023-01-03 23:26:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p><code>netstat</code> 命令用于显示协议统计信息和当前 TCP&#x2F;IP 网络连接。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">NETSTAT [-a] [-b] [-e] [-f] [-n] [-o] [-p proto] [-r] [-s] [-t] [-x] [-y] [interval]</span><br><span class="line"></span><br><span class="line">  -a            显示所有连接和侦听端口。</span><br><span class="line">  -b            显示在创建每个连接或侦听端口时涉及的</span><br><span class="line">                可执行文件。在某些情况下，已知可执行文件托管</span><br><span class="line">                多个独立的组件，此时会</span><br><span class="line">                显示创建连接或侦听端口时</span><br><span class="line">                涉及的组件序列。在此情况下，可执行文件的</span><br><span class="line">                名称位于底部 [] 中，它调用的组件位于顶部，</span><br><span class="line">                直至达到 TCP/IP。注意，此选项</span><br><span class="line">                可能很耗时，并且可能因为你没有足够的</span><br><span class="line">                权限而失败。</span><br><span class="line">  -e            显示以太网统计信息。此选项可以与 -s 选项</span><br><span class="line">                结合使用。</span><br><span class="line">  -f            显示外部地址的完全限定</span><br><span class="line">                域名(FQDN)。</span><br><span class="line">  -n            以数字形式显示地址和端口号。</span><br><span class="line">  -o            显示拥有的与每个连接关联的进程 ID。</span><br><span class="line">  -p proto      显示 proto 指定的协议的连接；proto</span><br><span class="line">                可以是下列任何一个: TCP、UDP、TCPv6 或 UDPv6。如果与 -s</span><br><span class="line">                选项一起用来显示每个协议的统计信息，proto 可以是下列任何一个:</span><br><span class="line">                IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 或 UDPv6。</span><br><span class="line">  -q            显示所有连接、侦听端口和绑定的</span><br><span class="line">                非侦听 TCP 端口。绑定的非侦听端口</span><br><span class="line">                不一定与活动连接相关联。</span><br><span class="line">  -r            显示路由表。</span><br><span class="line">  -s            显示每个协议的统计信息。默认情况下，</span><br><span class="line">                显示 IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 和 UDPv6 的统计信息；</span><br><span class="line">                -p 选项可用于指定默认的子网。</span><br><span class="line">  -t            显示当前连接卸载状态。</span><br><span class="line">  -x            显示 NetworkDirect 连接、侦听器和共享</span><br><span class="line">                终结点。</span><br><span class="line">  -y            显示所有连接的 TCP 连接模板。</span><br><span class="line">                无法与其他选项结合使用。</span><br><span class="line">  interval      重新显示选定的统计信息，各个显示间暂停的</span><br><span class="line">                间隔秒数。按 CTRL+C 停止重新显示</span><br><span class="line">                统计信息。如果省略，则 netstat 将打印当前的</span><br><span class="line">                配置信息一次。</span><br></pre></td></tr></table></figure>
+
+<p>  在windows中一般我们在使用中直接用 <code>netstat -ano</code> 显示所有的连接与端口，以数字形式显示地址与端口号，显示与每个连接相关联的进程的PID<br>  在windows的cmd中执行 <code>netstat -ano</code> 命令：</p>
+<h3 id="1-协议："><a href="#1-协议：" class="headerlink" title="1. 协议："></a>1. 协议：</h3><p>分TCP连接和UDP连接</p>
+<h3 id="2-本地地址https-www-cnblogs-com-junlin623-p-17023701-html"><a href="#2-本地地址https-www-cnblogs-com-junlin623-p-17023701-html" class="headerlink" title="2. 本地地址https://www.cnblogs.com/junlin623/p/17023701.html"></a>2. 本地地址<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17023701.html">https://www.cnblogs.com/junlin623/p/17023701.html</a></h3><hr>
+<p>title: ‘netstat命令的使用以及运行结果分析-junlin623’<br>date: 2023-01-03 23:26:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p><code>netstat</code> 命令用于显示协议统计信息和当前 TCP&#x2F;IP 网络连接。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">NETSTAT [-a] [-b] [-e] [-f] [-n] [-o] [-p proto] [-r] [-s] [-t] [-x] [-y] [interval]</span><br><span class="line"></span><br><span class="line">  -a            显示所有连接和侦听端口。</span><br><span class="line">  -b            显示在创建每个连接或侦听端口时涉及的</span><br><span class="line">                可执行文件。在某些情况下，已知可执行文件托管</span><br><span class="line">                多个独立的组件，此时会</span><br><span class="line">                显示创建连接或侦听端口时</span><br><span class="line">                涉及的组件序列。在此情况下，可执行文件的</span><br><span class="line">                名称位于底部 [] 中，它调用的组件位于顶部，</span><br><span class="line">                直至达到 TCP/IP。注意，此选项</span><br><span class="line">                可能很耗时，并且可能因为你没有足够的</span><br><span class="line">                权限而失败。</span><br><span class="line">  -e            显示以太网统计信息。此选项可以与 -s 选项</span><br><span class="line">                结合使用。</span><br><span class="line">  -f            显示外部地址的完全限定</span><br><span class="line">                域名(FQDN)。</span><br><span class="line">  -n            以数字形式显示地址和端口号。</span><br><span class="line">  -o            显示拥有的与每个连接关联的进程 ID。</span><br><span class="line">  -p proto      显示 proto 指定的协议的连接；proto</span><br><span class="line">                可以是下列任何一个: TCP、UDP、TCPv6 或 UDPv6。如果与 -s</span><br><span class="line">                选项一起用来显示每个协议的统计信息，proto 可以是下列任何一个:</span><br><span class="line">                IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 或 UDPv6。</span><br><span class="line">  -q            显示所有连接、侦听端口和绑定的</span><br><span class="line">                非侦听 TCP 端口。绑定的非侦听端口</span><br><span class="line">                不一定与活动连接相关联。</span><br><span class="line">  -r            显示路由表。</span><br><span class="line">  -s            显示每个协议的统计信息。默认情况下，</span><br><span class="line">                显示 IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 和 UDPv6 的统计信息；</span><br><span class="line">                -p 选项可用于指定默认的子网。</span><br><span class="line">  -t            显示当前连接卸载状态。</span><br><span class="line">  -x            显示 NetworkDirect 连接、侦听器和共享</span><br><span class="line">                终结点。</span><br><span class="line">  -y            显示所有连接的 TCP 连接模板。</span><br><span class="line">                无法与其他选项结合使用。</span><br><span class="line">  interval      重新显示选定的统计信息，各个显示间暂停的</span><br><span class="line">                间隔秒数。按 CTRL+C 停止重新显示</span><br><span class="line">                统计信息。如果省略，则 netstat 将打印当前的</span><br><span class="line">                配置信息一次。</span><br></pre></td></tr></table></figure>
+
+<p>  在windows中一般我们在使用中直接用 <code>netstat -ano</code> 显示所有的连接与端口，以数字形式显示地址与端口号，显示与每个连接相关联的进程的PID<br>  在windows的cmd中执行 <code>netstat -ano</code> 命令：</p>
+<h3 id="1-协议：-1"><a href="#1-协议：-1" class="headerlink" title="1. 协议："></a>1. 协议：</h3><p>分TCP连接和UDP连接</p>
+<h3 id="2-本地地址https-www-cnblogs-com-junlin623-p-17023701-html-1"><a href="#2-本地地址https-www-cnblogs-com-junlin623-p-17023701-html-1" class="headerlink" title="2. 本地地址https://www.cnblogs.com/junlin623/p/17023701.html"></a>2. 本地地址<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17023701.html">https://www.cnblogs.com/junlin623/p/17023701.html</a></h3><hr>
+<p>title: ‘netstat命令的使用以及运行结果分析-junlin623’<br>date: 2023-01-03 23:26:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p><code>netstat</code> 命令用于显示协议统计信息和当前 TCP&#x2F;IP 网络连接。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">NETSTAT [-a] [-b] [-e] [-f] [-n] [-o] [-p proto] [-r] [-s] [-t] [-x] [-y] [interval]</span><br><span class="line"></span><br><span class="line">  -a            显示所有连接和侦听端口。</span><br><span class="line">  -b            显示在创建每个连接或侦听端口时涉及的</span><br><span class="line">                可执行文件。在某些情况下，已知可执行文件托管</span><br><span class="line">                多个独立的组件，此时会</span><br><span class="line">                显示创建连接或侦听端口时</span><br><span class="line">                涉及的组件序列。在此情况下，可执行文件的</span><br><span class="line">                名称位于底部 [] 中，它调用的组件位于顶部，</span><br><span class="line">                直至达到 TCP/IP。注意，此选项</span><br><span class="line">                可能很耗时，并且可能因为你没有足够的</span><br><span class="line">                权限而失败。</span><br><span class="line">  -e            显示以太网统计信息。此选项可以与 -s 选项</span><br><span class="line">                结合使用。</span><br><span class="line">  -f            显示外部地址的完全限定</span><br><span class="line">                域名(FQDN)。</span><br><span class="line">  -n            以数字形式显示地址和端口号。</span><br><span class="line">  -o            显示拥有的与每个连接关联的进程 ID。</span><br><span class="line">  -p proto      显示 proto 指定的协议的连接；proto</span><br><span class="line">                可以是下列任何一个: TCP、UDP、TCPv6 或 UDPv6。如果与 -s</span><br><span class="line">                选项一起用来显示每个协议的统计信息，proto 可以是下列任何一个:</span><br><span class="line">                IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 或 UDPv6。</span><br><span class="line">  -q            显示所有连接、侦听端口和绑定的</span><br><span class="line">                非侦听 TCP 端口。绑定的非侦听端口</span><br><span class="line">                不一定与活动连接相关联。</span><br><span class="line">  -r            显示路由表。</span><br><span class="line">  -s            显示每个协议的统计信息。默认情况下，</span><br><span class="line">                显示 IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 和 UDPv6 的统计信息；</span><br><span class="line">                -p 选项可用于指定默认的子网。</span><br><span class="line">  -t            显示当前连接卸载状态。</span><br><span class="line">  -x            显示 NetworkDirect 连接、侦听器和共享</span><br><span class="line">                终结点。</span><br><span class="line">  -y            显示所有连接的 TCP 连接模板。</span><br><span class="line">                无法与其他选项结合使用。</span><br><span class="line">  interval      重新显示选定的统计信息，各个显示间暂停的</span><br><span class="line">                间隔秒数。按 CTRL+C 停止重新显示</span><br><span class="line">                统计信息。如果省略，则 netstat 将打印当前的</span><br><span class="line">                配置信息一次。</span><br></pre></td></tr></table></figure>
+
+<p>  在windows中一般我们在使用中直接用 <code>netstat -ano</code> 显示所有的连接与端口，以数字形式显示地址与端口号，显示与每个连接相关联的进程的PID<br>  在windows的cmd中执行 <code>netstat -ano</code> 命令：</p>
+<h3 id="1-协议：-2"><a href="#1-协议：-2" class="headerlink" title="1. 协议："></a>1. 协议：</h3><p>分TCP连接和UDP连接</p>
+<h3 id="2-本地地址https-www-cnblogs-com-junlin623-p-17023701-html-2"><a href="#2-本地地址https-www-cnblogs-com-junlin623-p-17023701-html-2" class="headerlink" title="2. 本地地址https://www.cnblogs.com/junlin623/p/17023701.html"></a>2. 本地地址<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17023701.html">https://www.cnblogs.com/junlin623/p/17023701.html</a></h3><hr>
+<p>title: ‘netstat命令的使用以及运行结果分析-junlin623’<br>date: 2023-01-03 23:26:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p><code>netstat</code> 命令用于显示协议统计信息和当前 TCP&#x2F;IP 网络连接。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">NETSTAT [-a] [-b] [-e] [-f] [-n] [-o] [-p proto] [-r] [-s] [-t] [-x] [-y] [interval]</span><br><span class="line"></span><br><span class="line">  -a            显示所有连接和侦听端口。</span><br><span class="line">  -b            显示在创建每个连接或侦听端口时涉及的</span><br><span class="line">                可执行文件。在某些情况下，已知可执行文件托管</span><br><span class="line">                多个独立的组件，此时会</span><br><span class="line">                显示创建连接或侦听端口时</span><br><span class="line">                涉及的组件序列。在此情况下，可执行文件的</span><br><span class="line">                名称位于底部 [] 中，它调用的组件位于顶部，</span><br><span class="line">                直至达到 TCP/IP。注意，此选项</span><br><span class="line">                可能很耗时，并且可能因为你没有足够的</span><br><span class="line">                权限而失败。</span><br><span class="line">  -e            显示以太网统计信息。此选项可以与 -s 选项</span><br><span class="line">                结合使用。</span><br><span class="line">  -f            显示外部地址的完全限定</span><br><span class="line">                域名(FQDN)。</span><br><span class="line">  -n            以数字形式显示地址和端口号。</span><br><span class="line">  -o            显示拥有的与每个连接关联的进程 ID。</span><br><span class="line">  -p proto      显示 proto 指定的协议的连接；proto</span><br><span class="line">                可以是下列任何一个: TCP、UDP、TCPv6 或 UDPv6。如果与 -s</span><br><span class="line">                选项一起用来显示每个协议的统计信息，proto 可以是下列任何一个:</span><br><span class="line">                IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 或 UDPv6。</span><br><span class="line">  -q            显示所有连接、侦听端口和绑定的</span><br><span class="line">                非侦听 TCP 端口。绑定的非侦听端口</span><br><span class="line">                不一定与活动连接相关联。</span><br><span class="line">  -r            显示路由表。</span><br><span class="line">  -s            显示每个协议的统计信息。默认情况下，</span><br><span class="line">                显示 IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 和 UDPv6 的统计信息；</span><br><span class="line">                -p 选项可用于指定默认的子网。</span><br><span class="line">  -t            显示当前连接卸载状态。</span><br><span class="line">  -x            显示 NetworkDirect 连接、侦听器和共享</span><br><span class="line">                终结点。</span><br><span class="line">  -y            显示所有连接的 TCP 连接模板。</span><br><span class="line">                无法与其他选项结合使用。</span><br><span class="line">  interval      重新显示选定的统计信息，各个显示间暂停的</span><br><span class="line">                间隔秒数。按 CTRL+C 停止重新显示</span><br><span class="line">                统计信息。如果省略，则 netstat 将打印当前的</span><br><span class="line">                配置信息一次。</span><br></pre></td></tr></table></figure>
+
+<p>  在windows中一般我们在使用中直接用 <code>netstat -ano</code> 显示所有的连接与端口，以数字形式显示地址与端口号，显示与每个连接相关联的进程的PID<br>  在windows的cmd中执行 <code>netstat -ano</code> 命令：</p>
+<h3 id="1-协议：-3"><a href="#1-协议：-3" class="headerlink" title="1. 协议："></a>1. 协议：</h3><p>分TCP连接和UDP连接</p>
+<h3 id="2-本地地址https-www-cnblogs-com-junlin623-p-17023701-html-3"><a href="#2-本地地址https-www-cnblogs-com-junlin623-p-17023701-html-3" class="headerlink" title="2. 本地地址https://www.cnblogs.com/junlin623/p/17023701.html"></a>2. 本地地址<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17023701.html">https://www.cnblogs.com/junlin623/p/17023701.html</a></h3><hr>
+<p>title: ‘netstat命令的使用以及运行结果分析-junlin623’<br>date: 2023-01-03 23:26:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p><code>netstat</code> 命令用于显示协议统计信息和当前 TCP&#x2F;IP 网络连接。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">NETSTAT [-a] [-b] [-e] [-f] [-n] [-o] [-p proto] [-r] [-s] [-t] [-x] [-y] [interval]</span><br><span class="line"></span><br><span class="line">  -a            显示所有连接和侦听端口。</span><br><span class="line">  -b            显示在创建每个连接或侦听端口时涉及的</span><br><span class="line">                可执行文件。在某些情况下，已知可执行文件托管</span><br><span class="line">                多个独立的组件，此时会</span><br><span class="line">                显示创建连接或侦听端口时</span><br><span class="line">                涉及的组件序列。在此情况下，可执行文件的</span><br><span class="line">                名称位于底部 [] 中，它调用的组件位于顶部，</span><br><span class="line">                直至达到 TCP/IP。注意，此选项</span><br><span class="line">                可能很耗时，并且可能因为你没有足够的</span><br><span class="line">                权限而失败。</span><br><span class="line">  -e            显示以太网统计信息。此选项可以与 -s 选项</span><br><span class="line">                结合使用。</span><br><span class="line">  -f            显示外部地址的完全限定</span><br><span class="line">                域名(FQDN)。</span><br><span class="line">  -n            以数字形式显示地址和端口号。</span><br><span class="line">  -o            显示拥有的与每个连接关联的进程 ID。</span><br><span class="line">  -p proto      显示 proto 指定的协议的连接；proto</span><br><span class="line">                可以是下列任何一个: TCP、UDP、TCPv6 或 UDPv6。如果与 -s</span><br><span class="line">                选项一起用来显示每个协议的统计信息，proto 可以是下列任何一个:</span><br><span class="line">                IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 或 UDPv6。</span><br><span class="line">  -q            显示所有连接、侦听端口和绑定的</span><br><span class="line">                非侦听 TCP 端口。绑定的非侦听端口</span><br><span class="line">                不一定与活动连接相关联。</span><br><span class="line">  -r            显示路由表。</span><br><span class="line">  -s            显示每个协议的统计信息。默认情况下，</span><br><span class="line">                显示 IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 和 UDPv6 的统计信息；</span><br><span class="line">                -p 选项可用于指定默认的子网。</span><br><span class="line">  -t            显示当前连接卸载状态。</span><br><span class="line">  -x            显示 NetworkDirect 连接、侦听器和共享</span><br><span class="line">                终结点。</span><br><span class="line">  -y            显示所有连接的 TCP 连接模板。</span><br><span class="line">                无法与其他选项结合使用。</span><br><span class="line">  interval      重新显示选定的统计信息，各个显示间暂停的</span><br><span class="line">                间隔秒数。按 CTRL+C 停止重新显示</span><br><span class="line">                统计信息。如果省略，则 netstat 将打印当前的</span><br><span class="line">                配置信息一次。</span><br></pre></td></tr></table></figure>
+
+<p>  在windows中一般我们在使用中直接用 <code>netstat -ano</code> 显示所有的连接与端口，以数字形式显示地址与端口号，显示与每个连接相关联的进程的PID<br>  在windows的cmd中执行 <code>netstat -ano</code> 命令：</p>
+<h3 id="1-协议：-4"><a href="#1-协议：-4" class="headerlink" title="1. 协议："></a>1. 协议：</h3><p>分TCP连接和UDP连接</p>
+<h3 id="2-本地地址https-www-cnblogs-com-junlin623-p-17023701-html-4"><a href="#2-本地地址https-www-cnblogs-com-junlin623-p-17023701-html-4" class="headerlink" title="2. 本地地址https://www.cnblogs.com/junlin623/p/17023701.html"></a>2. 本地地址<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17023701.html">https://www.cnblogs.com/junlin623/p/17023701.html</a></h3><hr>
+<p>title: ‘netstat命令的使用以及运行结果分析-junlin623’<br>date: 2023-01-03 23:26:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p><code>netstat</code> 命令用于显示协议统计信息和当前 TCP&#x2F;IP 网络连接。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">NETSTAT [-a] [-b] [-e] [-f] [-n] [-o] [-p proto] [-r] [-s] [-t] [-x] [-y] [interval]</span><br><span class="line"></span><br><span class="line">  -a            显示所有连接和侦听端口。</span><br><span class="line">  -b            显示在创建每个连接或侦听端口时涉及的</span><br><span class="line">                可执行文件。在某些情况下，已知可执行文件托管</span><br><span class="line">                多个独立的组件，此时会</span><br><span class="line">                显示创建连接或侦听端口时</span><br><span class="line">                涉及的组件序列。在此情况下，可执行文件的</span><br><span class="line">                名称位于底部 [] 中，它调用的组件位于顶部，</span><br><span class="line">                直至达到 TCP/IP。注意，此选项</span><br><span class="line">                可能很耗时，并且可能因为你没有足够的</span><br><span class="line">                权限而失败。</span><br><span class="line">  -e            显示以太网统计信息。此选项可以与 -s 选项</span><br><span class="line">                结合使用。</span><br><span class="line">  -f            显示外部地址的完全限定</span><br><span class="line">                域名(FQDN)。</span><br><span class="line">  -n            以数字形式显示地址和端口号。</span><br><span class="line">  -o            显示拥有的与每个连接关联的进程 ID。</span><br><span class="line">  -p proto      显示 proto 指定的协议的连接；proto</span><br><span class="line">                可以是下列任何一个: TCP、UDP、TCPv6 或 UDPv6。如果与 -s</span><br><span class="line">                选项一起用来显示每个协议的统计信息，proto 可以是下列任何一个:</span><br><span class="line">                IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 或 UDPv6。</span><br><span class="line">  -q            显示所有连接、侦听端口和绑定的</span><br><span class="line">                非侦听 TCP 端口。绑定的非侦听端口</span><br><span class="line">                不一定与活动连接相关联。</span><br><span class="line">  -r            显示路由表。</span><br><span class="line">  -s            显示每个协议的统计信息。默认情况下，</span><br><span class="line">                显示 IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 和 UDPv6 的统计信息；</span><br><span class="line">                -p 选项可用于指定默认的子网。</span><br><span class="line">  -t            显示当前连接卸载状态。</span><br><span class="line">  -x            显示 NetworkDirect 连接、侦听器和共享</span><br><span class="line">                终结点。</span><br><span class="line">  -y            显示所有连接的 TCP 连接模板。</span><br><span class="line">                无法与其他选项结合使用。</span><br><span class="line">  interval      重新显示选定的统计信息，各个显示间暂停的</span><br><span class="line">                间隔秒数。按 CTRL+C 停止重新显示</span><br><span class="line">                统计信息。如果省略，则 netstat 将打印当前的</span><br><span class="line">                配置信息一次。</span><br></pre></td></tr></table></figure>
+
+<p>  在windows中一般我们在使用中直接用 <code>netstat -ano</code> 显示所有的连接与端口，以数字形式显示地址与端口号，显示与每个连接相关联的进程的PID<br>  在windows的cmd中执行 <code>netstat -ano</code> 命令：</p>
+<h3 id="1-协议：-5"><a href="#1-协议：-5" class="headerlink" title="1. 协议："></a>1. 协议：</h3><p>分TCP连接和UDP连接</p>
+<h3 id="2-本地地址https-www-cnblogs-com-junlin623-p-17023701-html-5"><a href="#2-本地地址https-www-cnblogs-com-junlin623-p-17023701-html-5" class="headerlink" title="2. 本地地址https://www.cnblogs.com/junlin623/p/17023701.html"></a>2. 本地地址<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17023701.html">https://www.cnblogs.com/junlin623/p/17023701.html</a></h3><hr>
+<p>title: ‘netstat命令的使用以及运行结果分析-junlin623’<br>date: 2023-01-03 23:26:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p><code>netstat</code> 命令用于显示协议统计信息和当前 TCP&#x2F;IP 网络连接。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">NETSTAT [-a] [-b] [-e] [-f] [-n] [-o] [-p proto] [-r] [-s] [-t] [-x] [-y] [interval]</span><br><span class="line"></span><br><span class="line">  -a            显示所有连接和侦听端口。</span><br><span class="line">  -b            显示在创建每个连接或侦听端口时涉及的</span><br><span class="line">                可执行文件。在某些情况下，已知可执行文件托管</span><br><span class="line">                多个独立的组件，此时会</span><br><span class="line">                显示创建连接或侦听端口时</span><br><span class="line">                涉及的组件序列。在此情况下，可执行文件的</span><br><span class="line">                名称位于底部 [] 中，它调用的组件位于顶部，</span><br><span class="line">                直至达到 TCP/IP。注意，此选项</span><br><span class="line">                可能很耗时，并且可能因为你没有足够的</span><br><span class="line">                权限而失败。</span><br><span class="line">  -e            显示以太网统计信息。此选项可以与 -s 选项</span><br><span class="line">                结合使用。</span><br><span class="line">  -f            显示外部地址的完全限定</span><br><span class="line">                域名(FQDN)。</span><br><span class="line">  -n            以数字形式显示地址和端口号。</span><br><span class="line">  -o            显示拥有的与每个连接关联的进程 ID。</span><br><span class="line">  -p proto      显示 proto 指定的协议的连接；proto</span><br><span class="line">                可以是下列任何一个: TCP、UDP、TCPv6 或 UDPv6。如果与 -s</span><br><span class="line">                选项一起用来显示每个协议的统计信息，proto 可以是下列任何一个:</span><br><span class="line">                IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 或 UDPv6。</span><br><span class="line">  -q            显示所有连接、侦听端口和绑定的</span><br><span class="line">                非侦听 TCP 端口。绑定的非侦听端口</span><br><span class="line">                不一定与活动连接相关联。</span><br><span class="line">  -r            显示路由表。</span><br><span class="line">  -s            显示每个协议的统计信息。默认情况下，</span><br><span class="line">                显示 IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 和 UDPv6 的统计信息；</span><br><span class="line">                -p 选项可用于指定默认的子网。</span><br><span class="line">  -t            显示当前连接卸载状态。</span><br><span class="line">  -x            显示 NetworkDirect 连接、侦听器和共享</span><br><span class="line">                终结点。</span><br><span class="line">  -y            显示所有连接的 TCP 连接模板。</span><br><span class="line">                无法与其他选项结合使用。</span><br><span class="line">  interval      重新显示选定的统计信息，各个显示间暂停的</span><br><span class="line">                间隔秒数。按 CTRL+C 停止重新显示</span><br><span class="line">                统计信息。如果省略，则 netstat 将打印当前的</span><br><span class="line">                配置信息一次。</span><br></pre></td></tr></table></figure>
+
+<p>  在windows中一般我们在使用中直接用 <code>netstat -ano</code> 显示所有的连接与端口，以数字形式显示地址与端口号，显示与每个连接相关联的进程的PID<br>  在windows的cmd中执行 <code>netstat -ano</code> 命令：</p>
+<h3 id="1-协议：-6"><a href="#1-协议：-6" class="headerlink" title="1. 协议："></a>1. 协议：</h3><p>分TCP连接和UDP连接</p>
+<h3 id="2-本地地址"><a href="#2-本地地址" class="headerlink" title="2. 本地地址"></a>2. 本地地址</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/netstat%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8A%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90-junlin623/" data-id="clhrwf8jb001aeksz7sedbmry" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-MSF渗透测试框架的使用-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/MSF%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E7%9A%84%E4%BD%BF%E7%94%A8-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.125Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17120327.html">https://www.cnblogs.com/junlin623/p/17120327.html</a></p>
+<hr>
+<p>title: ‘MSF渗透测试框架的使用-junlin623’<br>date: 2023-02-14 17:26:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>&nbsp;</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40549070/article/details/108895422">h</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40549070/article/details/108895422">ttps://blog.csdn.net/qq_40549070/article/details/108895422</a></p>
+<h4>安装：</h4>
+<p>centos中输入命令一键安装：</p>
+<p><code>curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb &gt; msfinstall &amp;&amp; chmod 755 msfinstall &amp;&amp; ./msfinstall</code></p>
+<p>kali中升级MSF：</p>
+<p><code>apt-get update</code></p>
+<p><code>apt-get install metasploit-framework</code></p>
+<h3>简介</h3>
+<p><span style="font-size: 14px;"><span class="md-plain md-expand">&emsp;&emsp;Metasploit Framework（MSF）是一款开源安全漏洞检测工具，附带数千个已知的软件漏洞，并保持持续更新，可以帮助安全和IT专业人士识别安全性问题，验证漏洞的缓解措施，并管理专家驱动的安全性进行评估，提供真正的安全风险情报。 通俗的讲，MSF就是一个集成了渗透测试全流程的渗透工具，理论上讲，我们可以只依靠MSF完成从信息收集到最终的制作后门并清理入侵痕迹的渗透测试全过程。 Metasploit目前是全球最常见的渗透测试框架，位居secTools排行榜第2位。它是一款开源的安全漏洞检测工具，可以帮助安全和IT专业人士识别安全性问题，验证漏洞的缓解措施，并管理专家驱动的安全性进行评估，提供真正的安全风险情报。这些功能包括智能开发，代码审计，Web应用程序扫描，社会工程等。 黑客工具排行榜： </span><span class="md-meta-i-c md-link md-expand"><a target="_blank" rel="noopener" href="https://sectools.org/"><span class="md-plain">https://sectools.org/</span></a></span></span></p>
+<h3>版本介绍</h3>
+<p>社区版︰集成在kali 系统中，目前基于社区力量维护。MSF 4版本需要先启动数据库再启动MSF，MSF 5版本后将数据库集成到MSF里面，直接一键启动。（windows版本、linux版本、mac版本）</p>
+<p>Pro版：企业版的几个优势 1、企业版出的检测报告非常强大，给客户汇报起来很方便。 2、AV免杀，社区版的免杀大家都知道了，但是企业级的免杀他们说过可以达到百分之九十甚至百分之百。 3、IDS/IPS绕过(入侵检测系统/入侵防御系统)。 4、VPN Pivoting。</p>
+<h3>Metasploit架构介绍</h3>
+<p>主目录：<code>/usr/share/metasploit-framework</code></p>
+<p>POC，全称&rdquo;Proof of Concept&rdquo;，中文&ldquo;概念验证&rdquo;，常指一段漏洞证明的代码。</p>
+<p>EXP，全称&rdquo;Exploit&rdquo;，中文&ldquo;利用&rdquo;，指利用系统漏洞进行攻击的动作。</p>
+<p>框架：用于提供运行和操作的环境</p>
+<p>模块：用于发起功能利用</p>
+<ol>
+<li>REX： 基础功能库，用于完成日常基本任务，无需人工手动编码实现，处理socket（ip+端口）连接访问，协议应答（http/SSL/SMB）,编码转换（XOR,Base64,Unicode）</li>
+<li>技术模块：5.0之后就增加了个evasion模块，现在一共是7个技术模块。（探测，利用）</li>
+<li>插件：插件可以调用外部一些渗透测试工具，例如load nessus使用nessus插件</li>
+<li>接口：有msfconsole控制终端、msfcli命令行、msfgui图形化界面、armitage图形化界面和msfapi远程调用接口。</li>
+<li>功能程序：metasploit还开发了一些可以直接运行的命令，比如msfpayload、msfencode以及msfvenom。</li>
+</ol>
+<h3>Metasploit技术功能模块</h3>
+<p>目录：<code>/usr/share/metasploit-framework/modules</code></p>
+<p>技术功能模块(用于实现功能的模块)：如有新揭露的漏洞利用模块或者在第三方平台下载的漏洞模块时，也需要放到对应模块目录后进行调用。</p>
+<h4>1、Auxiliary</h4>
+<pre class="highlighter-hljs"><code>   负责执行信息收集、扫描、嗅探、指纹识别、口令猜测和Dos攻击等功能的辅助模块。</code></pre>
+<h4>2、Exploits</h4>
+<pre class="highlighter-hljs"><code>   利用系统漏洞进行攻击的动作，此模块对应每一个具体漏洞的攻击方法(主动、被动）。</code></pre>
+<h4>3、Payloads</h4>
+<pre class="highlighter-hljs"><code>   成功Exploit之后，真正在目标系统执行的代码或指令，Payload需要当中主要是一段运行Shell的代码。在MSF框架中 Payload和Exploits 模块是分离单独的状态，在使用时Payload需要被Exploits模块调用结合使用( Payload还需要设置运行后返回连接的IP和端口)，也就是说Exploit模块通过利用某个漏洞成功获得权限时，则把Payload模块运行起来并按设置的IP和端口连接宿主机。</code></pre>
+<h4>4、Encoders</h4>
+<pre class="highlighter-hljs"><code>   对Payload进行加密，躲避AntiVirus（杀毒软件）检查的模块。
+   Payload模块中的代码默认是明文格式，如果目标主机中有使用杀毒软件时会拦截或者报毒的情况，而Encoders模块则可以把原来明文的Payload模块编码成密文，从而躲避杀毒软件的拦截。</code></pre>
+<h4>5、Nops</h4>
+<pre class="highlighter-hljs"><code>   提高payload稳定性及维持大小。在渗透攻击构造恶意数据缓冲区时，常常要在真正要执行的Shellcode之前添加一段空指令区，这样当触发渗透攻击后跳转执行ShellCode时，有一个较大的安全着陆区，从而避免受到内存地址随机化、返回地址计算偏差等原因造成的ShellCode 执行失败，提高渗透攻击的可靠性。</code></pre>
+<h4>6、Post</h4>
+<pre class="highlighter-hljs"><code>   后期渗透模块。在取得目标系统远程控制权后，进行一系列的后渗透攻击动作，如获取敏感信息、跳板攻击等操作。</code></pre>
+<h4>7、Evasion</h4>
+<pre class="highlighter-hljs"><code>   创建木马文件，相当于msfvenom的一个子功能的存在。</code></pre>
+<h3>Meterpreter</h3>
+<h4>一、基础命令</h4>
+<p>基础命令包含meterpreter与MSF终端、Ruby接口、目标shell等交互的命令</p>
+<h4>1、<strong>background</strong>命令</h4>
+<p>如果想在MSF终端中执行其他任务，可以使用background命令将meterpreter终端隐藏在后台</p>
+<p><img src="https://secure2.wostatic.cn/static/uTcgwZz4fyyLi4mYrMkV7Y/e2wvRPusZjHdkki7mCwthb.png?auth_key=1676366443-76CUGn8p5n1E5YVM7fnm1d-0-985b9a409d095972b9bcfa3ffacc767d" alt="" /></p>
+<h4>2、<strong>sessions</strong> 命令</h4>
+<p>metasploit的sessions命令可以查看已经成功获取的会话，如果想继续与某会话进行交互，可以使用</p>
+<p><strong>sessions -i</strong>命令</p>
+<p><img src="https://secure2.wostatic.cn/static/pnBzfoJuQdD9dCLRqyia8E/5J6F8cxmW2yJ3ryeWF7Um6.png?auth_key=1676366443-qvuzxUtxiz6Fme5YQDb7UX-0-968c1bef5e1ec7cefa42b4862e116185" alt="" /></p>
+<h4>3、quit命令</h4>
+<p>quit命令直接关闭当前的meterpreter会话，返回MSF终端</p>
+<h4>4、shell命令</h4>
+<p>shell命令可以获取系统的控制台shell，如果目标系统上的命令行可执行程序不存在或禁止访问，那么shell命令会出错。成功运行的结果如下：</p>
+<p><img src="https://secure2.wostatic.cn/static/mET8q2kyof5asEvsSGMekY/wLPFgMveaWxRWcyk5W5GQi.png?auth_key=1676366443-hp7WcWDb2EmdpWK1YF4hGr-0-1bca0cbcbcd075f96d85f954959cf9f0" alt="" /></p>
+<h4>5、irb命令</h4>
+<p>irb命令可以在meterpreter会话里与Ruby终端进行交互，直接调用metasploit封装好的函数，如下显示了使用irb命令调用client.sys.config.sysinfo()函数获取系统配置信息的结果</p>
+<h4>二、文件系统命令</h4>
+<p>文件系统命令允许meterpreter与目标的文件系统进行交互，包括查看文件内容、上传下载文件、对文件进行搜索、直接编辑文件等功能。</p>
+<h4>1、cat命令</h4>
+<p>使用cat命令查看文件内容。下图命令，在system权限下，可以读取目标机器上的boot.ini文件，并获得了引导文件信息。这里反斜杠需要转义</p>
+<p><img src="https://secure2.wostatic.cn/static/nYhoTXVwijUjMTyvyjJbVf/gMLaEiUBNmj6t5zf6xcMvs.png?auth_key=1676366443-98saJq1xztgTm2iuVTZUXR-0-acae03a62c8ad3e288a1d625dacb5bf7" alt="" /></p>
+<h4>2、getwd命令</h4>
+<p>getwd命令可以获得目标机上当前的工作目录，相似的命令有getlwd，这个命令可以获得当前系统的工作目录</p>
+<p><img src="https://secure2.wostatic.cn/static/7UWrzsH1scE2zLvLTmvBB4/5wkJJsGu3tU65HDKbPQ9ij.png?auth_key=1676366443-dtZdFp1tHfLdHrxK61yM5-0-06ce44cff7c032b4b846f04c8e16676c" alt="" /></p>
+<h4>3、upload命令</h4>
+<p>meterpreter的upload命令可以上传文件或文件夹到目标机器上，其命令行选项的帮助如下所示：</p>
+<p><img src="https://secure2.wostatic.cn/static/jfD7rcU9bcLFiR52FcDfDc/%E5%9B%BE%E7%89%87.png?auth_key=1676366443-7MzYe4URwdgArzvaHdbTy4-0-366baf13b1a5bdbb856ce2d9c29155da" alt="" /></p>
+<p>夹内的文件或文件夹递归的上传，不需要考虑多层目录的问题，下面的命令，可以简单地将test1.txt&nbsp;上传至目标机上的C盘根目录：</p>
+<p>upload test1.txt c://</p>
+<p><img src="https://secure2.wostatic.cn/static/s7fh1Km459gVB7dWufehtz/p5hKccBb2GMRgFmTQUPHGW.png?auth_key=1676366443-bbm8JfLHZCTgjdRd4rb8U-0-161dc91e94b51c265a9b24efa78313ef" alt="" /></p>
+<h4>4、download命令</h4>
+<p>download命令从目标机上下载文件或文件夹，需要注意的是这里用双反斜杠进行转义</p>
+<p>download c://test1.txt</p>
+<p><img src="https://secure2.wostatic.cn/static/4KCSSXiv6Qdhk5FKc9b6WR/ceeBUH4exvMMLuSr3hZBkh.png?auth_key=1676366443-m9g3jT6tb1TAEvKnJ3Z3Dz-0-81b4a7594d8e08662d3bda28e1361f1e" alt="" /></p>
+<h4>5、edit命令</h4>
+<p>使用edit命令可以调用vi编辑器，对目标机上的文件进行编辑</p>
+<p><img src="https://secure2.wostatic.cn/static/fLBCmyrhaBcjoT5WdXwwRm/%E5%9B%BE%E7%89%87.png?auth_key=1676366443-9Mdzz9L3f75zKPAt9WajYy-0-1a7fd379632ff6d2630aeede1b22158d" alt="" /></p>
+<p><img src="https://secure2.wostatic.cn/static/sjEZB6mAVqteiuBgvwhu2D/sNf57fX3CapoFvmUJy8yQV.png?auth_key=1676366443-hd3RVFfsHoRBRALByTcAoT-0-00192ad5abfbc40af3c6974deebfa63f" alt="" /></p>
+<h4>6、search命令</h4>
+<p>search命令支持对远程目标机上的文件进行搜索，用参数-h查看帮助如下</p>
+<p><img src="https://secure2.wostatic.cn/static/2XVKRZQQMPXb8K7rEg4pPy/%E5%9B%BE%E7%89%87.png?auth_key=1676366443-r65uKFNth3tMghC9vWnBgV-0-4fa88e4752dddfdd80a2bc84f7dd65b8" alt="" /></p>
+<p>参数-d指定搜索的起始目录或驱动，如果为空，将进行全盘搜索；参数-f指定搜索的文件或者部分文件名，支持星号()<em>匹配，星号</em>()匹配任意长度的字符串，问号(?)匹配任意单个字符；参数-r递归搜索子目录。如下命令在目标主机上的C：\windows目录，搜索数据库文件</p>
+<p><img src="https://secure2.wostatic.cn/static/rPXnwtDa6h6oBph44JvvLu/wguj6ZLP5NcjnXYRnwS1Ea.png?auth_key=1676366443-m3V5WejmJZ4t9Di8Dyz1HB-0-6c32b4ce8397d3c1dbf0b9ab0198966d" alt="" /></p>
+<h4>三、网络命令</h4>
+<p>网络命令可用于查看目标机器上的网络状况、连接信息等，还支持在目标机器上进行端口转发。</p>
+<h4>1、ipconfig命令</h4>
+<p>ipconfig命令用于获取目标主机上的网络接口信息</p>
+<p><img src="https://secure2.wostatic.cn/static/vXgxE4NgVUbZu1czpH9y6x/jk9LdQ7ffG6Qt83y4wnzb2.png?auth_key=1676366443-sytG22UXehEYR7Tk5p9bqu-0-bd6519bc4243f293bd1c85ae845da700" alt="" /></p>
+<h4>2、portfwd命令</h4>
+<p>portfwd命令是meterpreter内嵌的端口转发器，一般在目标主机开放的端口不允许直接访问的情况下使用，比如说，目标主机开放的远程桌面3389端口只允许内网访问，这时可以使用portfwd命令进行端口转发，以达到直接访问目标主机的目的。portfwd的帮助信息如下：</p>
+<pre class="highlighter-hljs"><code>meterpreter &gt; portfwd -h  
+
+<p>Usage: portfwd [-h] [add | delete | list | flush] [args]  </p>
+<p>OPTIONS:  </p>
+<p>  -L &lt;opt&gt;  转发: 本地监听地址  反向: 本地主机连接到某个地址  </p>
+<p>  -R        表示正向反向端口  </p>
+<p>  -h        帮助信息  </p>
+<p>  -i &lt;opt&gt;  端口转发条目的索引与交互（请参阅&amp;ldquo;列表&amp;rdquo;命令）  </p>
+<p>  -l &lt;opt&gt;  转发：本地端口收听  反向：本地端口连接  </p>
+<p>  -p &lt;opt&gt;  转发：远程端口连接  反向：远程端口监听  </p>
+<p>  -r &lt;opt&gt;  转发：连接到远程主机  </p>
+<p>  例子:  </p>
+<p><code>portfwd -L 127.0.0.1 -l 1212 -r 10.10.12.1 -p 3389</code>    </p>
+<p><code>portfwd -R -L 10.10.18.1 -l 8080 -r 10.10.12.1 -p 8877</code></code></pre></p>
+<p>假设目标主机开放了3389端口，使用如下命令将其转发到本地的1234端口，如下图所示，可以看到本地1234端口已经开放</p>
+<p><img src="https://secure2.wostatic.cn/static/s68Fugga9T45fi8b9U5h4J/8s42dPVsxSKMVyuH9PjjvC.png?auth_key=1676366444-nmYu24AHhq3JvjFPTEEZU8-0-157228719fe3fb0cd202087be7965ff9" alt="" /></p>
+<h4>3、route命令</h4>
+<p>route命令用于显示目标主机的路由信息：</p>
+<p><img src="https://secure2.wostatic.cn/static/cC41oezVd9Px6UsXcSL12Y/7KsBANUmg5ZzD2yMG6Y2BB.png?auth_key=1676366444-8K8k2UMKJmcoAL1oQKPd7p-0-ba5e6e709564ed84dee877cfbd920838" alt="" /></p>
+<h4>四、系统命令</h4>
+<p>meterpreter的系统命令用于查看目标系统的一些信息、对系统进行基本的操作等。</p>
+<h4>1、ps命令</h4>
+<p>ps命令用于获得目标主机上正在运行的进程</p>
+<p><img src="https://secure2.wostatic.cn/static/c1vVWr1TRNajXTdrNv789W/kBiUjBx8MzuSiqY39hgcHZ.png?auth_key=1676366444-ePeLSKNjXJXox4gP5ngxxr-0-51c521d373646431020d0fa5f65cd921" alt="" /></p>
+<h4>2、migrate命令</h4>
+<p>使用migrate命令可以将meterpreter会话从一个进程移植到另一个进程的内存空间中，这个命令在渗透攻击模块中经常使用。试想一下，如果是利用IE浏览器漏洞进行溢出得到的meterpreter会话，meterpreter代码存在于IE的内存空间中，如果用户关闭浏览器，将会终止会话连接。这时可以将会话移植到稳定的系统服务进程中，比如explorer.exe 。而且这种移植是无缝移植，不需要端口已有TCP连接再建立新的连接。</p>
+<p><img src="https://secure2.wostatic.cn/static/tBVT7cExtv2v7HWEUQM947/evVEcJTL7oUMEQ9BRuowFd.png?auth_key=1676366444-pdYdMDRm2QnbRjKjEnsjwc-0-2abc32049b2229d316e9ae9ca4804ad3" alt="" /></p>
+<h4>3、execute命令</h4>
+<p>execute命令可以在目标机上执行文件，帮助信息如下：</p>
+<p><img src="https://secure2.wostatic.cn/static/2fu2meSR3uFQYA1BGiT2pT/r8ffmPf27eMYHHpFFsvvxa.png?auth_key=1676366444-6c8NwNbBZ7dPf3Lkgn3yq4-0-6779ed83b3b122f92a764ebc34245e9f" alt="" /></p>
+<p><img src="https://secure2.wostatic.cn/static/dZzh3xrYzZrff3rzxp9bHB/%E5%9B%BE%E7%89%87.png?auth_key=1676366444-EaAcxkCM7fTUcX4N3oRv5-0-286499fe30d2a400889d27b8ba9cab9d" alt="" /></p>
+<p>下面的命令在目标机上隐藏执行cmd.exe程序：</p>
+<p><img src="https://secure2.wostatic.cn/static/5oAUscXb3j6KX4rgd5romj/%E5%9B%BE%E7%89%87.png?auth_key=1676366444-p1AGxrML8wqBPtwwZCX9RD-0-c0d858bbb49d21f9767a4e866fcfaf67" alt="" /></p>
+<p>另外，execute命令的-m参数支持直接从内存中执行攻击端的可执行文件 ，如 （1） execute -H -m -d calc.exe -f wce.exe -a "-o foo.txt" （2）cat foo.txt&nbsp;获取hash值。 这种内存执行方式有几个优点：（1）使用-d选项设置需要显示的进程名，这样可以避开敏感人士的检查。（2）可执行文件不需要在目标机上存储，不会留下痕迹，增大了取证分析的难度。（3）从内存执行的方式能避开大部分杀毒软件的查杀，这在使用如WCE等黑客工具时尤其有用。</p>
+<h4>4、<strong>getpid</strong>命令</h4>
+<p>getpid命令用于获得当前会话所在进程的PID值</p>
+<p><img src="https://secure2.wostatic.cn/static/kYBgEHkkYhgiPXKCVNh9x7/%E5%9B%BE%E7%89%87.png?auth_key=1676366444-5pxYC9KYxqe86AGyrpVd3r-0-1c2f1abb47699594c73cc6e2ab058fc3" alt="" /></p>
+<h4>5、kill命令</h4>
+<p>kill命令用于终结指定的PID进程</p>
+<p><img src="https://secure2.wostatic.cn/static/gD3dfQQPPFgYnvBSoSsuk/%E5%9B%BE%E7%89%87.png?auth_key=1676366444-pSW7ySTdMFBh9fkMa5NkWg-0-ab49f7a657acdf3216a9e0ed83d44912" alt="" /></p>
+<h4>6、getuid命令</h4>
+<p>getuid命令用于获得运行meterpreter会话的用户名，从而查看当前会话具有的权限</p>
+<p><img src="https://secure2.wostatic.cn/static/9Ma4iJvkvpNXea6FwWxXKP/%E5%9B%BE%E7%89%87.png?auth_key=1676366444-9Fyq7samNt6ugKyccZQjxh-0-029e3844ab1dfa31f58ce4a1ccb4ca64" alt="" /></p>
+<h4>7、sysinfo命令</h4>
+<p>sysinfo命令用于得到目标系统的一些信息，包括机器名、使用的操作系统等</p>
+<p><img src="https://secure2.wostatic.cn/static/ucuyiaWMCSSBuaqVUiXmqA/%E5%9B%BE%E7%89%87.png?auth_key=1676366444-bYJdnudHVfhegZLmySa2ea-0-6ebb1aba68dced7afc869faec91bff8e" alt="" /></p>
+<h4>8、shutdown命令</h4>
+<p>shutdown命令用于关闭目标主机，显然，meterpreter会话也将被关闭。</p>
+<h4>五、提权</h4>
+<h4>1、getsystem自动提权</h4>
+<p>输入getsystem来尝试提权,MSF会自动选择合适的方式来提升当前权限</p>
+<p><img src="https://secure2.wostatic.cn/static/sviuKXPA87XUbJVQ2em939/%E5%9B%BE%E7%89%87.png?auth_key=1676366444-bCyrqLfJQNFN1b9R4fP3js-0-97ed8ac364a914ed4f3d548168c9217c" alt="" /></p>
+<p>这个就比较玄学,我还没成功过,可以看到getsystem并不能生效</p>
+<h4>2、bypassuac提权</h4>
+<p>这里以exploit/windows/local/bypassuac为例进行示范:</p>
+<p><img src="https://secure2.wostatic.cn/static/8Ce5bxCQksh9aJPpvtEija/%E5%9B%BE%E7%89%87.png?auth_key=1676366444-qoqfShUUd6vdnE4ZJVRXFb-0-dc7a2c4ba1f9d2caa930e87d1bf2bb49" alt="" /></p>
+<p>当前的session为1,于是我们设置模块利用的session为1,并且run:</p>
+<p><img src="https://secure2.wostatic.cn/static/bvwUAtbdfWtU67vZLVBwU3/%E5%9B%BE%E7%89%87.png?auth_key=1676366444-bgzCjerwavgtu3TVGKmvPL-0-06328abf8c7e7130b5841fa5817ccef8" alt="" /></p>
+<p>返回了一个新的meterpreter,再次输入getsystem,成功绕过uac,得到系统权限:</p>
+<p><img src="https://secure2.wostatic.cn/static/jQdRjDwucK2ArApJdo8rEc/%E5%9B%BE%E7%89%87.png?auth_key=1676366444-2TtGYrPdWE7qXcrb7i6VPu-0-ae57da75e3f4477e5869d43d663e69a5" alt="" /></p>
+<p>进入shell尝试创建用户，乱码可用命令</p>
+<p><code>chcp&nbsp;65001</code></p>
+<p><code>chcp 60001</code></p>
+<p><img src="https://img-blog.csdnimg.cn/20190905215439304.png" alt="" /></p>
+<p>可以看到用户创建成功:</p>
+<p><img src="https://secure2.wostatic.cn/static/qfu5tXfxwhtz5HiHapA8jt/%E5%9B%BE%E7%89%87.png?auth_key=1676366444-gXNAdGaKong7Prvw5kd3Lo-0-10fad1790ca7f6ee1fc3721a95d4683f" alt="" /></p>
+<p>同样使用方法的模块还有exploit/windows/local/bypassuac_injection和exploit/windows/local/bypassuac_vbs</p>
+<h4>3、弹窗提高程序运行级别</h4>
+<p>利用exploit/windows/local/ask模块</p>
+<p><img src="https://img-blog.csdnimg.cn/20190905225010409.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODg0NzI3,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p><img src="https://img-blog.csdnimg.cn/20190905222233956.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODg0NzI3,size_16,color_FFFFFF,t_70" alt="" /></p>
+<h3>msfvenom</h3>
+<p><strong>Msfvenom在 2015年6月8日已经替代了msfpayload 与msfenocde命令，它是这两个命令的结合体。</strong></p>
+<pre class="highlighter-hljs"><code>-p, &ndash;payload &lt; payload&gt; 指定需要使用的payload(攻击荷载)。也可以使用自定义payload,几乎是支持全平台的
+
+<p>-l, &amp;ndash;list [module_type] 列出指定模块的所有可用资源. 模块类型包括: payloads, encoders, nops, all</p>
+<p>-n, &amp;ndash;nopsled &lt; length&gt; 为payload预先指定一个NOP滑动长度</p>
+<p>-f, &amp;ndash;format &lt; format&gt; 指定输出格式 (使用 &amp;ndash;help-formats 来获取msf支持的输出格式列表)</p>
+<p>-e, &amp;ndash;encoder [encoder] 指定需要使用的encoder（编码器）,指定需要使用的编码，如果既没用-e选项也没用-b选项，则输出raw payload</p>
+<p>-a, &amp;ndash;arch &lt; architecture&gt; 指定payload的目标架构，例如x86 | x64 | x86_64</p>
+<p>&amp;ndash;platform &lt; platform&gt; 指定payload的目标平台，例如windows，linux，Android</p>
+<p>-s, &amp;ndash;space &lt; length&gt; 设定有效攻击荷载的最大长度，就是文件大小</p>
+<p>-b, &amp;ndash;bad-chars &lt; list&gt; 设定规避字符集，指定需要过滤的坏字符例如：不使用 ‘\x0f’、’\x00’;</p>
+<p>-i, &amp;ndash;iterations &lt; count&gt; 指定payload的编码次数</p>
+<p>-c, &amp;ndash;add-code &lt; path&gt; 指定一个附加的win32 shellcode文件</p>
+<p>-x, &amp;ndash;template &lt; path&gt; 指定一个自定义的可执行文件作为模板,并将payload嵌入其中</p>
+<p>-k, &amp;ndash;keep 保护模板程序的动作，注入的payload作为一个新的进程运行</p>
+<p>&amp;ndash;payload-options 列举payload的标准选项</p>
+<p>-o, &amp;ndash;out &lt; path&gt; 指定创建好的payload的存放位置</p>
+<p>-v, &amp;ndash;var-name &lt; name&gt; 指定一个自定义的变量，以确定输出格式</p>
+<p>&amp;ndash;shellest 最小化生成payload</p>
+<p>-h, &amp;ndash;help 查看帮助选项</p>
+<p>&amp;ndash;help-formats 查看msf支持的输出格式列表</code></pre></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/MSF%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E7%9A%84%E4%BD%BF%E7%94%A8-junlin623/" data-id="clhrwf8ix000qeksz0lxsa4hh" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Miller-Rabin素性检验-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/Miller-Rabin%E7%B4%A0%E6%80%A7%E6%A3%80%E9%AA%8C-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.123Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17322338.html">https://www.cnblogs.com/junlin623/p/17322338.html</a></p>
+<hr>
+<p>title: ‘Miller-Rabin素性检验-junlin623’<br>date: 2023-04-16 00:02:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<h2 id="Miller-Rabin素性检验"><a href="#Miller-Rabin素性检验" class="headerlink" title="Miller-Rabin素性检验"></a>Miller-Rabin素性检验</h2><p>转载：<a target="_blank" rel="noopener" href="https://blog.csdn.net/forever_dreams/article/details/82314237">https://blog.csdn.net/forever_dreams/article/details/82314237</a></p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230415235807907-1075730307.png"></p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230415235817582-1604567827.png"></p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202304/2935791-20230415235832541-776957424.png"></p>
+<p>【代码】：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">qmul</span><span class="params">(ll a, ll b, ll p)</span> </span>&#123;</span><br><span class="line">    ll res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(b) &#123;</span><br><span class="line">        <span class="keyword">if</span>(b &amp; <span class="number">1</span>) res = (res + a) % p;</span><br><span class="line">        a = (a + a) % p;</span><br><span class="line">        b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">qmi</span><span class="params">(ll a, ll b, ll p)</span> </span>&#123;</span><br><span class="line">    ll res = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(b) &#123;</span><br><span class="line">        <span class="keyword">if</span>(b &amp; <span class="number">1</span>) res = (res * a) % p;</span><br><span class="line">        a = (a * a) % p;</span><br><span class="line">        b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">Miller_Rabin</span><span class="params">(ll n, ll k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt; <span class="number">2</span> || n % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">2</span> || n == <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ll d = n - <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> s = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(d % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">        d &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        s++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i &lt; k;i++) &#123;</span><br><span class="line">        ll a = <span class="built_in">rand</span>() % (n - <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">        ll x = <span class="built_in">qmi</span>(a, d, n);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>;j &lt;= s;j++) &#123;</span><br><span class="line">            ll t = <span class="built_in">qmul</span>(x, x, n);</span><br><span class="line">            <span class="keyword">if</span>(t == <span class="number">1</span> &amp;&amp; x != <span class="number">1</span> &amp;&amp; x != n - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            x = t;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(x != <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">srand</span>(<span class="built_in">time</span>(<span class="literal">NULL</span>));</span><br><span class="line">    ll n, k;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;请输入一个正整数 n 和测试次数 k： &quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    std::cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">Miller_Rabin</span>(n, k)) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;YES&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;NO&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/Miller-Rabin%E7%B4%A0%E6%80%A7%E6%A3%80%E9%AA%8C-junlin623/" data-id="clhrwf8j0000ueksz2kce0t2o" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Matlab复现迪杰斯特拉算法-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/Matlab%E5%A4%8D%E7%8E%B0%E8%BF%AA%E6%9D%B0%E6%96%AF%E7%89%B9%E6%8B%89%E7%AE%97%E6%B3%95-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.121Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17065702.html">https://www.cnblogs.com/junlin623/p/17065702.html</a></p>
+<hr>
+<p>title: ‘Matlab复现迪杰斯特拉算法-junlin623’<br>date: 2023-01-24 19:28:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p>Dijkstra算法可以计算出在有权图中从某个起点出发到其他任何一点的最短路径长度</p>
+<h3 id="算法思想："><a href="#算法思想：" class="headerlink" title="算法思想："></a>算法思想：</h3><p>迪杰斯特拉算法主要特点是从起始点开始，采用贪心算法的策略，每次遍历到始点距离最近且未访问过的顶点的邻接节点，直到扩展到终点为止。</p>
+<p>定义起点s，终点t，集合U表示还没有找到起点到该点的最短路径的点的集合，集合S表示已经找到最短路径的点的集合，初始情况下S集合中只有起点一个点，最短路径是0</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124192011001-1782959496.png" width="40%" > <br></p>
+<br>
+
+<p><strong>假设要求D到A点的最短路径：</strong></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124192110826-2092752964.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124192138628-994030532.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124192212087-1527546348.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124192240517-208333769.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124192327748-1948157124.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124192356468-163659329.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124192422558-18825108.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124192448228-1385139575.png" width="30%" >
+
+<h3 id="算法实现过程中用到的一些技巧"><a href="#算法实现过程中用到的一些技巧" class="headerlink" title="算法实现过程中用到的一些技巧:"></a>算法实现过程中用到的一些技巧:</h3><ul>
+<li><p><strong>删除矩阵某一行：</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; A = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>;<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line"></span><br><span class="line">A =</span><br><span class="line"></span><br><span class="line">     <span class="number">1</span>     <span class="number">2</span>     <span class="number">3</span></span><br><span class="line">     <span class="number">4</span>     <span class="number">5</span>     <span class="number">6</span></span><br><span class="line">     <span class="number">7</span>     <span class="number">8</span>     <span class="number">9</span></span><br><span class="line"></span><br><span class="line">&gt;&gt; A(<span class="number">2</span>,:) = []    <span class="comment">% 删除A矩阵的第2行</span></span><br><span class="line"></span><br><span class="line">A =</span><br><span class="line"></span><br><span class="line">     <span class="number">1</span>     <span class="number">2</span>     <span class="number">3</span></span><br><span class="line">     <span class="number">7</span>     <span class="number">8</span>     <span class="number">9</span></span><br><span class="line"></span><br><span class="line">&gt;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>在矩阵末尾添加一行</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A(<span class="keyword">end</span>+<span class="number">1</span>,:) = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>枚举某个点相邻的8个节点：</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">-1</span> : <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">-1</span> : <span class="number">1</span></span><br><span class="line">        nx = x + <span class="built_in">i</span>;</span><br><span class="line">        ny = y + <span class="built_in">j</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">i</span> == <span class="number">0</span> &amp;&amp; <span class="built_in">j</span> == <span class="number">0</span>) || nx &lt;= <span class="number">0</span> || nx &gt; rows || ny &lt;= <span class="number">0</span> || ny &gt; cols</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        ......</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用元胞数组cell存储起点到达每个点的路径</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; A = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>;<span class="string">&#x27;text&#x27;</span>,<span class="built_in">rand</span>(<span class="number">5</span>,<span class="number">10</span>,<span class="number">2</span>),&#123;<span class="number">11</span>; <span class="number">22</span>; <span class="number">33</span>&#125;&#125;</span><br><span class="line"></span><br><span class="line">A =</span><br><span class="line"></span><br><span class="line">  <span class="number">2</span>×<span class="number">3</span> cell 数组</span><br><span class="line"></span><br><span class="line">    &#123;[   <span class="number">1</span>]&#125;    &#123;[          <span class="number">2</span>]&#125;    &#123;[     <span class="number">3</span>]&#125;</span><br><span class="line">    &#123;<span class="string">&#x27;text&#x27;</span>&#125;    &#123;<span class="number">5</span>×<span class="number">10</span>×<span class="number">2</span> double&#125;    &#123;<span class="number">3</span>×<span class="number">1</span> cell&#125;</span><br><span class="line"></span><br><span class="line">&gt;&gt; </span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><h4 id="init-m-初始化栅格地图"><a href="#init-m-初始化栅格地图" class="headerlink" title="init.m: 初始化栅格地图"></a>init.m: 初始化栅格地图</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[field,cmap]</span> = <span class="title">init</span><span class="params">(rows, cols)</span></span></span><br><span class="line">cmap = [<span class="number">1</span> <span class="number">1</span> <span class="number">1</span>; ...       <span class="comment">% 1-白色-空地</span></span><br><span class="line">    <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; ...           <span class="comment">% 2-黑色-静态障碍</span></span><br><span class="line">    <span class="number">1</span> <span class="number">0</span> <span class="number">0</span>; ...           <span class="comment">% 3-红色-动态障碍</span></span><br><span class="line">    <span class="number">1</span> <span class="number">1</span> <span class="number">0</span>;...            <span class="comment">% 4-黄色-起始点 </span></span><br><span class="line">    <span class="number">1</span> <span class="number">0</span> <span class="number">1</span>;...            <span class="comment">% 5-品红-目标点</span></span><br><span class="line">    <span class="number">0</span> <span class="number">1</span> <span class="number">0</span>; ...           <span class="comment">% 6-绿色-到目标点的规划路径   </span></span><br><span class="line">    <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>];              <span class="comment">% 7-青色-动态规划的路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 构建颜色MAP图</span></span><br><span class="line">colormap(cmap);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 定义栅格地图全域，并初始化空白区域</span></span><br><span class="line">field = <span class="built_in">ones</span>(rows, cols);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 障碍物区域</span></span><br><span class="line">obsRate = <span class="number">0.3</span>;</span><br><span class="line">obsNum = <span class="built_in">floor</span>(rows*cols*obsRate);</span><br><span class="line">obsIndex = randi([<span class="number">1</span>,rows*cols],obsNum,<span class="number">1</span>);</span><br><span class="line">field(obsIndex) = <span class="number">2</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="getNeighborNodes-m：获得给定一维索引节点的8个节点以及距离"><a href="#getNeighborNodes-m：获得给定一维索引节点的8个节点以及距离" class="headerlink" title="getNeighborNodes.m：获得给定一维索引节点的8个节点以及距离"></a>getNeighborNodes.m：获得给定一维索引节点的8个节点以及距离</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">neighborNodes</span> = <span class="title">getNeighborNodes</span><span class="params">(rows, cols, lineIndex, field)</span></span></span><br><span class="line">[row, col] = <span class="built_in">ind2sub</span>([rows,cols], lineIndex);</span><br><span class="line">neighborNodes = <span class="built_in">inf</span>(<span class="number">8</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%% 查找当前父节点临近的周围8个子节点</span></span><br><span class="line">neighborIndex = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">-1</span> : <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">-1</span> : <span class="number">1</span></span><br><span class="line">        nx = row + <span class="built_in">i</span>;</span><br><span class="line">        ny = col + <span class="built_in">j</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">i</span> == <span class="number">0</span> &amp;&amp; <span class="built_in">j</span> == <span class="number">0</span>) || nx &lt;= <span class="number">0</span> || nx &gt; rows || ny &lt;= <span class="number">0</span> || ny &gt; cols</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        child_node_line = <span class="built_in">sub2ind</span>([rows,cols], nx, ny);</span><br><span class="line">        neighborNodes(neighborIndex,<span class="number">1</span>) = child_node_line;</span><br><span class="line">        <span class="keyword">if</span> field(nx, ny) ~= <span class="number">2</span></span><br><span class="line">            cost = norm([nx, ny] - [row, col]);</span><br><span class="line">            neighborNodes(neighborIndex,<span class="number">2</span>) = cost;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        neighborIndex = neighborIndex + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="Dijkstra-m-得到起点到终点的最短路径并绘制"><a href="#Dijkstra-m-得到起点到终点的最短路径并绘制" class="headerlink" title="Dijkstra.m: 得到起点到终点的最短路径并绘制"></a>Dijkstra.m: 得到起点到终点的最短路径并绘制</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 基于栅格地图的机器人路径规划算法</span></span><br><span class="line"><span class="comment">% 第2节：Dijkstra算法</span></span><br><span class="line">clc</span><br><span class="line">clear</span><br><span class="line">close all</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 栅格界面、场景定义</span></span><br><span class="line"><span class="comment">% 行数和列数</span></span><br><span class="line">rows = <span class="number">10</span>;</span><br><span class="line">cols = <span class="number">20</span>;</span><br><span class="line">[field,cmap] = init(rows, cols);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 起点、终点、障碍物区域</span></span><br><span class="line">startPos = <span class="number">3</span>;</span><br><span class="line">goalPos = rows*cols<span class="number">-2</span>;</span><br><span class="line">field(startPos) = <span class="number">4</span>;</span><br><span class="line">field(goalPos) = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 算法初始化</span></span><br><span class="line"><span class="comment">% S/U的第一列表示栅格节点线性索引编号</span></span><br><span class="line"><span class="comment">% 对于S，第二列表示从源节点到本节点已求得的最小距离，不再变更；</span></span><br><span class="line"><span class="comment">% 对于U，第二列表示从源节点到本节点暂时求得的最小距离，可能会变更</span></span><br><span class="line">U(:,<span class="number">1</span>) = (<span class="number">1</span>: rows*cols)&#x27;;</span><br><span class="line">U(:,<span class="number">2</span>) = <span class="built_in">inf</span>;</span><br><span class="line">S = [startPos, <span class="number">0</span>];</span><br><span class="line">U(startPos,:) = [];  <span class="comment">% 在U集合中删除起点，表示起点已经得到最短路径0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 更新起点的邻节点及代价</span></span><br><span class="line">neighborNodes = getNeighborNodes(rows, cols, startPos, field);  <span class="comment">% 获取到起点的所有邻接点</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">8</span></span><br><span class="line">    childNode = neighborNodes(<span class="built_in">i</span>,<span class="number">1</span>); <span class="comment">% 邻接点索引</span></span><br><span class="line">    <span class="comment">% 判断该子节点是否存在</span></span><br><span class="line">    <span class="keyword">if</span> ~<span class="built_in">isinf</span>(childNode)</span><br><span class="line">        idx = <span class="built_in">find</span>(U(:,<span class="number">1</span>) == childNode);</span><br><span class="line">        U(idx,<span class="number">2</span>) = neighborNodes(<span class="built_in">i</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">% S集合的最优路径集合</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:rows*cols</span><br><span class="line">    path&#123;<span class="built_in">i</span>,<span class="number">1</span>&#125; = <span class="built_in">i</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">8</span></span><br><span class="line">    childNode =  neighborNodes(<span class="built_in">i</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> ~<span class="built_in">isinf</span>(neighborNodes(<span class="built_in">i</span>,<span class="number">2</span>))</span><br><span class="line">        path&#123;childNode,<span class="number">2</span>&#125; = [startPos,neighborNodes(<span class="built_in">i</span>,<span class="number">1</span>)];</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%% 循环遍历</span></span><br><span class="line"><span class="keyword">while</span> ~<span class="built_in">isempty</span>(U)</span><br><span class="line">    <span class="comment">% 在U集合找出当前最小距离值的节点,视为父节点，并移除该节点至S集合中</span></span><br><span class="line">    [dist_min, idx] = <span class="built_in">min</span>(U(:,<span class="number">2</span>));</span><br><span class="line">    parentNode = U(idx, <span class="number">1</span>);</span><br><span class="line">    S(<span class="keyword">end</span>+<span class="number">1</span>,:) = [parentNode, dist_min];  <span class="comment">% 加入S集合中</span></span><br><span class="line">    U(idx,:) = [];  <span class="comment">% 在U集合中删除</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 获得当前节点的临近子节点</span></span><br><span class="line">    neighborNodes = getNeighborNodes(rows, cols, parentNode, field);</span><br><span class="line"></span><br><span class="line">    <span class="comment">% 依次遍历邻近子节点，判断是否在U集合中更新邻节点的距离值</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">8</span></span><br><span class="line">        <span class="comment">% 需要判断的子节点</span></span><br><span class="line">        childNode = neighborNodes(<span class="built_in">i</span>,<span class="number">1</span>);</span><br><span class="line">        cost = neighborNodes(<span class="built_in">i</span>,<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">if</span> ~<span class="built_in">isinf</span>(childNode)  &amp;&amp; ~<span class="built_in">ismember</span>(childNode, S)</span><br><span class="line">            </span><br><span class="line">            <span class="comment">% 找出U集合中节点childNode的索引值</span></span><br><span class="line">            idx_U = <span class="built_in">find</span>(childNode == U(:,<span class="number">1</span>));            </span><br><span class="line">            </span><br><span class="line">            <span class="comment">% 判断是否更新</span></span><br><span class="line">            <span class="keyword">if</span> dist_min + cost &lt; U(idx_U, <span class="number">2</span>)</span><br><span class="line">                U(idx_U, <span class="number">2</span>) = dist_min + cost;</span><br><span class="line"></span><br><span class="line">                <span class="comment">% 更新最优路径</span></span><br><span class="line">                path&#123;childNode, <span class="number">2</span>&#125; = [path&#123;parentNode, <span class="number">2</span>&#125;, childNode];</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%% 画栅格界面</span></span><br><span class="line"><span class="comment">% 找出目标最优路径</span></span><br><span class="line">path_opt = path&#123;goalPos,<span class="number">2</span>&#125;;</span><br><span class="line">field(path_opt(<span class="number">2</span>:<span class="keyword">end</span><span class="number">-1</span>)) = <span class="number">6</span>; <span class="comment">% 标记路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 画栅格图</span></span><br><span class="line">image(<span class="number">1.5</span>,<span class="number">1.5</span>,field);</span><br><span class="line">grid on;</span><br><span class="line">set(gca,<span class="string">&#x27;gridline&#x27;</span>,<span class="string">&#x27;-&#x27;</span>,<span class="string">&#x27;gridcolor&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,<span class="string">&#x27;linewidth&#x27;</span>,<span class="number">2</span>,<span class="string">&#x27;GridAlpha&#x27;</span>,<span class="number">0.5</span>);</span><br><span class="line">set(gca,<span class="string">&#x27;xtick&#x27;</span>,<span class="number">1</span>:cols+<span class="number">1</span>,<span class="string">&#x27;ytick&#x27;</span>,<span class="number">1</span>:rows+<span class="number">1</span>);</span><br><span class="line">axis image;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h3><p>绿色表示最短路径:</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124191738859-619814503.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/Matlab%E5%A4%8D%E7%8E%B0%E8%BF%AA%E6%9D%B0%E6%96%AF%E7%89%B9%E6%8B%89%E7%AE%97%E6%B3%95-junlin623/" data-id="clhrwf8j0000teksz2u7udfcm" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Matlab复现RRT算法-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/Matlab%E5%A4%8D%E7%8E%B0RRT%E7%AE%97%E6%B3%95-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.119Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17066416.html">https://www.cnblogs.com/junlin623/p/17066416.html</a></p>
+<hr>
+<p>title: ‘Matlab复现RRT算法-junlin623’<br>date: 2023-01-24 21:37:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p><strong>快速搜索随机树(Rapid-exploration Random Tree,RRT)算法</strong>是一种在完全己知的环境中通过随机采样扩展搜索的算法</p>
+<p><strong>特点：</strong>RRT算法是概率完备的，如果规划时间足够长，如果确实存在一条可行的最优路径，RRT是可以找出这条路径的。但这里存在限制条件，如果规划时间不够长，迭代次数较少，有可能无法找出实际存在的路径。</p>
+<p><strong>优点：</strong>最主要的优点就是快，因此在多自由度机器人的规划问题中发挥着较大的作用，比如机械臂的规划算法基本都是以RRT为基础的。</p>
+<p><strong>缺点：</strong>规划的路径通常不最优、路径不平滑等。</p>
+<h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想:"></a>算法思想:</h3><p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124201020480-821471733.png" width="30%" > <br></p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124201049357-801069834.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124201116517-1644396488.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124201209664-1365829333.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124201206772-1871097285.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124202049065-1199650787.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124202123402-1509239592.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124202141073-863405514.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124202159395-767169480.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124202531220-1229027924.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124202546527-738149246.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124202615970-326146251.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124202612770-1275878156.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124202736387-1561892421.png" width="30%" >
+
+<br>
+
+<h3 id="MATLAB编写RRT算法的几个核心思想："><a href="#MATLAB编写RRT算法的几个核心思想：" class="headerlink" title="MATLAB编写RRT算法的几个核心思想："></a>MATLAB编写RRT算法的几个核心思想：</h3><ul>
+<li>在随机采样撒点时，可以利用randi函数，随机生成一个[l,n]范围的整数，代表采样栅格；</li>
+<li>如何根据子节点扩展方向确定对应的栅格？首先把父节点邻近的16个节点作为备选的子节点，从正下方编号为1，逆时针依次增加，如图1。然后把2π角度划分为16份，根据所确定的父节点与采样点<br>的连线可以可以计算一个角度，根据这个角度在16份角度的范围，从而确定被选中的子节点。同时考虑到行列坐标与x&#x2F;y坐标的不对应，在计算连线角度时采用atan2函数，而不用atan函数，如图2.</li>
+<li>如何判断父节点与子节点的连线是否跨过障碍物？如图3，父子节点的连线与障碍物的最短距离d大于栅格单位长度的一半，表明未跨过障碍物。并且仅需讨论蓝色虚线框内的障碍物栅格即可。</li>
+</ul>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124213015460-219315942.png" width="50%" >
+
+
+<h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><h4 id="init-m"><a href="#init-m" class="headerlink" title="init.m"></a>init.m</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[field,cmap]</span> = <span class="title">init</span><span class="params">(rows, cols)</span></span></span><br><span class="line">cmap = [<span class="number">1</span> <span class="number">1</span> <span class="number">1</span>; ...       <span class="comment">% 1-白色-空地</span></span><br><span class="line">    <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; ...           <span class="comment">% 2-黑色-静态障碍</span></span><br><span class="line">    <span class="number">1</span> <span class="number">0</span> <span class="number">0</span>; ...           <span class="comment">% 3-红色-已经搜索过的点</span></span><br><span class="line">    <span class="number">1</span> <span class="number">1</span> <span class="number">0</span>;...            <span class="comment">% 4-黄色-起始点 </span></span><br><span class="line">    <span class="number">1</span> <span class="number">0</span> <span class="number">1</span>;...            <span class="comment">% 5-品红-目标点</span></span><br><span class="line">    <span class="number">0</span> <span class="number">1</span> <span class="number">0</span>; ...           <span class="comment">% 6-绿色-到目标点的规划路径   </span></span><br><span class="line">    <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>];              <span class="comment">% 7-青色-动态规划的路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 构建颜色MAP图</span></span><br><span class="line">colormap(cmap);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 定义栅格地图全域，并初始化空白区域</span></span><br><span class="line">field = <span class="built_in">ones</span>(rows, cols);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 障碍物区域</span></span><br><span class="line">obsRate = <span class="number">0.3</span>;</span><br><span class="line">obsNum = <span class="built_in">floor</span>(rows*cols*obsRate);</span><br><span class="line">obsIndex = randi([<span class="number">1</span>,rows*cols],obsNum,<span class="number">1</span>);</span><br><span class="line">field(obsIndex) = <span class="number">2</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="getChildNode-m：得到生长节点"><a href="#getChildNode-m：得到生长节点" class="headerlink" title="getChildNode.m：得到生长节点"></a>getChildNode.m：得到生长节点</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">childNode</span> = <span class="title">getChildNode</span><span class="params">(field, parentNode, samplePoint)</span></span></span><br><span class="line"><span class="comment">% 定义生长单步长为2个栅格，选取父节点周边16个节点作为备选子节点</span></span><br><span class="line"><span class="comment">% 根据随机采样点与父节点的角度，确定生长的子节点</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[rows, cols] = <span class="built_in">size</span>(field);</span><br><span class="line">[row_samplePoint, col_samplePoint] = <span class="built_in">ind2sub</span>([rows, cols], samplePoint);</span><br><span class="line">[row_parentNode, col_parentNode] = <span class="built_in">ind2sub</span>([rows, cols], parentNode);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">% 定义16个点的行列坐标</span></span><br><span class="line"><span class="comment">% 注意，为了行列坐标与x/y坐标匹配，从父节点的下节点逆时针开始定义，依次编号</span></span><br><span class="line">childNode_set = [ row_parentNode+<span class="number">2</span>, col_parentNode;</span><br><span class="line">    row_parentNode+<span class="number">2</span>, col_parentNode+<span class="number">1</span>;</span><br><span class="line">    row_parentNode+<span class="number">2</span>, col_parentNode+<span class="number">2</span>;</span><br><span class="line">    row_parentNode+<span class="number">1</span>, col_parentNode+<span class="number">2</span>;</span><br><span class="line">    row_parentNode, col_parentNode+<span class="number">2</span>; </span><br><span class="line">    row_parentNode<span class="number">-1</span>, col_parentNode+<span class="number">2</span>;</span><br><span class="line">    row_parentNode<span class="number">-2</span>, col_parentNode+<span class="number">2</span>;</span><br><span class="line">    row_parentNode<span class="number">-2</span>, col_parentNode+<span class="number">1</span>;</span><br><span class="line">    row_parentNode<span class="number">-2</span>, col_parentNode;</span><br><span class="line">    row_parentNode<span class="number">-2</span>, col_parentNode<span class="number">-1</span>;</span><br><span class="line">    row_parentNode<span class="number">-2</span>, col_parentNode<span class="number">-2</span>;</span><br><span class="line">    row_parentNode<span class="number">-1</span>, col_parentNode<span class="number">-2</span>;</span><br><span class="line">    row_parentNode,   col_parentNode<span class="number">-2</span>;</span><br><span class="line">    row_parentNode+<span class="number">1</span>, col_parentNode<span class="number">-2</span>;</span><br><span class="line">    row_parentNode+<span class="number">2</span>, col_parentNode<span class="number">-2</span>;</span><br><span class="line">    row_parentNode+<span class="number">2</span>, col_parentNode<span class="number">-1</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">% 计算16个子节点的角度范围集，和当前随机点的角度范围</span></span><br><span class="line">theta_set = <span class="built_in">linspace</span>(<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">pi</span>,<span class="number">16</span>);</span><br><span class="line">theta = <span class="built_in">atan2</span>((col_samplePoint - col_parentNode), ...</span><br><span class="line">    (row_samplePoint - row_parentNode));</span><br><span class="line"></span><br><span class="line"><span class="comment">% 若theta位于第三四象限，加上2*pi</span></span><br><span class="line"><span class="keyword">if</span> theta &lt; <span class="number">0</span></span><br><span class="line">    theta = theta + <span class="number">2</span>*<span class="built_in">pi</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 遍历周围的16个点，判断角度位于哪一个范围</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line">    <span class="keyword">if</span> theta &gt;= theta_set(<span class="built_in">i</span>) &amp;&amp; theta &lt; theta_set(<span class="built_in">i</span>+<span class="number">1</span>)</span><br><span class="line">        childNodeIdx = <span class="built_in">i</span>;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 选中的子节点</span></span><br><span class="line">childNode = childNode_set(childNodeIdx,:);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="getSamplePoint-m-随机生成采样点："><a href="#getSamplePoint-m-随机生成采样点：" class="headerlink" title="getSamplePoint.m: 随机生成采样点："></a>getSamplePoint.m: 随机生成采样点：</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">samplePoint</span> = <span class="title">getSamplePoint</span><span class="params">(field, treeNodes)</span></span></span><br><span class="line">[rows, cols] = <span class="built_in">size</span>(field);</span><br><span class="line">field(treeNodes(:,<span class="number">1</span>)) = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">while</span> <span class="built_in">true</span></span><br><span class="line">    samplePoint = randi([<span class="number">1</span>,rows*cols]);</span><br><span class="line">    <span class="keyword">if</span> field(samplePoint) == <span class="number">1</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="judgeObs-m-判断障碍物"><a href="#judgeObs-m-判断障碍物" class="headerlink" title="judgeObs.m: 判断障碍物"></a>judgeObs.m: 判断障碍物</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flag</span> = <span class="title">judgeObs</span><span class="params">(field, parentNode, childNode)</span></span></span><br><span class="line"></span><br><span class="line">flag = <span class="number">0</span>;</span><br><span class="line">[rows, cols] = <span class="built_in">size</span>(field);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 判断子节点是否在障碍物上</span></span><br><span class="line">obsIdx = <span class="built_in">find</span>(field == <span class="number">2</span>);</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">ismember</span>(childNode, obsIdx)</span><br><span class="line">    flag = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 判断父节点与子节点的连线是否跨过障碍物</span></span><br><span class="line">[parentNode(<span class="number">1</span>), parentNode(<span class="number">2</span>)] = <span class="built_in">ind2sub</span>([rows, cols], parentNode);</span><br><span class="line">[childNode(<span class="number">1</span>), childNode(<span class="number">2</span>)] = <span class="built_in">ind2sub</span>([rows, cols], childNode);</span><br><span class="line"></span><br><span class="line">P2 = parentNode;</span><br><span class="line">P1 = childNode;</span><br><span class="line">row_min = <span class="built_in">min</span>([P1(<span class="number">1</span>), P2(<span class="number">1</span>)]);</span><br><span class="line">row_max = <span class="built_in">max</span>([P1(<span class="number">1</span>), P2(<span class="number">1</span>)]);</span><br><span class="line">col_min = <span class="built_in">min</span>([P1(<span class="number">2</span>), P2(<span class="number">2</span>)]);</span><br><span class="line">col_max = <span class="built_in">max</span>([P1(<span class="number">2</span>), P2(<span class="number">2</span>)]);</span><br><span class="line"><span class="keyword">for</span> row = row_min:row_max</span><br><span class="line">    <span class="keyword">for</span> col = col_min:col_max</span><br><span class="line">        <span class="keyword">if</span> field(row, col) == <span class="number">2</span></span><br><span class="line">            P = [row, col];</span><br><span class="line">            </span><br><span class="line">            <span class="comment">% 直接计算障碍物节点距P1和P2构成的连线的距离</span></span><br><span class="line">            d = <span class="built_in">abs</span>(det([P2-P1;P-P1]))/norm(P2-P1);</span><br><span class="line">            <span class="keyword">if</span> d &lt; <span class="number">0.5</span></span><br><span class="line">                flag = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">            </span><br></pre></td></tr></table></figure>
+
+
+<h4 id="RRT-m-生成路径："><a href="#RRT-m-生成路径：" class="headerlink" title="RRT.m: 生成路径："></a>RRT.m: 生成路径：</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 基于栅格地图的机器人路径规划算法</span></span><br><span class="line"><span class="comment">% 第4节：RRT算法</span></span><br><span class="line">clc</span><br><span class="line">clear</span><br><span class="line">close all</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 障碍物、空白区域、起始点、目标点定义</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 行数和列数</span></span><br><span class="line">rows = <span class="number">30</span>;</span><br><span class="line">cols = <span class="number">50</span>;</span><br><span class="line">[field,cmap] = init(rows, cols);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 起点、终点、障碍物区域</span></span><br><span class="line">startPos = <span class="number">3</span>;</span><br><span class="line">goalPos = rows*cols<span class="number">-2</span>;  </span><br><span class="line">field(startPos) = <span class="number">4</span>;</span><br><span class="line">field(goalPos) = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%% 算法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 定义树节点，第一列放节点编号，第二列放该节点的父节点</span></span><br><span class="line">treeNodes = [startPos, <span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">true</span></span><br><span class="line">    <span class="comment">% 初始化parentNode和childNode</span></span><br><span class="line">    parentNode = [];</span><br><span class="line">    childNode = [];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 在地图空间随机采样撒点</span></span><br><span class="line">    samplePoint = getSamplePoint(field, treeNodes);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 依次遍历每一个树节点到采样点的距离，取最小值对应的树节点</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="built_in">size</span>(treeNodes,<span class="number">1</span>)</span><br><span class="line">        [row_treeNode, col_treeNode] = <span class="built_in">ind2sub</span>([rows, cols], treeNodes(<span class="built_in">i</span>,<span class="number">1</span>));</span><br><span class="line">        [row_samplePoint, col_samplePoint] = <span class="built_in">ind2sub</span>([rows, cols], samplePoint);</span><br><span class="line">        dist(<span class="built_in">i</span>) = norm([row_treeNode, col_treeNode] - [row_samplePoint, col_samplePoint]);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    [~,idx] = <span class="built_in">min</span>(dist);</span><br><span class="line">    parentNode = treeNodes(idx,<span class="number">1</span>);  <span class="comment">% 选择离随机生成的点最进的点作为根节点</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 沿着父节点到随机生成的点的方向生成新的子节点,行列坐标</span></span><br><span class="line">    childNode = getChildNode(field, parentNode, samplePoint);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 判断该子节点是否超过地图限制</span></span><br><span class="line">    <span class="keyword">if</span> childNode(<span class="number">1</span>) &lt; <span class="number">1</span> || childNode(<span class="number">1</span>) &gt; rows ||...</span><br><span class="line">            childNode(<span class="number">2</span>) &lt; <span class="number">1</span> || childNode(<span class="number">2</span>) &gt; cols</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="comment">% 转为线性索引</span></span><br><span class="line">        childNode = <span class="built_in">sub2ind</span>([rows, cols], childNode(<span class="number">1</span>), childNode(<span class="number">2</span>));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 判断父节点与子节点的连线是否跨过障碍物</span></span><br><span class="line">    flag = judgeObs(field, parentNode, childNode);</span><br><span class="line">    <span class="keyword">if</span> flag</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 判断该子节点是否已经存在于treeNodes，未在则追加到treeNodes</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">ismember</span>(childNode, treeNodes(:,<span class="number">1</span>))</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">     <span class="keyword">else</span></span><br><span class="line">        treeNodes(<span class="keyword">end</span>+<span class="number">1</span>,:) = [childNode, parentNode];</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 判断子节点是否位于目标区域</span></span><br><span class="line">    [row_childNode, col_childNode] = <span class="built_in">ind2sub</span>([rows, cols], childNode);</span><br><span class="line">    [row_goalPos, col_goalPos] = <span class="built_in">ind2sub</span>([rows, cols], goalPos);</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">abs</span>(row_childNode - row_goalPos) + ...</span><br><span class="line">            <span class="built_in">abs</span>(col_childNode - col_goalPos) &lt; <span class="number">2</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%% 找出目标最优路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 最优路径</span></span><br><span class="line">path_opt = [];</span><br><span class="line">idx = <span class="built_in">size</span>(treeNodes,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">while</span> <span class="built_in">true</span></span><br><span class="line">    path_opt(<span class="keyword">end</span>+<span class="number">1</span>) = treeNodes(idx,<span class="number">1</span>);</span><br><span class="line">    parentNode = treeNodes(idx,<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">if</span> parentNode == startPos</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        idx = <span class="built_in">find</span>(treeNodes(:,<span class="number">1</span>) == parentNode);</span><br><span class="line">    <span class="keyword">end</span>    </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 路径信息反映到field中</span></span><br><span class="line">field(treeNodes(:,<span class="number">1</span>)) = <span class="number">3</span>;</span><br><span class="line">field(path_opt) = <span class="number">6</span>;</span><br><span class="line">field(startPos) = <span class="number">4</span>;</span><br><span class="line">field(goalPos) = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 画栅格图 </span></span><br><span class="line">image(<span class="number">1.5</span>,<span class="number">1.5</span>,field);</span><br><span class="line">grid on;</span><br><span class="line">set(gca,<span class="string">&#x27;gridline&#x27;</span>,<span class="string">&#x27;-&#x27;</span>,<span class="string">&#x27;gridcolor&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,<span class="string">&#x27;linewidth&#x27;</span>,<span class="number">2</span>,<span class="string">&#x27;GridAlpha&#x27;</span>,<span class="number">0.5</span>);</span><br><span class="line">set(gca,<span class="string">&#x27;xtick&#x27;</span>,<span class="number">1</span>:cols+<span class="number">1</span>,<span class="string">&#x27;ytick&#x27;</span>,<span class="number">1</span>:rows+<span class="number">1</span>);</span><br><span class="line">axis image;</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h3><p>将绿色部分连接就得到了基于RRT算法的最短路径（红色代表算法运行过程中生成的随机采样点），可以看到，这个路径并不是最优的而是相对较优的，需要我们继续对搜索的路径做平滑处理</p>
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124213515534-618958045.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/Matlab%E5%A4%8D%E7%8E%B0RRT%E7%AE%97%E6%B3%95-junlin623/" data-id="clhrwf8ix000seksz14653h1z" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Matlab复现Floyd算法-junlin623" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/18/Matlab%E5%A4%8D%E7%8E%B0Floyd%E7%AE%97%E6%B3%95-junlin623/" class="article-date">
+  <time class="dt-published" datetime="2023-05-17T16:09:35.117Z" itemprop="datePublished">2023-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlin623/p/17066311.html">https://www.cnblogs.com/junlin623/p/17066311.html</a></p>
+<hr>
+<p>title: ‘Matlab复现Floyd算法-junlin623’<br>date: 2023-01-24 20:01:00</p>
+<hr>
+<meta name = "referrer" content = "no-referrer" />
+
+
+
+<p><strong>Floyd算法</strong>适用于APSP(All Pairs Shortest Paths，多源最短路径)，是一种动态规划算法，稠密图效果最佳，边权可正可负。此算法简单有效，由于三重循环结构紧凑，对于稠密图，效率要高于Dijkstra算法，也要高于SPFA算法。</p>
+<p>优点：容易理解，可以算出任意两个节点之间的最短距离，代码编写简单。<br>缺点：时间复杂度比较高O(n^3)，不适合计算大量数据。</p>
+<h3 id="算法思想："><a href="#算法思想：" class="headerlink" title="算法思想："></a>算法思想：</h3><p>Floyd算法是一种在具有正或负边缘权重（但没有负周期）的加权图中找到最短路径的算法。算法的单个执行将找到所有顶点对之间的最短路径的长度（加权）。 </p>
+<p>其状态转移方程如下： <code>map[i,j] = min&#123;map[i,k]+map[k,j],map[i,j]&#125;；</code><br><code>map[i,j]</code> 表示i到j的最短距离，k是i到j的中介点，<code>map[n,n]</code> 初值应该为0，或者按照题目意思来做。<br>当然，如果这条路没有通的话就直接将 <code>map[i,j]</code> 设置为inf</p>
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124200208778-1589135294.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124200237937-1202987498.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124200313930-687368322.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124200330604-411789241.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124200409346-325368956.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124200425621-2081833185.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124200449580-562388598.png" width="30%" >
+
+<img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124200523336-2142516070.png" width="30%" >
+
+<h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><h4 id="init-m：初始化栅格地图"><a href="#init-m：初始化栅格地图" class="headerlink" title="init.m：初始化栅格地图"></a>init.m：初始化栅格地图</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[field,cmap]</span> = <span class="title">init</span><span class="params">(rows, cols)</span></span></span><br><span class="line">cmap = [<span class="number">1</span> <span class="number">1</span> <span class="number">1</span>; ...       <span class="comment">% 1-白色-空地</span></span><br><span class="line">    <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>; ...           <span class="comment">% 2-黑色-静态障碍</span></span><br><span class="line">    <span class="number">1</span> <span class="number">0</span> <span class="number">0</span>; ...           <span class="comment">% 3-红色-动态障碍</span></span><br><span class="line">    <span class="number">1</span> <span class="number">1</span> <span class="number">0</span>;...            <span class="comment">% 4-黄色-起始点 </span></span><br><span class="line">    <span class="number">1</span> <span class="number">0</span> <span class="number">1</span>;...            <span class="comment">% 5-品红-目标点</span></span><br><span class="line">    <span class="number">0</span> <span class="number">1</span> <span class="number">0</span>; ...           <span class="comment">% 6-绿色-到目标点的规划路径   </span></span><br><span class="line">    <span class="number">0</span> <span class="number">1</span> <span class="number">1</span>];              <span class="comment">% 7-青色-动态规划的路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 构建颜色MAP图</span></span><br><span class="line">colormap(cmap);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 定义栅格地图全域，并初始化空白区域</span></span><br><span class="line">field = <span class="built_in">ones</span>(rows, cols);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 障碍物区域</span></span><br><span class="line">obsRate = <span class="number">0.3</span>;</span><br><span class="line">obsNum = <span class="built_in">floor</span>(rows*cols*obsRate);</span><br><span class="line">obsIndex = randi([<span class="number">1</span>,rows*cols],obsNum,<span class="number">1</span>);</span><br><span class="line">field(obsIndex) = <span class="number">2</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="getNeighborNodes-m-获得给定点的8个邻接点以及距离矩阵"><a href="#getNeighborNodes-m-获得给定点的8个邻接点以及距离矩阵" class="headerlink" title="getNeighborNodes.m: 获得给定点的8个邻接点以及距离矩阵"></a>getNeighborNodes.m: 获得给定点的8个邻接点以及距离矩阵</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">neighborNodes</span> = <span class="title">getNeighborNodes</span><span class="params">(rows, cols, lineIndex, field)</span></span></span><br><span class="line">[row, col] = <span class="built_in">ind2sub</span>([rows,cols], lineIndex);</span><br><span class="line">neighborNodes = <span class="built_in">inf</span>(<span class="number">8</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%% 查找当前父节点临近的周围8个子节点</span></span><br><span class="line">neighborIndex = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">-1</span> : <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">-1</span> : <span class="number">1</span></span><br><span class="line">        nx = row + <span class="built_in">i</span>;</span><br><span class="line">        ny = col + <span class="built_in">j</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">i</span> == <span class="number">0</span> &amp;&amp; <span class="built_in">j</span> == <span class="number">0</span>) || nx &lt;= <span class="number">0</span> || nx &gt; rows || ny &lt;= <span class="number">0</span> || ny &gt; cols</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        child_node_line = <span class="built_in">sub2ind</span>([rows,cols], nx, ny);</span><br><span class="line">        neighborNodes(neighborIndex,<span class="number">1</span>) = child_node_line;</span><br><span class="line">        <span class="keyword">if</span> field(nx, ny) ~= <span class="number">2</span></span><br><span class="line">            cost = norm([nx, ny] - [row, col]);</span><br><span class="line">            neighborNodes(neighborIndex,<span class="number">2</span>) = cost;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        neighborIndex = neighborIndex + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="Floyd-m：得到任何两点间的最短路径并存储，将起点到终点的最短路径绘制出来"><a href="#Floyd-m：得到任何两点间的最短路径并存储，将起点到终点的最短路径绘制出来" class="headerlink" title="Floyd.m：得到任何两点间的最短路径并存储，将起点到终点的最短路径绘制出来"></a>Floyd.m：得到任何两点间的最短路径并存储，将起点到终点的最短路径绘制出来</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 基于栅格地图的机器人路径规划算法</span></span><br><span class="line"><span class="comment">% 第3节：Floyd算法</span></span><br><span class="line">clc</span><br><span class="line">clear</span><br><span class="line">close all</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 栅格界面、场景定义</span></span><br><span class="line"><span class="comment">% 行数和列数</span></span><br><span class="line">rows = <span class="number">10</span>;</span><br><span class="line">cols = <span class="number">20</span>;</span><br><span class="line">[field,cmap] = init(rows, cols);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 起点、终点、障碍物区域</span></span><br><span class="line">startPos = <span class="number">3</span>;</span><br><span class="line">goalPos = rows*cols<span class="number">-2</span>;</span><br><span class="line">field(startPos) = <span class="number">4</span>;</span><br><span class="line">field(goalPos) = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 算法初始化</span></span><br><span class="line">n = rows*cols;      <span class="comment">% 栅格节点总个数</span></span><br><span class="line">map = <span class="built_in">inf</span>(n,n);     <span class="comment">% 所有节点间的距离map, 邻接矩阵</span></span><br><span class="line">path = cell(n, n);  <span class="comment">% 存放对应的路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 初始化邻接矩阵和路径矩阵</span></span><br><span class="line"><span class="keyword">for</span> startNode = <span class="number">1</span>:n</span><br><span class="line">    <span class="keyword">if</span> field(startNode) ~= <span class="number">2</span>  <span class="comment">% 如果不是障碍物</span></span><br><span class="line">        neighborNodes = getNeighborNodes(rows, cols, startNode, field);</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">8</span></span><br><span class="line">            <span class="keyword">if</span> ~(<span class="built_in">isinf</span>(neighborNodes(<span class="built_in">i</span>,<span class="number">1</span>)) || <span class="built_in">isinf</span>(neighborNodes(<span class="built_in">i</span>,<span class="number">2</span>)))</span><br><span class="line">                neighborNode = neighborNodes(<span class="built_in">i</span>,<span class="number">1</span>);</span><br><span class="line">                map(startNode, neighborNode) = neighborNodes(<span class="built_in">i</span>,<span class="number">2</span>);</span><br><span class="line">                path&#123;startNode, neighborNode&#125; = [startNode, neighborNode];</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">           </span><br><span class="line"><span class="comment">%% 进入三层主循环</span></span><br><span class="line"><span class="keyword">for</span> k = <span class="number">1</span> : n   <span class="comment">% 中介点</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> =  <span class="number">1</span> : n</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">i</span> ~= k</span><br><span class="line">            <span class="keyword">for</span> <span class="built_in">j</span> =  <span class="number">1</span> : n</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">j</span> ~= <span class="built_in">i</span> &amp;&amp; <span class="built_in">j</span> ~= k</span><br><span class="line">                    <span class="keyword">if</span> map(<span class="built_in">i</span>,k) +  map(k,<span class="built_in">j</span>) &lt; map(<span class="built_in">i</span>,<span class="built_in">j</span>)</span><br><span class="line">                        map(<span class="built_in">i</span>,<span class="built_in">j</span>) = map(<span class="built_in">i</span>,k) +  map(k,<span class="built_in">j</span>);</span><br><span class="line">                        path&#123;<span class="built_in">i</span>,<span class="built_in">j</span>&#125; = [path&#123;<span class="built_in">i</span>,k&#125;, path&#123;k,<span class="built_in">j</span>&#125;(<span class="number">2</span>:<span class="keyword">end</span>)];</span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%% 画栅格界面</span></span><br><span class="line"><span class="comment">% 找出目标最优路径</span></span><br><span class="line">path_target = path&#123;startPos,goalPos&#125;;</span><br><span class="line">field(path_target(<span class="number">2</span>:<span class="keyword">end</span><span class="number">-1</span>)) = <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 画栅格图</span></span><br><span class="line">image(<span class="number">1.5</span>,<span class="number">1.5</span>,field);</span><br><span class="line">grid on;</span><br><span class="line">set(gca,<span class="string">&#x27;gridline&#x27;</span>,<span class="string">&#x27;-&#x27;</span>,<span class="string">&#x27;gridcolor&#x27;</span>,<span class="string">&#x27;k&#x27;</span>,<span class="string">&#x27;linewidth&#x27;</span>,<span class="number">2</span>,<span class="string">&#x27;GridAlpha&#x27;</span>,<span class="number">0.5</span>);</span><br><span class="line">set(gca,<span class="string">&#x27;xtick&#x27;</span>,<span class="number">1</span>:cols+<span class="number">1</span>,<span class="string">&#x27;ytick&#x27;</span>,<span class="number">1</span>:rows+<span class="number">1</span>);</span><br><span class="line">axis image;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h3><p>起点到终点的最短路径：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; path&#123;<span class="number">3</span>,<span class="number">198</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">ans</span> =</span><br><span class="line"></span><br><span class="line">     <span class="number">3</span>    <span class="number">14</span>    <span class="number">25</span>    <span class="number">35</span>    <span class="number">45</span>    <span class="number">55</span>    <span class="number">66</span>    <span class="number">76</span>    <span class="number">86</span>    <span class="number">96</span>   <span class="number">106</span>   <span class="number">116</span>   <span class="number">126</span>   <span class="number">137</span>   <span class="number">147</span>   <span class="number">157</span>   <span class="number">167</span>   <span class="number">178</span>   <span class="number">189</span>   <span class="number">198</span></span><br><span class="line"></span><br><span class="line">&gt;&gt; </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2023.cnblogs.com/blog/2935791/202301/2935791-20230124194918991-779270630.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/05/18/Matlab%E5%A4%8D%E7%8E%B0Floyd%E7%AE%97%E6%B3%95-junlin623/" data-id="clhrwf8ix000rekszdhpx0ka3" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/05/18/%E7%9B%B4%E8%BF%9E%E8%B7%AF%E7%94%B1%E8%A1%A8%E9%A1%B9%E8%A7%A3%E6%9E%90-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E6%95%B4%E6%95%B0%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%8E%9F%E7%94%9F%E6%96%B9%E5%BC%8F%E9%83%A8%E7%BD%B2JavaWeb%E9%A1%B9%E7%9B%AE%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%8E%9F%E6%9D%A5%E6%98%AFvmware-hostd%E7%A8%8B%E5%BA%8F%E5%8D%A0%E7%94%A8%E4%BA%86443%E7%AB%AF%E5%8F%A3-junlin623/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/18/%E5%AD%A6%E7%94%9F%E5%8F%AF%E4%BB%A5%E7%99%BD%E5%AB%96%E9%98%BF%E9%87%8C%E4%BA%91ECS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8D%8A%E5%B9%B4~~-junlin623/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
